@@ -1,0 +1,3 @@
+# Ignore generated docs and build folders
+_build/
+_docs/

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN"
+          prefix="DC_"
+          api="1"
+          version="1.0"
+          supportSpecialFloat="false"
+          supportInt64="false"
+          supportFloat64="false"
+          endian="big"
+          pointer="DCPkt"
+          >
+
+<!-- Include various group message definition files -->
+
+<Require file="system/system.xml"/>
+<Require file="bootloader/boot.xml"/>
+
+</Protocol>

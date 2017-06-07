@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_Bootloader" endian="big">
+
+<Enum name="DroneCAN_BootloaderMessages" prefix="DC_BOOT_">
+
+</Enum>
+
+</Protocol>
