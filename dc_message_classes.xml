@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_MsgClass">
+
+<Enum name="DroneCAN_MessageClasses" prefix="DC_MSG_CLASS_">
+  <Value name="AUTOPILOT" value="0x01" comment="Autopilot messages"/>
+
+  <Value name="COMMAND"  value="0x03" comment="Device commands (e.g. actuators)"/>
+
+  <Value name="TELEMETRY" value="0x06" comment="Device telemetry data"/>
+
+  <Value name="CONFIG" value="0x08"/>
+
+  <Value name="BULK" value="0x0B"/>
+
+  <Value name="DEBUG" value="0x0D"/>
+
+  <Value name="Vendor" value="0x0F" comment="Reserved for vendor messages"/>
+
+</Enum>
+
+</Protocol>

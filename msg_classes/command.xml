@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!--
+This file contains protocol definition for the DroneCAN Command message group
+-->
+
+<Protocol name="DroneCAN_CommandClass">
+
+<Enum name="DroneCAN_CommandMessages" prefix="DC_PKT_CMD_">
+</Enum>
+
+</Protocol>

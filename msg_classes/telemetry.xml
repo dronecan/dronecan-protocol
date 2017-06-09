@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<!--
+This file contains protocol definition for the DroneCAN Telemetry Message group
+-->
+
+<Protocol name="DroneCAN_TelemetryClass">
+
+<Enum name="DroneCAN_TelemetryMessages" prefix="DC_PKT_TELEM_">
+  <Value name="DEVICE_STATUS" value="0x00" comment="Device status information"/>
+</Enum>
+
+</Protocol>
