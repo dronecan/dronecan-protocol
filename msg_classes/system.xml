@@ -17,6 +17,8 @@ This file contains protocol definition for the DroneCAN System Message group
   <Value name="FW_DESC" comment="Device firmware description string"/>
   <Value name="SETTINGS_CHK" comment="Settings checksum information"/>
 
+  <Value name="CPU_INFO" comment="Processor information"/>
+
   <!-- System commands -->
   <Value name="CMD" comment="Issue a device-specific command" value="0x50"/>
   <Value name="RESET" comment="Reset the device"/>
@@ -57,6 +59,16 @@ This file contains protocol definition for the DroneCAN System Message group
   <Data name="versionYear" inMemoryType="unsigned16" comment="Release date: year"/>
   <Data name="versionMonth" inMemoryType="unsigned8" comment="Release date: month"/>
   <Data name="versionDay" inMemoryType="unsigned8" comment="Release date: day"/>
+</Packet>
+
+<Packet name="CPUInfo"
+        ID="DC_PKT_SYS_CPU_INFO"
+        file="dc_pkt_sys"
+        comment="Processor information">
+  <Data name="cpuOccupancy" inMemoryType="unsigned8" comment="Current CPU occupancy" units="0.5% per bit" range="0 to 200"/>
+  <Data name="cpuWatermark" inMemoryType="unsigned8" comment="Maximum CPU occupancy" units="0.5% per bit" range="0 to 200"/>
+  <Data name="resetCode" inMemoryType="unsigned16" comment="Cause of most recent power cycle event (implementation specific)"/>
+  <Data name="powerCycles" inMemoryType="unsigned16" comment="Number of logged power cycles"/>
 </Packet>
 
 <Packet name="SystemCommand"
