@@ -9,8 +9,9 @@ This file contains protocol definition for the DroneCAN System Message group
 <Documentation name="System Information" paragraph="1" comment="DroneCAN system information messages"/>
 
 <Enum name="DroneCAN_SystemMessages" prefix="DC_PKT_SYS_">
+
   <!-- Device Information Packets -->
-  <Value name="INFO" comment="Device information"/>
+  <Value name="INFO" value="0x20" comment="Device information"/>
   <Value name="ID" comment="Device identification"/>
   <Value name="FW_VERSION" comment="Device firmware version"/>
   <Value name="FW_DATE" comment="Device revision date"/>
@@ -22,7 +23,16 @@ This file contains protocol definition for the DroneCAN System Message group
   <!-- System commands -->
   <Value name="CMD" comment="Issue a device-specific command" value="0x50"/>
   <Value name="RESET" comment="Reset the device"/>
+
+  <!-- Node ID messages -->
+  <Value name="SET_NODE_ID" value="0x80" comment="Set device node ID"/>
 </Enum>
+
+<Struct name="UID">
+  <Data name="VID" inMemoryType="unsigned16" comment="Vendor ID"/>
+  <Data name="PID" inMemoryType="unsigned16" comment="Product ID"/>
+  <Data name="serial" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
+</Struct>
 
 <Packet name="DeviceId"
         ID="DC_PKT_SYS_ID"
@@ -30,9 +40,7 @@ This file contains protocol definition for the DroneCAN System Message group
         structureInterface="true"
         parameterInterface="true"
         comment="Device Identification packet, uniquely identifies a particular device">
-  <Data name="manufacturerId" inMemoryType="unsigned16" comment="Unique manufacturer ID"/>
-  <Data name="productId" inMemoryType="unsigned16" comment="Product ID unique to a given manufacturer"/>
-  <Data name="serialNumber" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
+  <Data name="uid" struct="UID"/>
 </Packet>
 
 <Packet name="FirmwareInfo"
@@ -77,6 +85,15 @@ This file contains protocol definition for the DroneCAN System Message group
         parameterInterface="true">
   <Data name="command" inMemoryType="unsigned16" comment="System command (device specific)"/>
   <Data name="payload" inMemoryType="unsigned8" array="6"/>
+</Packet>
+
+<Packet name="AssignNodeID"
+        ID="DC_PKT_ASSIGN_NODE_ID"
+        file="dc_pkt_sys">
+
+  <Data name="uid" struct="UID"/>
+  <Data name="nodeID" inMemoryType="unsigned8"/>
+
 </Packet>
 
 </Protocol>

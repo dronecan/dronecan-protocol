@@ -37,5 +37,4 @@ This file contains protocol definition for the DroneCAN Telemetry Message group
   <Data name="mode" inMemoryType="unsigned8" encodedType="bitfield4"/>
   <Data name="uptime" inMemoryType="unsigned32" comment="Device uptime (s)"/>
 </Packet>
-
 </Protocol>
