@@ -7,7 +7,35 @@ This file contains protocol definition for the DroneCAN Telemetry Message group
 <Protocol name="DroneCAN_TelemetryClass">
 
 <Enum name="DroneCAN_TelemetryMessages" prefix="DC_PKT_TELEM_">
-  <Value name="DEVICE_STATUS" value="0x00" comment="Device status information"/>
+  <Value name="STATUS" value="0x00" comment="Device status information"/>
+  <Value name="WARNING" comment="Device specific warning codes"/>
+  <Value name="ERRORS" comment="Device specific error codes"/>
 </Enum>
+
+<Enum name="DroneCAN_DeviceStatus" prefix="DC_DEV_STATUS_">
+  <Value name="OK" value="0x00"/>
+  <Value name="WARN"/>
+  <Value name="ERR"/>
+  <Value name="CRIT"/>
+</Enum>
+
+<Enum name="DroneCAN_DeviceMode" prefix="DC_DEV_MODE_">
+  <Value name="NORMAL" value="0x00"/>
+  <Value name="INIT" comment="Device is in initialization routine"/>
+  <Value name="PREFLIGHT" comment="Device is performing preflight checks"/>
+  <Value name="CALIBRATE" comment="Device is in calibration mode"/>
+  <Value name="UPDATE" comment="Device is performing firmware update"/>
+  <Value name="SHUTDOWN" comment="Device is in shutdown mode"/>
+</Enum>
+
+<Packet name="DeviceStatus"
+        ID="DC_PKT_TELEM_DEVICE_STATUS"
+        file="dc_pkt_telem"
+        comment="Device status">
+
+  <Data name="status" inMemoryType="unsigned8" encodedType="bitfield4"/>
+  <Data name="mode" inMemoryType="unsigned8" encodedType="bitfield4"/>
+  <Data name="uptime" inMemoryType="unsigned32" comment="Device uptime (s)"/>
+</Packet>
 
 </Protocol>
