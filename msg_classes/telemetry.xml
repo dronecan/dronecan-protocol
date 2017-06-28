@@ -28,13 +28,19 @@ This file contains protocol definition for the DroneCAN Telemetry Message group
   <Value name="SHUTDOWN" comment="Device is in shutdown mode"/>
 </Enum>
 
+<Struct name="DeviceStatusField">
+  <Data name="mode" inMemoryType="bitfield4" comment="Device mode"/>
+  <Data name="warning" inMemoryType="bitfield1" comment="Device warning"/>
+  <Data name="error" inMemoryType="bitfield1" comment="Device error"/>
+  <Data name="critical" inMemoryType="bitfield1" comment="Device critical"/>
+  <Data name="fatal" inMemoryType="bitfield1" comment="Device fatal"/>
+</Struct>
+
 <Packet name="DeviceStatus"
         ID="DC_PKT_TELEM_DEVICE_STATUS"
         file="dc_pkt_telem"
         comment="Device status">
-
-  <Data name="status" inMemoryType="unsigned8" encodedType="bitfield4"/>
-  <Data name="mode" inMemoryType="unsigned8" encodedType="bitfield4"/>
+  <Data name="status" struct="DeviceStatusField" comment="Device status information"/>
   <Data name="uptime" inMemoryType="unsigned32" comment="Device uptime (s)"/>
 </Packet>
 </Protocol>

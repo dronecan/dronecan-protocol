@@ -7,6 +7,31 @@ This file contains protocol definition for the DroneCAN Command message group
 <Protocol name="DroneCAN_CommandClass">
 
 <Enum name="DroneCAN_CommandMessages" prefix="DC_PKT_CMD_">
+  <Value name="DISARM" value="0x00"/>
+  <Value name="ARM"/>
+
+  <Value name="RAW_VALUE" value="0x10"/>
+  <Value name="TARGET_PWM"/>
+  <Value name="TARGET_RPM"/>
+  <Value name="TARGET_ANGLE"/>
+
+  <Value name="INDICATOR" value="0x20" comment="Indicator command"/>
 </Enum>
+
+<Packet name="RawCommand"
+        ID="DC_PKT_CMD_RAW_VALUE"
+        file="dc_pkt_cmd"
+        comment="Raw actuator command">
+
+  <Data name="value" inMemoryType="signed16"/>
+
+</Packet>
+
+<Packet name="PWMCommand"
+        ID="DC_PKT_CMD_TARGET_PWM"
+        file="dc_pkt_cmd"
+        comment="PWM command">
+  <Data name="pwm" inMemoryType="unsigned16" comment="PWM command (us)"/>
+</Packet>
 
 </Protocol>
