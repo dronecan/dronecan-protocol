@@ -15,7 +15,9 @@ This file contains protocol definition for the DroneCAN Command message group
   <Value name="TARGET_RPM"/>
   <Value name="TARGET_ANGLE"/>
 
-  <Value name="INDICATOR" value="0x20" comment="Indicator command"/>
+  <Value name="THROTTLE" value="0x20" comment="Throttle position command"/>
+
+  <Value name="INDICATOR" value="0x30" comment="Indicator command"/>
 </Enum>
 
 <Packet name="RawCommand"
@@ -33,5 +35,13 @@ This file contains protocol definition for the DroneCAN Command message group
         comment="PWM command">
   <Data name="pwm" inMemoryType="unsigned16" comment="PWM command (us)"/>
 </Packet>
+
+<Packet name="ThrottleCommand"
+        ID="DC_PKT_CMD_THROTTLE"
+        file="dc_pkt_cmd"
+        comment="Throttle position command">
+    <Data name="reserved" inMemoryType="null" encodedType="bitfield4" comment="Reserved for future use"/>
+    <Data name="throttle" inMemoryType="unsigned16" encodedType="bitfield12" comment="Throttle command, 0.1% per bit"/>
+  </Packet>
 
 </Protocol>

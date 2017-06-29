@@ -47,6 +47,9 @@ typedef struct
 
 } DC_Packet_t;
 
+/*
+ * Top-level DroneCAN packet functions
+ */
 void finishDroneCANPacket(DC_Packet_t* pkt, int size, uint32_t id);
 uint8_t* getDroneCanPacketData(DC_Packet_t* pkt);
 const uint8_t* getDroneCANPacketDataConst(const DC_Packet_t* pkt);
