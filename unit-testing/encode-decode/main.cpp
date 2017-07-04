@@ -5,7 +5,10 @@ using namespace std;
 #include "drone_can_classes.h"
 #include "drone_can_packet.h"
 #include "drone_can_protocol_glue.h"
+
+
 #include "dc_pkt_cmd.h"
+#include "dc_pkt_sys.h"
 
 void printPacket(DC_Packet_t& pkt, bool extended = false);
 
@@ -39,6 +42,14 @@ int main(int argc, char *argv[])
 
     DC_SetAddress(&pkt.id, 123);
     DC_SetDirection(&pkt.id, DC_MSG_DIR_FROM);
+
+    printPacket(pkt, true);
+
+    encodeDC_Sys_FirmwareInfoPacket(&pkt,
+                                    1,
+                                    0,
+                                    0,
+                                    0xABCD);
 
     printPacket(pkt, true);
 

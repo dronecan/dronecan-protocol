@@ -1,7 +1,7 @@
 /*
  * This program source code file is part of DroneCAN protocol specification
  *
- * Copyright (C) 2017 Currawong Engineering, see AUTHORS.txt for contributors.
+ * Copyright (C) 2017 Currawong Engineering Pty Ltd, see AUTHORS.txt for contributors.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,6 +30,9 @@
 extern "C" {
 #endif
 
+/**
+ * @brief The DroneCANMessageClasses enum defines the various message classes
+ */
 enum DroneCANMessageClasses
 {
     DC_MSG_CLASS_AUTOPILOT  = 0x01,
@@ -40,6 +43,11 @@ enum DroneCANMessageClasses
     DC_MSG_CLASS_DEBUG      = 0x0D
 };
 
+/**
+ * @brief DC_GetClassName returns the human-readable name corresponding to a given class ID
+ * @param classId is the ID of the class
+ * @return the name of the class as a string
+ */
 const char* DC_GetClassName(uint8_t classId);
 
 #ifdef __cplusplus

@@ -1,7 +1,7 @@
 /*
  * This program source code file is part of DroneCAN protocol specification
  *
- * Copyright (C) 2017 Currawong Engineering, see AUTHORS.txt for contributors.
+ * Copyright (C) 2017 Currawong Engineering Pty Ltd, see AUTHORS.txt for contributors.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -63,6 +63,27 @@ void finishDC_CommandPacket(DC_Packet_t *pkt, int size, uint32_t id)
 uint32_t getDC_CommandPacketID(const DC_Packet_t *pkt)
 {
     if (DC_GetClassFromID(pkt->id) != DC_MSG_CLASS_COMMAND)
+    {
+        return DC_MSG_INVALID;
+    }
+
+    return DC_GetMessageFromID(pkt->id);
+}
+
+/* System Messages */
+void finishDC_SystemPacket(DC_Packet_t *pkt, int size, uint32_t id)
+{
+    id = DC_EncodeID(DC_MSG_CLASS_SYSTEM,
+                     id,
+                     0x00,
+                     0x00);
+
+    finishDroneCANPacket(pkt, size, id);
+}
+
+uint32_t getDC_SystemPacketID(const DC_Packet_t *pkt)
+{
+    if (DC_GetClassFromID(pkt->id) != DC_MSG_CLASS_SYSTEM)
     {
         return DC_MSG_INVALID;
     }

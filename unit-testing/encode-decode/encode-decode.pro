@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     ../../src/fieldencode.c \
     ../../src/fielddecode.c \
     ../../src/scaledencode.c \
-    ../../static/drone_can_classes.c
+    ../../static/drone_can_classes.c \
+    ../../src/dc_pkt_sys.c
     ../../src/scaleddecode.c \
 
 HEADERS += \
@@ -30,5 +31,7 @@ HEADERS += \
     ../../src/DC_CommandProtocol.h \
     ../../src/fieldencode.h \
     ../../src/fielddecode.h \
-    ../../src/scaledencode.h
+    ../../src/scaledencode.h \
+    ../../src/dc_pkt_sys.h \
+    ../../src/DC_SystemProtocol.h
     ../../src/scaleddecode.h \
