@@ -14,7 +14,7 @@ void printPacket(DC_Packet_t& pkt, bool extended)
 
     for (int idx=0; idx<pkt.length; idx++)
     {
-        printf("%02x ", pkt.data[idx]);
+        printf  ("%02x ", pkt.data[idx]);
     }
 
     printf("\n");
@@ -24,6 +24,7 @@ void printPacket(DC_Packet_t& pkt, bool extended)
         printf("Class: %u\n", DC_GetClassFromID(pkt.id));
         printf("Msg: %u\n", DC_GetMessageFromID(pkt.id));
         printf("Address: %u\n", DC_GetAddressFromID(pkt.id));
+        printf("Direction: %s\n", DC_GetDirectionFromID(pkt.id) == DC_MSG_DIR_TO ? "to" : "from");
     }
 
 }
@@ -36,15 +37,10 @@ int main(int argc, char *argv[])
 
     printPacket(pkt, true);
 
-    uint32_t id;
+    DC_SetAddress(&pkt.id, 123);
+    DC_SetDirection(&pkt.id, DC_MSG_DIR_FROM);
 
-    id = getDroneCANPacketID(&pkt);
-
-    printf("Packet ID: %08x\n", id);
-
-    id = getDC_CommandPacketID(&pkt);
-
-    printf("Command pkt: %02x\n", id);
+    printPacket(pkt, true);
 
     return 0;
 }
