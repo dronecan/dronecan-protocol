@@ -22,3 +22,50 @@
  */
 
 #include "drone_can_packet.h"
+
+uint8_t DC_GetClassFromID(uint32_t id)
+{
+    return (uint8_t) ((id & DC_MASK_CLASS) >> 25);
+}
+
+uint16_t DC_GetMessageFromID(uint32_t id)
+{
+    return (uint16_t) ((id & DC_MASK_MSG) >> 9);
+}
+
+uint8_t DC_GetAddressFromID(uint32_t id)
+{
+    return (uint8_t) (id & DC_MASK_ADDRESS);
+}
+
+uint8_t DC_GetDirectionFromID(uint32_t id)
+{
+    return (uint8_t) ((id & DC_MASK_DIR) >> 8);
+}
+
+uint32_t DC_EncodeID(uint8_t msgClass, uint16_t msgId, uint8_t msgDir, uint8_t msgAddress)
+{
+    uint32_t id = 0x00;
+
+    // Encode message class
+    id |= (msgClass & 0x0F) << 25;
+
+    // Encode message ID
+    id |= (msgId & 0xFFFF) << 9;
+
+    // Encode message direction
+    id |= (msgDir & 0x01) << 8;
+
+    // Encode message address
+    id |= msgAddress;
+
+    return id;
+}
+
+void DC_DecodeID(uint32_t id, uint8_t *msgClass, uint16_t *msgId, uint8_t *msgDir, uint8_t *msgAddress)
+{
+    *msgClass = (uint8_t) ((id & DC_MASK_CLASS) >> 25);
+    *msgId = (uint16_t) ((id & DC_MASK_MSG)) >> 9;
+    *msgDir = (uint8_t) ((id & DC_MASK_DIR)) >> 8;
+    *msgAddress = (uint8_t) (id & DC_MASK_ADDRESS);
+}

@@ -47,6 +47,10 @@ extern "C" {
 // Invalid message identifier
 #define DC_MSG_INVALID   0xF0000000UL
 
+// Message direction
+#define DC_MSG_DIR_TO    0x00   // Message is being sent TO the addressed device
+#define DC_MSG_DIR_FROM  0x01   // Message is being received FROM the addressed device
+
 typedef struct
 {
   // Identifier extension
@@ -72,6 +76,53 @@ typedef struct
   DC_CANFlags_t flags;
 
 } DC_Packet_t;
+
+/**
+ * @brief DC_GetClassFromID - Extract the message class from the CAN ID
+ * @param id - 29-bit CAN ID
+ * @return message class
+ */
+uint8_t DC_GetClassFromID(uint32_t id);
+
+/**
+ * @brief DC_GetMessageFromID - Extract the message identifier from the CAN ID
+ * @param id - 29-bit CAN ID
+ * @return message ID
+ */
+uint16_t DC_GetMessageFromID(uint32_t id);
+
+/**
+ * @brief DC_GetAddressFromID - Extract message address from the CAN ID
+ * @param id - 29-bit CAN ID
+ * @return message address
+ */
+uint8_t DC_GetAddressFromID(uint32_t id);
+
+/**
+ * @brief DC_GetDirectionFromID - Extract message direction from the CAN ID
+ * @param id - 29-bit CAN ID
+ * @return message direction bit
+ */
+uint8_t DC_GetDirectionFromID(uint32_t id);
+
+/**
+ * @brief DC_EncodeID - Encode a DroneCAN Message ID
+ * @param msgClass - message class
+ * @param msgId - message ID
+ * @param msgDir - message direction
+ * @param msgAddress - message address
+ * @return
+ */
+uint32_t DC_EncodeID(uint8_t msgClass, uint16_t msgId, uint8_t msgDir, uint8_t msgAddress);
+
+/**
+ * @brief DC_DecodeID - Decode a DroneCAN message ID
+ * @param msgClass - message class
+ * @param msgId - message ID
+ * @param msgDir - message direction
+ * @param msgAddress - message address
+ */
+void DC_DecodeID(uint32_t id, uint8_t* msgClass, uint16_t* msgId, uint8_t* msgDir, uint8_t* msgAddress);
 
 #ifdef __cplusplus
 }

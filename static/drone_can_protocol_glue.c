@@ -23,14 +23,6 @@
 
 #include "drone_can_protocol_glue.h"
 
-// Magic number class values for various message classes
-const uint32_t _CLASS_AUTOPILOT     = (uint32_t) DC_MSG_CLASS_AUTOPILOT << 15;
-const uint32_t _CLASS_COMMAND       = (uint32_t) DC_MSG_CLASS_COMMAND   << 15;
-const uint32_t _CLASS_TELEMETRY     = (uint32_t) DC_MSG_CLASS_TELEMETRY << 15;
-const uint32_t _CLASS_SYSTEM        = (uint32_t) DC_MSG_CLASS_SYSTEM    << 15;
-const uint32_t _CLASS_BLOCK         = (uint32_t) DC_MSG_CLASS_BLOCK     << 15;
-const uint32_t _CLASS_DEBUG         = (uint32_t) DC_MSG_CLASS_DEBUG     << 15;
-
 // Mask for the 16-bits of allowable message range within each class
 const uint32_t _MSG_MASK            = 0xFFFF;
 
@@ -39,55 +31,47 @@ const uint32_t _MSG_CLASS_MASK      = 0xFFFFF;
 
 void finishDroneCANPacket(DC_Packet_t* pkt, int size, uint32_t id)
 {
-    // Ensure packet length is correct
     pkt->length = (uint8_t) size;
-
-    // Left-shift ID by 9 bits to account for extra ID info
-    // a) 8 bits of address information
-    // b) 1 bit of direction information
-    pkt->id = (id & _MSG_CLASS_MASK) << 9;
+    pkt->id = id;
 }
 
 uint8_t* getDroneCANPacketData(DC_Packet_t* pkt)
 {
-  return (uint8_t*) &(pkt->data);
+    return (uint8_t*) &(pkt->data);
 }
 
 const uint8_t* getDroneCANPacketDataConst(const DC_Packet_t* pkt)
 {
-  return (const uint8_t*) &(pkt->data);
+    return (const uint8_t*) &(pkt->data);
 }
 
 int getDroneCANPacketSize(const DC_Packet_t* pkt)
 {
-  return (int) pkt->length;
+    return (int) pkt->length;
 }
 
 uint32_t getDroneCANPacketID(const DC_Packet_t* pkt)
 {
-    // Right-shift the encoded ID value
-    // This is to ignore the address and direction bits
-    return (pkt->id >> 9) & _MSG_CLASS_MASK;
+    return pkt->id;
 }
 
 /* Autopilot messages */
 void finishDC_CommandPacket(DC_Packet_t *pkt, int size, uint32_t id)
 {
-    id &= _MSG_MASK;
-    id |= _CLASS_AUTOPILOT;
+    id = DC_EncodeID(DC_MSG_CLASS_COMMAND,
+                     id,
+                     0x00,
+                     0x00);
 
     finishDroneCANPacket(pkt, size, id);
 }
 
 uint32_t getDC_CommandPacketID(const DC_Packet_t *pkt)
 {
-    uint32_t id = getDroneCANPacketID(pkt);
-
-    if ((id >> 16) != _CLASS_COMMAND)
+    if (DC_GetClassFromID(pkt->id) != DC_MSG_CLASS_COMMAND)
     {
         return DC_MSG_INVALID;
     }
 
-    // Return the message type with the class masked out
-    return id & _MSG_MASK;
+    return DC_GetMessageFromID(pkt->id);
 }
