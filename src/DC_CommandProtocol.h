@@ -64,4 +64,5 @@ uint32_t getDC_CommandPacketID(const DC_Packet_t* pkt);
 #ifdef __cplusplus
 }
 #endif
+
 #endif

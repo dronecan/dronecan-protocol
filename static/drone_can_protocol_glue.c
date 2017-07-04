@@ -23,12 +23,6 @@
 
 #include "drone_can_protocol_glue.h"
 
-// Mask for the 16-bits of allowable message range within each class
-const uint32_t _MSG_MASK            = 0xFFFF;
-
-// Mask for the 20-bit CLASS + MSG mask
-const uint32_t _MSG_CLASS_MASK      = 0xFFFFF;
-
 void finishDroneCANPacket(DC_Packet_t* pkt, int size, uint32_t id)
 {
     pkt->length = (uint8_t) size;

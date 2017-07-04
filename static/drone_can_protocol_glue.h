@@ -27,6 +27,10 @@
 #include "drone_can_packet.h"
 #include "drone_can_classes.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * Top-level DroneCAN Protogen glue functions
  */
@@ -87,5 +91,9 @@ uint32_t getDC_BlockPacketID(const DC_Packet_t* pkt);
 #define getDC_BlockPacketData(pkt) getDroneCANPacketData(pkt)
 #define getDC_BlockPacketDataConst(pkt) getDroneCANPacketDataConst(pkt)
 #define getDC_BlockPacketSize(pkt) getDroneCANPacketSize(pkt)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // _DC_PROTOCOL_GLUE_H_
