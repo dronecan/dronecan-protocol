@@ -69,3 +69,15 @@ void DC_DecodeID(uint32_t id, uint8_t *msgClass, uint16_t *msgId, uint8_t *msgDi
     *msgDir = (uint8_t) ((id & DC_MASK_DIR)) >> 8;
     *msgAddress = (uint8_t) (id & DC_MASK_ADDRESS);
 }
+
+void DC_SetAddress(uint32_t *id, uint8_t address)
+{
+    *id &= ~DC_MASK_ADDRESS;
+    *id |= address;
+}
+
+void DC_SetDirection(uint32_t *id, uint8_t direction)
+{
+    *id &= ~DC_MASK_DIR;
+    *id |= (direction & 0x01) << 8;
+}

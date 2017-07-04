@@ -124,6 +124,20 @@ uint32_t DC_EncodeID(uint8_t msgClass, uint16_t msgId, uint8_t msgDir, uint8_t m
  */
 void DC_DecodeID(uint32_t id, uint8_t* msgClass, uint16_t* msgId, uint8_t* msgDir, uint8_t* msgAddress);
 
+/**
+ * @brief DC_SetAddress overrides the address field of a CAN ID
+ * @param id - pointer to the CAN ID
+ * @param address - address value to be written
+ */
+void DC_SetAddress(uint32_t* id, uint8_t address);
+
+/**
+ * @brief DC_SetDirection overrides the direction bit of a CAN ID
+ * @param id - pointer to the CAN ID
+ * @param direction - address value to be written
+ */
+void DC_SetDirection(uint32_t* id, uint8_t direction);
+
 #ifdef __cplusplus
 }
 #endif
