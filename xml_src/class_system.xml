@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+
+<!--
+This file contains protocol definition for the DroneCAN System Message group
+-->
+
+<Protocol name="DC_System"
+          prefix="DC_Sys_"
+          api="1"
+          version="1.0"
+          supportSpecialFloat="false"
+          supportInt64="false"
+          supportFloat64="false"
+          endian="big"
+          pointer="DC_Packet_t"
+          >
+
+<Include name="drone_can_protocol_glue.h" comment="Protocol glue files"/>
+
+<Documentation name="System Information" paragraph="1" comment="DroneCAN system information messages"/>
+
+<Enum name="DroneCAN_SystemMessages" prefix="DC_PKT_SYS_">
+
+  <!-- Device Information Packets -->
+  <Value name="INFO" value="0x20" comment="Device information"/>
+  <Value name="ID" comment="Device identification"/>
+  <Value name="FW_VERSION" comment="Device firmware version"/>
+  <Value name="FW_DATE" comment="Device revision date"/>
+  <Value name="FW_DESC" comment="Device firmware description string"/>
+  <Value name="SETTINGS_CHK" comment="Settings checksum information"/>
+
+  <Value name="CPU_INFO" comment="Processor information"/>
+
+  <!-- System commands -->
+  <Value name="CMD" comment="Issue a device-specific command" value="0x50"/>
+  <Value name="RESET" comment="Reset the device"/>
+
+  <!-- Node ID messages -->
+  <Value name="ASSIGN_NODE_ID" value="0x80" comment="Set device node ID"/>
+
+  <Value name="ENTER_BOOTLOADER" value="0xB0"/>
+</Enum>
+
+<Struct name="UID">
+  <Data name="VID" inMemoryType="unsigned16" comment="Vendor ID"/>
+  <Data name="PID" inMemoryType="unsigned16" comment="Product ID"/>
+  <Data name="serial" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
+</Struct>
+
+<Packet name="DeviceId"
+        ID="DC_PKT_SYS_ID"
+        file="dc_pkt_sys"
+        structureInterface="true"
+        parameterInterface="true"
+        comment="Device Identification packet, uniquely identifies a particular device">
+  <Data name="uid" struct="UID"/>
+</Packet>
+
+<Packet name="FirmwareInfo"
+        ID="DC_PKT_SYS_FW_VERSION"
+        file="dc_pkt_sys"
+        comment="Device firmware version"
+        parameterInterface="true"
+        structureInterface="true">
+  <Data name="versionMajor" inMemoryType="unsigned8" comment="Major release number"/>
+  <Data name="versionMinor" inMemoryType="unsigned8" comment="Minor release number"/>
+  <Data name="versionSub"   inMemoryType="unsigned8" comment="Sub release number"/>
+  <Data name="checksum" inMemoryType="unsigned32" comment="Firmware checksum"/>
+
+  <!-- Extra firmware information flags -->
+  <Data name="experimental" inMemoryType="bitfield1" comment="Experimental firmware release"/>
+
+  <Data name="reserved" inMemoryType="bitfield7" comment="Flag bits reserved for future use"/>
+</Packet>
+
+<Packet name="RevisionDate"
+        ID="DC_PKT_SYS_FW_DATE"
+        file="dc_pkt_sys"
+        comment="Firmware release date">
+  <Data name="versionYear" inMemoryType="unsigned16" comment="Release date: year"/>
+  <Data name="versionMonth" inMemoryType="unsigned8" comment="Release date: month"/>
+  <Data name="versionDay" inMemoryType="unsigned8" comment="Release date: day"/>
+</Packet>
+
+<Packet name="CPUInfo"
+        ID="DC_PKT_SYS_CPU_INFO"
+        file="dc_pkt_sys"
+        comment="Processor information">
+  <Data name="cpuOccupancy" inMemoryType="unsigned8" comment="Current CPU occupancy" units="0.5% per bit" range="0 to 200"/>
+  <Data name="cpuWatermark" inMemoryType="unsigned8" comment="Maximum CPU occupancy" units="0.5% per bit" range="0 to 200"/>
+  <Data name="resetCode" inMemoryType="unsigned16" comment="Cause of most recent power cycle event (implementation specific)"/>
+  <Data name="powerCycles" inMemoryType="unsigned16" comment="Number of logged power cycles"/>
+</Packet>
+
+<Packet name="SystemCommand"
+        ID="DC_PKT_SYS_CMD"
+        file="dc_pkt_sys"
+        parameterInterface="true">
+  <Data name="command" inMemoryType="unsigned16" comment="System command (device specific)"/>
+  <Data name="payload" inMemoryType="unsigned8" array="6"/>
+</Packet>
+
+<Packet name="AssignNodeID"
+        ID="DC_PKT_SYS_ASSIGN_NODE_ID"
+        file="dc_pkt_sys">
+
+  <Data name="uid" struct="UID"/>
+  <Data name="nodeID" inMemoryType="unsigned8"/>
+
+</Packet>
+
+</Protocol>
