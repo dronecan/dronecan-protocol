@@ -125,12 +125,8 @@ void encodeDC_Sys_FirmwareInfoPacketStructure(DC_Packet_t* pkt, const DC_Sys_Fir
     // Firmware checksum
     uint32ToBeBytes((uint32_t)user->checksum, data, &byteindex);
 
-    // Experimental firmware release
-    data[byteindex] = (uint8_t)user->experimental << 7;
-
-    // Flag bits reserved for future use
-    data[byteindex] |= (uint8_t)user->reserved;
-    byteindex += 1; // close bit field
+    // Reserved for future use
+    uint8ToBytes((uint8_t)0x00, data, &byteindex);
 
     // complete the process of creating the packet
     finishDC_SystemPacket(pkt, byteindex, getDC_Sys_FirmwareInfoPacketID());
@@ -174,12 +170,8 @@ int decodeDC_Sys_FirmwareInfoPacketStructure(const DC_Packet_t* pkt, DC_Sys_Firm
     // Firmware checksum
     user->checksum = (uint32_t)uint32FromBeBytes(data, &byteindex);
 
-    // Experimental firmware release
-    user->experimental = (data[byteindex] >> 7);
-
-    // Flag bits reserved for future use
-    user->reserved = ((data[byteindex]) & 0x7F);
-    byteindex += 1; // close bit field
+    // Reserved for future use
+    byteindex += 1;
 
     return 1;
 }
@@ -193,10 +185,8 @@ int decodeDC_Sys_FirmwareInfoPacketStructure(const DC_Packet_t* pkt, DC_Sys_Firm
  * \param versionMinor is Minor release number
  * \param versionSub is Sub release number
  * \param checksum is Firmware checksum
- * \param experimental is Experimental firmware release
- * \param reserved is Flag bits reserved for future use
  */
-void encodeDC_Sys_FirmwareInfoPacket(DC_Packet_t* pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum, unsigned experimental, unsigned reserved)
+void encodeDC_Sys_FirmwareInfoPacket(DC_Packet_t* pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum)
 {
     uint8_t* data = getDC_SystemPacketData(pkt);
     int byteindex = 0;
@@ -213,12 +203,8 @@ void encodeDC_Sys_FirmwareInfoPacket(DC_Packet_t* pkt, uint8_t versionMajor, uin
     // Firmware checksum
     uint32ToBeBytes((uint32_t)checksum, data, &byteindex);
 
-    // Experimental firmware release
-    data[byteindex] = (uint8_t)experimental << 7;
-
-    // Flag bits reserved for future use
-    data[byteindex] |= (uint8_t)reserved;
-    byteindex += 1; // close bit field
+    // Reserved for future use
+    uint8ToBytes((uint8_t)0x00, data, &byteindex);
 
     // complete the process of creating the packet
     finishDC_SystemPacket(pkt, byteindex, getDC_Sys_FirmwareInfoPacketID());
@@ -233,11 +219,9 @@ void encodeDC_Sys_FirmwareInfoPacket(DC_Packet_t* pkt, uint8_t versionMajor, uin
  * \param versionMinor receives Minor release number
  * \param versionSub receives Sub release number
  * \param checksum receives Firmware checksum
- * \param experimental receives Experimental firmware release
- * \param reserved receives Flag bits reserved for future use
  * \return 0 is returned if the packet ID or size is wrong, else 1
  */
-int decodeDC_Sys_FirmwareInfoPacket(const DC_Packet_t* pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum, unsigned* experimental, unsigned* reserved)
+int decodeDC_Sys_FirmwareInfoPacket(const DC_Packet_t* pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum)
 {
     int byteindex = 0;
     const uint8_t* data = getDC_SystemPacketDataConst(pkt);
@@ -262,12 +246,8 @@ int decodeDC_Sys_FirmwareInfoPacket(const DC_Packet_t* pkt, uint8_t* versionMajo
     // Firmware checksum
     *checksum = (uint32_t)uint32FromBeBytes(data, &byteindex);
 
-    // Experimental firmware release
-    (*experimental) = (data[byteindex] >> 7);
-
-    // Flag bits reserved for future use
-    (*reserved) = ((data[byteindex]) & 0x7F);
-    byteindex += 1; // close bit field
+    // Reserved for future use
+    byteindex += 1;
 
     return 1;
 }

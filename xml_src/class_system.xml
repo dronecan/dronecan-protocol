@@ -67,10 +67,7 @@ This file contains protocol definition for the DroneCAN System Message group
   <Data name="versionSub"   inMemoryType="unsigned8" comment="Sub release number"/>
   <Data name="checksum" inMemoryType="unsigned32" comment="Firmware checksum"/>
 
-  <!-- Extra firmware information flags -->
-  <Data name="experimental" inMemoryType="bitfield1" comment="Experimental firmware release"/>
-
-  <Data name="reserved" inMemoryType="bitfield7" comment="Flag bits reserved for future use"/>
+  <Data name="reserved" encodedType="unsigned8" inMemoryType="null" constant="0x00" comment="Reserved for future use"/>
 </Packet>
 
 <Packet name="RevisionDate"

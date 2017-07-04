@@ -53,12 +53,10 @@ int decodeDC_Sys_DeviceIdPacket(const DC_Packet_t* pkt, DC_Sys_UID_t* uid);
  */
 typedef struct
 {
-    uint8_t  versionMajor;     //!< Major release number
-    uint8_t  versionMinor;     //!< Minor release number
-    uint8_t  versionSub;       //!< Sub release number
-    uint32_t checksum;         //!< Firmware checksum
-    unsigned experimental : 1; //!< Experimental firmware release
-    unsigned reserved : 7;     //!< Flag bits reserved for future use
+    uint8_t  versionMajor; //!< Major release number
+    uint8_t  versionMinor; //!< Minor release number
+    uint8_t  versionSub;   //!< Sub release number
+    uint32_t checksum;     //!< Firmware checksum
 }DC_Sys_FirmwareInfo_t;
 
 #define getMinLengthOfDC_Sys_FirmwareInfo_t() (8)
@@ -70,10 +68,10 @@ void encodeDC_Sys_FirmwareInfoPacketStructure(DC_Packet_t* pkt, const DC_Sys_Fir
 int decodeDC_Sys_FirmwareInfoPacketStructure(const DC_Packet_t* pkt, DC_Sys_FirmwareInfo_t* user);
 
 //! Create the DC_Sys_FirmwareInfo packet
-void encodeDC_Sys_FirmwareInfoPacket(DC_Packet_t* pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum, unsigned experimental, unsigned reserved);
+void encodeDC_Sys_FirmwareInfoPacket(DC_Packet_t* pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum);
 
 //! Decode the DC_Sys_FirmwareInfo packet
-int decodeDC_Sys_FirmwareInfoPacket(const DC_Packet_t* pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum, unsigned* experimental, unsigned* reserved);
+int decodeDC_Sys_FirmwareInfoPacket(const DC_Packet_t* pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum);
 
 //! return the packet ID for the DC_Sys_FirmwareInfo packet
 #define getDC_Sys_FirmwareInfoPacketID() (DC_PKT_SYS_FW_VERSION)
