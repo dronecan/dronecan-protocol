@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     ../../static/drone_can_protocol_glue.c \
     ../../src/fieldencode.c \
     ../../src/fielddecode.c \
-    ../../src/scaledencode.c
+    ../../src/scaledencode.c \
+    ../../static/drone_can_classes.c
     ../../src/scaleddecode.c \
 
 HEADERS += \

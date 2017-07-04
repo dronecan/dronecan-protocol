@@ -21,29 +21,25 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
 
-#ifndef DRONE_CAN_CLASSES_H
-#define DRONE_CAN_CLASSES_H
+#include "drone_can_classes.h"
 
-#include <stdint.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-enum DroneCANMessageClasses
+const char* DC_GetClassName(uint8_t classId)
 {
-    DC_MSG_CLASS_AUTOPILOT  = 0x01,
-    DC_MSG_CLASS_COMMAND    = 0x03,
-    DC_MSG_CLASS_TELEMETRY  = 0x06,
-    DC_MSG_CLASS_SYSTEM     = 0x08,
-    DC_MSG_CLASS_BLOCK      = 0x0B,
-    DC_MSG_CLASS_DEBUG      = 0x0D
-};
-
-const char* DC_GetClassName(uint8_t classId);
-
-#ifdef __cplusplus
+    switch (classId)
+    {
+    case DC_MSG_CLASS_AUTOPILOT:
+        return "Autopilot";
+    case DC_MSG_CLASS_COMMAND:
+        return "Command";
+    case DC_MSG_CLASS_TELEMETRY:
+        return "Telemetry";
+    case DC_MSG_CLASS_SYSTEM:
+        return "System";
+    case DC_MSG_CLASS_BLOCK:
+        return "Block";
+    case DC_MSG_CLASS_DEBUG:
+        return "Debug";
+    default:
+        return "Unknown";
+    }
 }
-#endif
-
-#endif // DRONE_CAN_CLASSES_H

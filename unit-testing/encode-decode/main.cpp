@@ -2,6 +2,7 @@
 
 using namespace std;
 
+#include "drone_can_classes.h"
 #include "drone_can_packet.h"
 #include "drone_can_protocol_glue.h"
 #include "dc_pkt_cmd.h"
@@ -21,12 +22,11 @@ void printPacket(DC_Packet_t& pkt, bool extended)
 
     if (extended)
     {
-        printf("Class: %u\n", DC_GetClassFromID(pkt.id));
+        printf("Class: %s (%u)\n", DC_GetClassName(DC_GetClassFromID(pkt.id)), DC_GetClassFromID(pkt.id));
         printf("Msg: %u\n", DC_GetMessageFromID(pkt.id));
         printf("Address: %u\n", DC_GetAddressFromID(pkt.id));
         printf("Direction: %s\n", DC_GetDirectionFromID(pkt.id) == DC_MSG_DIR_TO ? "to" : "from");
     }
-
 }
 
 int main(int argc, char *argv[])
