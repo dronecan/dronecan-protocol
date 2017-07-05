@@ -37,7 +37,7 @@ extern "C" {
 // CAN frame ID masks
 #define DC_MASK_ADDRESS  0x000000FFUL
 #define DC_MASK_DIR      0x00000100UL
-#define DC_MASK_MSG      0x001FFE00UL
+#define DC_MASK_MSG      0x01FFFE00UL
 #define DC_MASK_RESERVED 0x01E00000UL
 #define DC_MASK_CLASS    0x1E000000UL
 
