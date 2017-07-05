@@ -45,7 +45,7 @@ extern "C" {
 #define DC_ADDRESS_BROADCAST = 0xFF
 
 // Invalid message identifier
-#define DC_MSG_INVALID   0xF0000000UL
+#define DC_MSG_INVALID   0xFFFF
 
 // Message direction
 #define DC_MSG_DIR_TO    0x00   // Message is being sent TO the addressed device
