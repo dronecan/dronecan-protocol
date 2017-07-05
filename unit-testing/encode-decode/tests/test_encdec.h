@@ -24,6 +24,8 @@
 #ifndef TEST_ENCDEC_H
 #define TEST_ENCDEC_H
 
+#include <QList>
+
 #include "drone_can_protocol.h"
 
 /**
@@ -31,5 +33,13 @@
  * @return
  */
 int Test_EncDecAllId();
+
+/**
+ * @brief Test_InvalidMsg - Test that invalid message types are correctly detected
+ * @return
+ */
+int Test_InvalidMsg();
+
+QList<int> ListAllClasses();
 
 #endif // TEST_ENCDEC_H

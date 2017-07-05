@@ -23,13 +23,10 @@
 
 #include "test_encdec.h"
 
-#include <QList>
 #include <QDebug>
 
-int Test_EncDecAllId()
+QList<int> ListAllClasses()
 {
-    int errorCount = 0;
-
     QList<int> classes;
 
     classes << DC_MSG_CLASS_AUTOPILOT;
@@ -38,6 +35,17 @@ int Test_EncDecAllId()
     classes << DC_MSG_CLASS_SYSTEM;
     classes << DC_MSG_CLASS_DEBUG;
     classes << DC_MSG_CLASS_BLOCK;
+
+    return classes;
+}
+
+int Test_EncDecAllId()
+{
+    qDebug() << "Test_EncDecAllId";
+
+    int errorCount = 0;
+
+    auto classes = ListAllClasses();
 
     uint32_t id;
     uint8_t idClass;
@@ -63,6 +71,59 @@ int Test_EncDecAllId()
                 qDebug() << QString::number(id, 16).rightJustified(8,'0');
                 qDebug() << "Error encoded message ID -" << msgId << "->" << idMsg;
                 errorCount++;
+            }
+        }
+    }
+
+    return errorCount;
+}
+
+int Test_InvalidMsg()
+{
+    qDebug() << "Running Test_InvalidMsg";
+
+    auto classes = ListAllClasses();
+
+    DC_Packet_t pkt;
+
+    int errorCount = 0;
+
+    const uint16_t MSG_ID = 0xABCD;
+
+    uint16_t tmp;
+
+    for (auto a : classes)
+    {
+        for (auto b : classes)
+        {
+            if (a == b)
+                continue;
+
+            finishDC_ClassPacket(&pkt, 0, MSG_ID, a);
+
+            tmp = DC_GetClassFromID(pkt.id);
+
+            // Test that it was encoded correctly
+            if (tmp != a)
+            {
+                errorCount++;
+                qDebug() << "Error encoding class -" << a << "->" << tmp;
+            }
+
+            // Test decoding of correct class
+            tmp = getDC_ClassID(&pkt, a);
+            if (tmp != MSG_ID)
+            {
+                errorCount++;
+                qDebug() << "Mismatch on class decode -" << a << "results in" << tmp;
+            }
+
+            // Test decoding of incorrect class
+            tmp = getDC_ClassID(&pkt, b);
+            if (tmp != DC_MSG_INVALID)
+            {
+                errorCount++;
+                qDebug() << "Invalid class did not return DC_MSG_INVALID:" << tmp;
             }
         }
     }

@@ -22,6 +22,7 @@
  */
 
 #include <stdio.h>
+#include <QDebug>
 
 using namespace std;
 
@@ -34,6 +35,15 @@ int main(int argc, char *argv[])
     int result = 0;
 
     result += Test_EncDecAllId();
+
+    result += Test_InvalidMsg();
+
+    if (result == 0)
+    {
+        qDebug() << "------------------";
+        qDebug() << "No errors detected";
+        qDebug() << "------------------";
+    }
 
     return result;
 }
