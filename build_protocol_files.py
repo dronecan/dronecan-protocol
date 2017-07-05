@@ -35,8 +35,15 @@ def BuildFile(xml_file):
 
     Call(['protogen', xml_file, OUTPUT_DIR] + PROTOGEN_ARGS)
 
+# Create output directory if needed
+if not os.path.exists(OUTPUT_DIR):
+    os.mkdir(OUTPUT_DIR)
+    print("Created dir '{d}'".format(d=OUTPUT_DIR))
+
 # Clean the output directory
-shutil.rmtree(OUTPUT_DIR)
+for f in os.listdir(OUTPUT_DIR):
+    x = os.path.join(OUTPUT_DIR, f)
+    os.remove(x)
 
 # List of message classes to build
 PROTOCOL_FILES = [
