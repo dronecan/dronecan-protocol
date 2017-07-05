@@ -21,7 +21,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
 
-#include "drone_can_protocol_glue.h"
+#include "drone_can_protocol.h"
 
 void finishDroneCANPacket(DC_Packet_t* pkt, int size, uint32_t id)
 {
@@ -49,10 +49,9 @@ uint32_t getDroneCANPacketID(const DC_Packet_t* pkt)
     return pkt->id;
 }
 
-/* Autopilot messages */
-void finishDC_CommandPacket(DC_Packet_t *pkt, int size, uint32_t id)
+void finishDC_ClassPacket(DC_Packet_t *pkt, int size, uint32_t id, uint8_t msgClass)
 {
-    id = DC_EncodeID(DC_MSG_CLASS_COMMAND,
+    id = DC_EncodeID(msgClass,
                      id,
                      0x00,
                      0x00);
@@ -60,9 +59,9 @@ void finishDC_CommandPacket(DC_Packet_t *pkt, int size, uint32_t id)
     finishDroneCANPacket(pkt, size, id);
 }
 
-uint32_t getDC_CommandPacketID(const DC_Packet_t *pkt)
+uint32_t getDC_ClassID(const DC_Packet_t *pkt, uint8_t msgClass)
 {
-    if (DC_GetClassFromID(pkt->id) != DC_MSG_CLASS_COMMAND)
+    if (DC_GetClassFromID(pkt->id) != msgClass)
     {
         return DC_MSG_INVALID;
     }
@@ -70,23 +69,166 @@ uint32_t getDC_CommandPacketID(const DC_Packet_t *pkt)
     return DC_GetMessageFromID(pkt->id);
 }
 
-/* System Messages */
-void finishDC_SystemPacket(DC_Packet_t *pkt, int size, uint32_t id)
+const char* DroneCAN_GetMessageLabel(uint32_t id)
 {
-    id = DC_EncodeID(DC_MSG_CLASS_SYSTEM,
-                     id,
-                     0x00,
-                     0x00);
+    uint16_t msgClass = DC_GetClassFromID(id);
+    uint8_t  msgId = DC_GetMessageFromID(id);
 
-    finishDroneCANPacket(pkt, size, id);
+    switch (msgClass)
+    {
+    default:
+        return "Unknown msg class";
+    case DC_MSG_CLASS_AUTOPILOT:
+        //TODO
+        return "";
+    case DC_MSG_CLASS_COMMAND:
+        return DroneCAN_CommandMessages_EnumLabel(msgId);
+    case DC_MSG_CLASS_TELEMETRY:
+        return DroneCAN_TelemetryMessages_EnumLabel(msgId);
+    case DC_MSG_CLASS_SYSTEM:
+        return DroneCAN_SystemMessages_EnumLabel(msgId);
+    case DC_MSG_CLASS_DEBUG:
+        //TODO
+        return "";
+    case DC_MSG_CLASS_BLOCK:
+        //TODO
+        return "";
+    }
 }
 
-uint32_t getDC_SystemPacketID(const DC_Packet_t *pkt)
-{
-    if (DC_GetClassFromID(pkt->id) != DC_MSG_CLASS_SYSTEM)
-    {
-        return DC_MSG_INVALID;
-    }
 
-    return DC_GetMessageFromID(pkt->id);
+/* Glue functions for the Autopilot message class */
+
+inline uint8_t* getDC_AutopilotPacketData(DC_Packet_t *pkt)
+{
+    return getDroneCANPacketData(pkt);
+}
+
+inline const uint8_t* getDC_AutopilotPacketDataConst(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketDataConst(pkt);
+}
+
+inline void finishDC_AutopilotPacket(DC_Packet_t *pkt, int size, uint32_t packetID)
+{
+    finishDC_ClassPacket(pkt, size, packetID, DC_MSG_CLASS_AUTOPILOT);
+}
+
+inline int getDC_AutopilotPacketSize(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketSize(pkt);
+}
+
+inline uint32_t getDC_AutopilotPacketID(const DC_Packet_t *pkt)
+{
+    return getDC_ClassID(pkt, DC_MSG_CLASS_AUTOPILOT);
+}
+
+
+/* Glue functions for the Command message class */
+
+inline uint8_t* getDC_CommandPacketData(DC_Packet_t *pkt)
+{
+    return getDroneCANPacketData(pkt);
+}
+
+inline const uint8_t* getDC_CommandPacketDataConst(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketDataConst(pkt);
+}
+
+inline void finishDC_CommandPacket(DC_Packet_t *pkt, int size, uint32_t packetID)
+{
+    finishDC_ClassPacket(pkt, size, packetID, DC_MSG_CLASS_COMMAND);
+}
+
+inline int getDC_CommandPacketSize(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketSize(pkt);
+}
+
+inline uint32_t getDC_CommandPacketID(const DC_Packet_t *pkt)
+{
+    return getDC_ClassID(pkt, DC_MSG_CLASS_COMMAND);
+}
+
+/* Glue functions for the Telemetry message class */
+
+inline uint8_t* getDC_TelemetryPacketData(DC_Packet_t *pkt)
+{
+    return getDroneCANPacketData(pkt);
+}
+
+inline const uint8_t* getDC_TelemetryPacketDataConst(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketDataConst(pkt);
+}
+
+inline void finishDC_TelemetryPacket(DC_Packet_t *pkt, int size, uint32_t packetID)
+{
+    finishDC_ClassPacket(pkt, size, packetID, DC_MSG_CLASS_TELEMETRY);
+}
+
+inline int getDC_TelemetryPacketSize(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketSize(pkt);
+}
+
+inline uint32_t getDC_TelemetryPacketID(const DC_Packet_t *pkt)
+{
+    return getDC_ClassID(pkt, DC_MSG_CLASS_TELEMETRY);
+}
+
+/* Glue functions for the System message class */
+
+inline uint8_t* getDC_SystemPacketData(DC_Packet_t *pkt)
+{
+    return getDroneCANPacketData(pkt);
+}
+
+inline const uint8_t* getDC_SystemPacketDataConst(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketDataConst(pkt);
+}
+
+inline void finishDC_SystemPacket(DC_Packet_t *pkt, int size, uint32_t packetID)
+{
+    finishDC_ClassPacket(pkt, size, packetID, DC_MSG_CLASS_SYSTEM);
+}
+
+inline int getDC_SystemPacketSize(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketSize(pkt);
+}
+
+inline uint32_t getDC_SystemPacketID(const DC_Packet_t *pkt)
+{
+    return getDC_ClassID(pkt, DC_MSG_CLASS_SYSTEM);
+}
+
+/* Glue functions for the Block message class */
+
+inline uint8_t* getDC_BlockPacketData(DC_Packet_t *pkt)
+{
+    return getDroneCANPacketData(pkt);
+}
+
+inline const uint8_t* getDC_BlockPacketDataConst(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketDataConst(pkt);
+}
+
+inline void finishDC_BlockPacket(DC_Packet_t *pkt, int size, uint32_t packetID)
+{
+    finishDC_ClassPacket(pkt, size, packetID, DC_MSG_CLASS_BLOCK);
+}
+
+inline int getDC_BlockPacketSize(const DC_Packet_t *pkt)
+{
+    return getDroneCANPacketSize(pkt);
+}
+
+inline uint32_t getDC_BlockPacketID(const DC_Packet_t *pkt)
+{
+    return getDC_ClassID(pkt, DC_MSG_CLASS_BLOCK);
 }

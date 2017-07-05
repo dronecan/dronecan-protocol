@@ -1,4 +1,0 @@
-#ifndef DRONE_CAN_DEVICE_H
-#define DRONE_CAN_DEVICE_H
-
-#endif // DRONE_CAN_DEVICE_H

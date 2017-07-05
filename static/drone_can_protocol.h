@@ -27,6 +27,12 @@
 #include "drone_can_packet.h"
 #include "drone_can_classes.h"
 
+#include "DC_AutopilotProtocol.h"
+#include "DC_CommandProtocol.h"
+#include "DC_TelemetryProtocol.h"
+#include "DC_SystemProtocol.h"
+#include "DC_BlockProtocol.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -40,57 +46,30 @@ uint8_t* getDroneCANPacketData(DC_Packet_t* pkt);
 const uint8_t* getDroneCANPacketDataConst(const DC_Packet_t* pkt);
 int getDroneCANPacketSize(const DC_Packet_t* pkt);
 
-/*
- * Glue functions for Autopilot message class
+/**
+ * @brief finishDC_ClassPacket - Finish a DroneCAN packet and encode for a particular message class
+ * @param pkt - pointer to the packet
+ * @param size - size of packet payload
+ * @param id - message ID
+ * @param msgClass - message class
  */
+void finishDC_ClassPacket(DC_Packet_t* pkt, int size, uint32_t id, uint8_t msgClass);
 
-void finishDC_AutopilotPacket(DC_Packet_t* pkt, int size, uint32_t id);
-uint32_t getDC_AutopilotPacketID(const DC_Packet_t* pkt);
-#define getDC_AutopilotPacketData(pkt) getDroneCANPacketData(pkt)
-#define getDC_AutopilotPacketDataConst(pkt) getDroneCANPacketDataConst(pkt)
-#define getDC_AutopilotPacketSize(pkt) getDroneCANPacketSize(pkt)
-
-
-/*
- * Glue functions for Command message class
+/**
+ * @brief getDC_ClassID - Return the packet ID, assuming a particular message class
+ * @param pkt - pointer to the packet
+ * @param msgClass - message class
+ * @return message ID if the message is in the given class else DC_MSG_INVALID
  */
-
-void finishDC_CommandPacket(DC_Packet_t* pkt, int size, uint32_t id);
-uint32_t getDC_CommandPacketID(const DC_Packet_t* pkt);
-#define getDC_CommandPacketData(pkt) (getDroneCANPacketData(pkt))
-#define getDC_CommandPacketDataConst(pkt) (getDroneCANPacketDataConst(pkt))
-#define getDC_CommandPacketSize(pkt) (getDroneCANPacketSize(pkt))
+uint32_t getDC_ClassID(const DC_Packet_t* pkt, uint8_t msgClass);
 
 
-/*
- * Glue functions for Telemetry message class
+/**
+ * @brief DroneCAN_GetMessageLabel - return human-readable string associated with a given CAN ID
+ * @param id - CAN ID
+ * @return message string if ID is valid else empty string
  */
-
-void finishDC_TelemetryPacket(DC_Packet_t* pkt, int size, uint32_t id);
-uint32_t getDC_TelemetryPacketID(const DC_Packet_t* pkt);
-#define getDC_TelemetryPacketData(pkt) getDroneCANPacketData(pkt)
-#define getDC_TelemetryPacketDataConst(pkt) getDroneCANPacketDataConst(pkt)
-#define getDC_TelemetryPacketSize(pkt) getDroneCANPacketSize(pkt)
-
-/*
- * Glue functions for System message class
- */
-
-void finishDC_SystemPacket(DC_Packet_t* pkt, int size, uint32_t id);
-uint32_t getDC_SystemPacketID(const DC_Packet_t* pkt);
-#define getDC_SystemPacketData(pkt) getDroneCANPacketData(pkt)
-#define getDC_SystemPacketDataConst(pkt) getDroneCANPacketDataConst(pkt)
-#define getDC_SystemPacketSize(pkt) getDroneCANPacketSize(pkt)
-
-/*
- * Glue functions for Block message class
- */
-
-void finishDC_BlockPacket(DC_Packet_t* pkt, int size, uint32_t id);
-uint32_t getDC_BlockPacketID(const DC_Packet_t* pkt);
-#define getDC_BlockPacketData(pkt) getDroneCANPacketData(pkt)
-#define getDC_BlockPacketDataConst(pkt) getDroneCANPacketDataConst(pkt)
-#define getDC_BlockPacketSize(pkt) getDroneCANPacketSize(pkt)
+const char* DroneCAN_GetMessageLabel(uint32_t id);
 
 #ifdef __cplusplus
 }
