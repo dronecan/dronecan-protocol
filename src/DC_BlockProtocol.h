@@ -22,7 +22,7 @@ extern "C" {
  */
 
 #include <stdint.h>
-#include "drone_can_protocol_glue.h"	// Protocol glue files
+#include "drone_can_packet.h"	// DroneCAN packet definition
 
 //! \return the protocol API enumeration
 #define getDC_BlockApi() 1
@@ -38,6 +38,9 @@ typedef enum
     DC_BLOCK_ENDPOINT_BOOTLOADER = 0x10, //!< Bootloader data
     DC_BLOCK_ENDPOINT_INVALID = 0xFF     //!< Invalid enpoint. Do not define endpoint ID values higher than this
 } DroneCAN_BlockDataEndpoints;
+
+//! \return the label of a 'DroneCAN_BlockDataEndpoints' enum entry, based on its value
+const char* DroneCAN_BlockDataEndpoints_EnumLabel(int value);
 
 /*!
  * Block data messages

@@ -15,11 +15,14 @@ This file contains protocol definition for the DroneCAN System Message group
           pointer="DC_Packet_t"
           >
 
-<Include name="drone_can_protocol_glue.h" comment="Protocol glue files"/>
+
+          <Include name="drone_can_packet.h" comment="DroneCAN packet definition"/>
 
 <Documentation name="System Information" paragraph="1" comment="DroneCAN system information messages"/>
 
-<Enum name="DroneCAN_SystemMessages" prefix="DC_PKT_SYS_">
+<Enum name="DroneCAN_SystemMessages"
+      prefix="DC_PKT_SYS_"
+      lookup="true">
 
   <!-- Device Information Packets -->
   <Value name="INFO" value="0x20" comment="Device information"/>
@@ -41,9 +44,11 @@ This file contains protocol definition for the DroneCAN System Message group
   <Value name="ENTER_BOOTLOADER" value="0xB0"/>
 </Enum>
 
-<Struct name="UID">
-  <Data name="VID" inMemoryType="unsigned16" comment="Vendor ID"/>
-  <Data name="PID" inMemoryType="unsigned16" comment="Product ID"/>
+<Struct name="UID"
+        comment="Unique Identifier for device"
+        file="dc_dev_info">
+  <Data name="vid" inMemoryType="unsigned16" comment="Vendor ID"/>
+  <Data name="pid" inMemoryType="unsigned16" comment="Product ID"/>
   <Data name="serial" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
 </Struct>
 
@@ -55,6 +60,23 @@ This file contains protocol definition for the DroneCAN System Message group
         comment="Device Identification packet, uniquely identifies a particular device">
   <Data name="uid" struct="UID"/>
 </Packet>
+
+<Struct name="DevFwVersion"
+        comment="Device firmware version information"
+        file="dc_dev_info">
+  <Data name="major" inMemoryType="unsigned8" comment="Major release number"/>
+  <Data name="minor" inMemoryType="unsigned8" comment="Minor release number"/>
+  <Data name="sub" inMemoryType="unsigned8" comment="Sub release number"/>
+</Struct>
+
+<Struct name="DevFwDate"
+        comment="Device firmware release date information"
+        file="dc_dev_info">
+  <Data name="year" inMemoryType="unsigned16" comment="Year of release"/>
+  <Data name="month" inMemoryType="unsigned8" comment="Month of release"/>
+  <Data name="day" inMemoryType="unsigned8" comment="Day of release"/>
+
+</Struct>
 
 <Packet name="FirmwareInfo"
         ID="DC_PKT_SYS_FW_VERSION"

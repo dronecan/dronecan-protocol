@@ -15,7 +15,7 @@ extern "C" {
  */
 
 #include "DC_SystemProtocol.h"
-#include "DC_Sys_UID.h"
+#include "dc_dev_info.h"
 
 /*!
  * Device Identification packet, uniquely identifies a particular device

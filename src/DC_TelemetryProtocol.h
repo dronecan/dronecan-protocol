@@ -22,7 +22,7 @@ extern "C" {
  */
 
 #include <stdint.h>
-#include "drone_can_protocol_glue.h"	// Protocol glue files
+#include "drone_can_packet.h"	// DroneCAN packet definition
 
 //! \return the protocol API enumeration
 #define getDC_TelemetryApi() 1
@@ -35,6 +35,9 @@ typedef enum
     DC_PKT_TELEM_WARNING,    //!< Device specific warning codes
     DC_PKT_TELEM_ERRORS      //!< Device specific error codes
 } DroneCAN_TelemetryMessages;
+
+//! \return the label of a 'DroneCAN_TelemetryMessages' enum entry, based on its value
+const char* DroneCAN_TelemetryMessages_EnumLabel(int value);
 
 typedef enum
 {

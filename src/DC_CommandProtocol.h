@@ -22,7 +22,7 @@ extern "C" {
  */
 
 #include <stdint.h>
-#include "drone_can_protocol_glue.h"	// Protocol glue files
+#include "drone_can_packet.h"	// DroneCAN packet definition
 
 //! \return the protocol API enumeration
 #define getDC_CommandApi() 1
@@ -38,9 +38,15 @@ typedef enum
     DC_PKT_CMD_TARGET_PWM,       
     DC_PKT_CMD_TARGET_RPM,       
     DC_PKT_CMD_TARGET_ANGLE,     
+    DC_PKT_CMD_ENGINE_START,     
+    DC_PKT_CMD_CANCEL_START,     
+    DC_PKT_CMD_ENGINE_KILL,      
     DC_PKT_CMD_THROTTLE = 0x30,  //!< Throttle position command
     DC_PKT_CMD_INDICATOR = 0x40  //!< Indicator command
 } DroneCAN_CommandMessages;
+
+//! \return the label of a 'DroneCAN_CommandMessages' enum entry, based on its value
+const char* DroneCAN_CommandMessages_EnumLabel(int value);
 
 
 // The prototypes below provide an interface to the packets.

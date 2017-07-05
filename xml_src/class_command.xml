@@ -15,9 +15,12 @@ This file contains protocol definition for the DroneCAN Command message group
           pointer="DC_Packet_t"
           >
 
-<Include name="drone_can_protocol_glue.h" comment="Protocol glue files"/>
+          <Include name="drone_can_packet.h" comment="DroneCAN packet definition"/>
 
-<Enum name="DroneCAN_CommandMessages" prefix="DC_PKT_CMD_">
+<Enum name="DroneCAN_CommandMessages"
+      prefix="DC_PKT_CMD_"
+      lookup="true">
+
   <Value name="DISARM" value="0x00"/>
   <Value name="ARM"/>
 
@@ -27,6 +30,10 @@ This file contains protocol definition for the DroneCAN Command message group
   <Value name="TARGET_PWM"/>
   <Value name="TARGET_RPM"/>
   <Value name="TARGET_ANGLE"/>
+
+  <Value name="ENGINE_START"/>
+  <Value name="CANCEL_START"/>
+  <Value name="ENGINE_KILL"/>
 
   <Value name="THROTTLE" value="0x30" comment="Throttle position command"/>
 

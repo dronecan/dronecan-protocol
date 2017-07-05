@@ -11,11 +11,15 @@
           pointer="DC_Packet_t"
           >
 
-  <Include name="drone_can_protocol_glue.h" comment="Protocol glue files"/>
+          <Include name="drone_can_packet.h" comment="DroneCAN packet definition"/>
 
   <Documentation name="Block Data" paragraph="1" comment="DroneCAN block data transfer"/>
 
-  <Enum name="DroneCAN_BlockDataEndpoints" prefix="DC_BLOCK_ENDPOINT_" comment="Block data endpoints" description="When transmitting block data, the endpoint is used to determine the source or destination of the data">
+  <Enum name="DroneCAN_BlockDataEndpoints"
+        prefix="DC_BLOCK_ENDPOINT_"
+        lookup="true"
+        comment="Block data endpoints"
+        description="When transmitting block data, the endpoint is used to determine the source or destination of the data">
     <Value name="MULTI_FRAME" comment="Multi-frame message transfer" value="0x00"/>
 
     <Value name="BOOTLOADER" comment="Bootloader data" value="0x10"/>
@@ -102,6 +106,7 @@
 
   </Enum>
 
+<!--
   <Packet name="BlockDataEndpointInfo"
           ID="DC_PKT_ENDPOINT_INFO"
           file="dc_pkt_block">
@@ -150,8 +155,9 @@
     <Data name="checksum" inMemoryType="unsigned16" comment="Block checksum"/>
   </Packet>
 
+-->
   <Packet name="StartBlockTransfer"
-          ID="DC_PKT_BLK_START"
+          ID="DC_PKT_BLOCK_START"
           file="dc_pkt_block">
 
     <Data name="id"       inMemoryType="unsigned8" comment="Transfer ID"/>
@@ -159,5 +165,6 @@
     <Data name="address"  inMemoryType="unsigned32" comment="Transfer address"/>
     <Data name="size"     inMemoryType="unsigned16" comment="Transfer size (bytes)"/>
   </Packet>
+
 
 </Protocol>

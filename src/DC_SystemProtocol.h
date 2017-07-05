@@ -22,7 +22,7 @@ extern "C" {
  */
 
 #include <stdint.h>
-#include "drone_can_protocol_glue.h"	// Protocol glue files
+#include "drone_can_packet.h"	// DroneCAN packet definition
 
 //! \return the protocol API enumeration
 #define getDC_SystemApi() 1
@@ -43,6 +43,9 @@ typedef enum
     DC_PKT_SYS_ASSIGN_NODE_ID = 0x80,//!< Set device node ID
     DC_PKT_SYS_ENTER_BOOTLOADER = 0xB0 
 } DroneCAN_SystemMessages;
+
+//! \return the label of a 'DroneCAN_SystemMessages' enum entry, based on its value
+const char* DroneCAN_SystemMessages_EnumLabel(int value);
 
 
 // The prototypes below provide an interface to the packets.
