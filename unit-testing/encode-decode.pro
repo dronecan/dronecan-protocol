@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     ../src/scaleddecode.c \
     ../static/drone_can_protocol.c \
     tests/test_encdec.cpp \
-    packet_printer.cpp
+    packet_printer.cpp \
+    ../static/drone_can_vendors.c
     ../src/scaleddecode.c \
 
 HEADERS += \
@@ -52,5 +53,6 @@ HEADERS += \
     ../src/scaleddecode.h \
     ../static/drone_can_protocol.h \
     tests/test_encdec.h \
-    packet_printer.h
+    packet_printer.h \
+    ../static/drone_can_vendors.h
     ../src/scaleddecode.h \
