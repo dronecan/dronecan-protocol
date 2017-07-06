@@ -31,7 +31,7 @@ def Call(cmd):
 def BuildFile(xml_file):
 
     # Arguments to reduce noise of protogen output
-    PROTOGEN_ARGS = ["--no-doxygen", "--no-markdown"]
+    PROTOGEN_ARGS = ["--no-doxygen", "--no-markdown", '--license', 'licensetemplate']
 
     Call(['protogen', xml_file, OUTPUT_DIR] + PROTOGEN_ARGS)
 
