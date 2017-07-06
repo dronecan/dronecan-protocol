@@ -33,6 +33,14 @@ extern "C" {
 
 #include <stdint.h>
 
+/**
+ * @brief The DroneCANVendors enum defines unique vendor ID values
+ *
+ * A conformant DroneCAN device requires a unique vendor ID for device enumeration.
+ *
+ * This enumeration may contain 'secret' vendor IDs for vendors that
+ * do not wish to identify themselves in the protocol specification.
+ */
 enum DroneCANVendors
 {
     // Currawong Engineering Pty Ltd
