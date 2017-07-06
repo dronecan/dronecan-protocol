@@ -1,6 +1,9 @@
 /*
  * This program source code file is part of DroneCAN protocol specification
  *
+ * Website: www.dronecan.org
+ * GitHub: www.github.com/dronecan
+ *
  * Copyright (C) 2017 Currawong Engineering Pty Ltd, see AUTHORS.txt for contributors.
  *
  * This program is free software; you can redistribute it and/or
@@ -20,7 +23,6 @@
  * or you may write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
-
 #include "drone_can_protocol.h"
 
 void finishDroneCANPacket(DC_Packet_t* pkt, int size, uint32_t id)

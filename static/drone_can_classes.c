@@ -1,6 +1,9 @@
 /*
  * This program source code file is part of DroneCAN protocol specification
  *
+ * Website: www.dronecan.org
+ * GitHub: www.github.com/dronecan
+ *
  * Copyright (C) 2017 Currawong Engineering Pty Ltd, see AUTHORS.txt for contributors.
  *
  * This program is free software; you can redistribute it and/or

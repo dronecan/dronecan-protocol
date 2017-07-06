@@ -1,6 +1,9 @@
 /*
  * This program source code file is part of DroneCAN protocol specification
  *
+ * Website: www.dronecan.org
+ * GitHub: www.github.com/dronecan
+ *
  * Copyright (C) 2017 Currawong Engineering Pty Ltd, see AUTHORS.txt for contributors.
  *
  * This program is free software; you can redistribute it and/or
@@ -21,8 +24,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
 
-#ifndef _DC_PROTOCOL_GLUE_H_
-#define _DC_PROTOCOL_GLUE_H_
+#ifndef _DC_PROTOCOL_H_
+#define _DC_PROTOCOL_H_
 
 #include "drone_can_packet.h"
 #include "drone_can_classes.h"
@@ -75,4 +78,4 @@ const char* DroneCAN_GetMessageLabel(uint32_t id);
 }
 #endif
 
-#endif // _DC_PROTOCOL_GLUE_H_
+#endif // _DC_PROTOCOL_H_
