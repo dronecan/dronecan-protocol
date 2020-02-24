@@ -9,6 +9,9 @@
 
     <Value name="SYS_UID" value="0xF100" comment="Unique Identifer for DroneCAN node"/>
 
+    <Value name="SYS_MANF_STRING" value="0xF105" comment="Manufacturer device identifier string"/>
+    <Value name="SYS_USER_STRING" comment="User device identifier string"/>
+
     <Value name="SYS_FW_VERSION" value="0xF110" comment="Firmware version information"/>
     <Value name="SYS_FW_DATE" comment="Firmware date information"/>
     <Value name="SYS_FW_SETTINGS" comment="User-configurable settings information"/>

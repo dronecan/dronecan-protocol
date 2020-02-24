@@ -228,6 +228,98 @@ int decodeDroneCAN_UniqueIdPacket(const void* _pg_pkt, uint16_t* vid, uint16_t* 
 }
 
 /*!
+ * \brief Create the DroneCAN_ManufacturerString packet
+ *
+ * Manufacturer identifier string
+ * \param _pg_pkt points to the packet which will be created by this function
+ * \param manufacturerString is Manufactuer string
+ */
+void encodeDroneCAN_ManufacturerStringPacket(void* _pg_pkt, const char manufacturerString[64])
+{
+    uint8_t* _pg_data = getDroneCANPacketData(_pg_pkt);
+    int _pg_byteindex = 0;
+
+    // Manufactuer string
+    stringToBytes(manufacturerString, _pg_data, &_pg_byteindex, 64, 0);
+
+    // complete the process of creating the packet
+    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_ManufacturerStringPacketID());
+}
+
+/*!
+ * \brief Decode the DroneCAN_ManufacturerString packet
+ *
+ * Manufacturer identifier string
+ * \param _pg_pkt points to the packet being decoded by this function
+ * \param manufacturerString receives Manufactuer string
+ * \return 0 is returned if the packet ID or size is wrong, else 1
+ */
+int decodeDroneCAN_ManufacturerStringPacket(const void* _pg_pkt, char manufacturerString[64])
+{
+    int _pg_byteindex = 0;
+    const uint8_t* _pg_data = getDroneCANPacketDataConst(_pg_pkt);
+    int _pg_numbytes = getDroneCANPacketSize(_pg_pkt);
+
+    // Verify the packet identifier
+    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_ManufacturerStringPacketID())
+        return 0;
+
+    if(_pg_numbytes < getDroneCAN_ManufacturerStringMinDataLength())
+        return 0;
+
+    // Manufactuer string
+    stringFromBytes(manufacturerString, _pg_data, &_pg_byteindex, 64, 0);
+
+    return 1;
+}
+
+/*!
+ * \brief Create the DroneCAN_UserString packet
+ *
+ * Manufacturer identifier string
+ * \param _pg_pkt points to the packet which will be created by this function
+ * \param userString is User configurable string
+ */
+void encodeDroneCAN_UserStringPacket(void* _pg_pkt, const char userString[64])
+{
+    uint8_t* _pg_data = getDroneCANPacketData(_pg_pkt);
+    int _pg_byteindex = 0;
+
+    // User configurable string
+    stringToBytes(userString, _pg_data, &_pg_byteindex, 64, 0);
+
+    // complete the process of creating the packet
+    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_UserStringPacketID());
+}
+
+/*!
+ * \brief Decode the DroneCAN_UserString packet
+ *
+ * Manufacturer identifier string
+ * \param _pg_pkt points to the packet being decoded by this function
+ * \param userString receives User configurable string
+ * \return 0 is returned if the packet ID or size is wrong, else 1
+ */
+int decodeDroneCAN_UserStringPacket(const void* _pg_pkt, char userString[64])
+{
+    int _pg_byteindex = 0;
+    const uint8_t* _pg_data = getDroneCANPacketDataConst(_pg_pkt);
+    int _pg_numbytes = getDroneCANPacketSize(_pg_pkt);
+
+    // Verify the packet identifier
+    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_UserStringPacketID())
+        return 0;
+
+    if(_pg_numbytes < getDroneCAN_UserStringMinDataLength())
+        return 0;
+
+    // User configurable string
+    stringFromBytes(userString, _pg_data, &_pg_byteindex, 64, 0);
+
+    return 1;
+}
+
+/*!
  * \brief Create the DroneCAN_FirmwareVersion packet
  *
  * Firmware version information

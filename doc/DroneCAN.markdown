@@ -172,6 +172,8 @@
 | --------------------------------------------------- | :---: | -------------------------------------- |
 | [`PKT_DC_SYS_STATUS`](#PKT_DC_SYS_STATUS)           | 61440 | Device status information              |
 | [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)                 | 61696 | Unique Identifer for DroneCAN node     |
+| [`PKT_DC_SYS_MANF_STRING`](#PKT_DC_SYS_MANF_STRING) | 61701 | Manufacturer device identifier string  |
+| [`PKT_DC_SYS_USER_STRING`](#PKT_DC_SYS_USER_STRING) | 61702 | User device identifier string          |
 | [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION)   | 61712 | Firmware version information           |
 | [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)         | 61713 | Firmware date information              |
 | [`PKT_DC_SYS_FW_SETTINGS`](#PKT_DC_SYS_FW_SETTINGS) | 61714 | User-configurable settings information |
@@ -203,6 +205,36 @@ Unique identifier for DroneCAN device
 | 4...6 | 3)seiral  | U24         | 1      | Device serial number. |
 | 7     | 4)address | U8          | 1      | CAN node address.     |
 [UniqueId packet bytes]
+
+
+## <a name="PKT_DC_SYS_MANF_STRING"></a>ManufacturerString packet
+
+Manufacturer identifier string
+
+- packet identifier: `PKT_DC_SYS_MANF_STRING` : 61701
+- minimum data length: 1
+- maximum data length: 64
+
+
+| Bytes  | Name                 | [Enc](#Enc)                           | Repeat | Description         |
+| ------ | -------------------- | :-----------------------------------: | :----: | ------------------- |
+| 0...63 | 1)manufacturerString | Zero-terminated string up to 64 bytes         || Manufactuer string. |
+[ManufacturerString packet bytes]
+
+
+## <a name="PKT_DC_SYS_USER_STRING"></a>UserString packet
+
+Manufacturer identifier string
+
+- packet identifier: `PKT_DC_SYS_USER_STRING` : 61702
+- minimum data length: 1
+- maximum data length: 64
+
+
+| Bytes  | Name         | [Enc](#Enc)                           | Repeat | Description               |
+| ------ | ------------ | :-----------------------------------: | :----: | ------------------------- |
+| 0...63 | 1)userString | Zero-terminated string up to 64 bytes         || User configurable string. |
+[UserString packet bytes]
 
 
 ## <a name="PKT_DC_SYS_FW_VERSION"></a>FirmwareVersion packet

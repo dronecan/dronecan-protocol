@@ -19,6 +19,22 @@
     <Data name="address" inMemoryType="unsigned8" comment="CAN node address"/>
 </Packet>
 
+<Packet name="ManufacturerString" id="PKT_DC_SYS_MANF_STRING"
+        comment="Manufacturer identifier string"
+        parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+
+    <Data name="manufacturerString" inMemoryType="string" array="64" comment="Manufactuer string"/>
+</Packet>
+
+<Packet name="UserString" id="PKT_DC_SYS_USER_STRING"
+        comment="Manufacturer identifier string"
+        parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+
+    <Data name="userString" inMemoryType="string" array="64" comment="User configurable string"/>
+</Packet>
+
 <Packet name="FirmwareVersion" id="PKT_DC_SYS_FW_VERSION"
         structureInterface="true" parameterInterface="true"
         file="DroneCAN_SystemPackets.h">

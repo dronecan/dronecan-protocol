@@ -92,6 +92,36 @@ int decodeDroneCAN_UniqueIdPacket(const void* pkt, uint16_t* vid, uint16_t* pid,
 //! return the maximum encoded length for the DroneCAN_UniqueId packet
 #define getDroneCAN_UniqueIdMaxDataLength() (8)
 
+//! Create the DroneCAN_ManufacturerString packet
+void encodeDroneCAN_ManufacturerStringPacket(void* pkt, const char manufacturerString[64]);
+
+//! Decode the DroneCAN_ManufacturerString packet
+int decodeDroneCAN_ManufacturerStringPacket(const void* pkt, char manufacturerString[64]);
+
+//! return the packet ID for the DroneCAN_ManufacturerString packet
+#define getDroneCAN_ManufacturerStringPacketID() (PKT_DC_SYS_MANF_STRING)
+
+//! return the minimum encoded length for the DroneCAN_ManufacturerString packet
+#define getDroneCAN_ManufacturerStringMinDataLength() (1)
+
+//! return the maximum encoded length for the DroneCAN_ManufacturerString packet
+#define getDroneCAN_ManufacturerStringMaxDataLength() (64)
+
+//! Create the DroneCAN_UserString packet
+void encodeDroneCAN_UserStringPacket(void* pkt, const char userString[64]);
+
+//! Decode the DroneCAN_UserString packet
+int decodeDroneCAN_UserStringPacket(const void* pkt, char userString[64]);
+
+//! return the packet ID for the DroneCAN_UserString packet
+#define getDroneCAN_UserStringPacketID() (PKT_DC_SYS_USER_STRING)
+
+//! return the minimum encoded length for the DroneCAN_UserString packet
+#define getDroneCAN_UserStringMinDataLength() (1)
+
+//! return the maximum encoded length for the DroneCAN_UserString packet
+#define getDroneCAN_UserStringMaxDataLength() (64)
+
 /*!
  * Firmware version information
  */

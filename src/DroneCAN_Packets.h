@@ -34,12 +34,14 @@ extern "C" {
 
 typedef enum
 {
-    PKT_DC_SYS_STATUS = 0xF000,  //!< Device status information
-    PKT_DC_SYS_UID = 0xF100,     //!< Unique Identifer for DroneCAN node
-    PKT_DC_SYS_FW_VERSION = 0xF110,//!< Firmware version information
-    PKT_DC_SYS_FW_DATE,          //!< Firmware date information
-    PKT_DC_SYS_FW_SETTINGS,      //!< User-configurable settings information
-    PKT_DC_SYS_HW_INFO = 0xF115  //!< Hardware information
+    PKT_DC_SYS_STATUS = 0xF000,      //!< Device status information
+    PKT_DC_SYS_UID = 0xF100,         //!< Unique Identifer for DroneCAN node
+    PKT_DC_SYS_MANF_STRING = 0xF105, //!< Manufacturer device identifier string
+    PKT_DC_SYS_USER_STRING,          //!< User device identifier string
+    PKT_DC_SYS_FW_VERSION = 0xF110,  //!< Firmware version information
+    PKT_DC_SYS_FW_DATE,              //!< Firmware date information
+    PKT_DC_SYS_FW_SETTINGS,          //!< User-configurable settings information
+    PKT_DC_SYS_HW_INFO = 0xF115      //!< Hardware information
 } DroneCAN_System_Packets;
 
 //! \return the label of a 'DroneCAN_System_Packets' enum entry, based on its value
