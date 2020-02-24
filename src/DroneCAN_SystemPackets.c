@@ -228,13 +228,13 @@ int decodeDroneCAN_UniqueIdPacket(const void* _pg_pkt, uint16_t* vid, uint16_t* 
 }
 
 /*!
- * \brief Create the DroneCAN_FirwareVersion packet
+ * \brief Create the DroneCAN_FirmwareVersion packet
  *
  * Firmware version information
  * \param _pg_pkt points to the packet which will be created by this function
  * \param _pg_user points to the user data that will be encoded in _pg_pkt
  */
-void encodeDroneCAN_FirwareVersionPacketStructure(void* _pg_pkt, const DroneCAN_FirwareVersion_t* _pg_user)
+void encodeDroneCAN_FirmwareVersionPacketStructure(void* _pg_pkt, const DroneCAN_FirmwareVersion_t* _pg_user)
 {
     uint8_t* _pg_data = getDroneCANPacketData(_pg_pkt);
     int _pg_byteindex = 0;
@@ -248,30 +248,30 @@ void encodeDroneCAN_FirwareVersionPacketStructure(void* _pg_pkt, const DroneCAN_
     uint32ToBeBytes(_pg_user->checksum, _pg_data, &_pg_byteindex);
 
     // complete the process of creating the packet
-    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_FirwareVersionPacketID());
+    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_FirmwareVersionPacketID());
 }
 
 /*!
- * \brief Decode the DroneCAN_FirwareVersion packet
+ * \brief Decode the DroneCAN_FirmwareVersion packet
  *
  * Firmware version information
  * \param _pg_pkt points to the packet being decoded by this function
  * \param _pg_user receives the data decoded from the packet
  * \return 0 is returned if the packet ID or size is wrong, else 1
  */
-int decodeDroneCAN_FirwareVersionPacketStructure(const void* _pg_pkt, DroneCAN_FirwareVersion_t* _pg_user)
+int decodeDroneCAN_FirmwareVersionPacketStructure(const void* _pg_pkt, DroneCAN_FirmwareVersion_t* _pg_user)
 {
     int _pg_numbytes;
     int _pg_byteindex = 0;
     const uint8_t* _pg_data;
 
     // Verify the packet identifier
-    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_FirwareVersionPacketID())
+    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_FirmwareVersionPacketID())
         return 0;
 
     // Verify the packet size
     _pg_numbytes = getDroneCANPacketSize(_pg_pkt);
-    if(_pg_numbytes < getDroneCAN_FirwareVersionMinDataLength())
+    if(_pg_numbytes < getDroneCAN_FirmwareVersionMinDataLength())
         return 0;
 
     // The raw data from the packet
@@ -289,7 +289,7 @@ int decodeDroneCAN_FirwareVersionPacketStructure(const void* _pg_pkt, DroneCAN_F
 }
 
 /*!
- * \brief Create the DroneCAN_FirwareVersion packet
+ * \brief Create the DroneCAN_FirmwareVersion packet
  *
  * Firmware version information
  * \param _pg_pkt points to the packet which will be created by this function
@@ -298,7 +298,7 @@ int decodeDroneCAN_FirwareVersionPacketStructure(const void* _pg_pkt, DroneCAN_F
  * \param versionSub is 
  * \param checksum is 
  */
-void encodeDroneCAN_FirwareVersionPacket(void* _pg_pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum)
+void encodeDroneCAN_FirmwareVersionPacket(void* _pg_pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum)
 {
     uint8_t* _pg_data = getDroneCANPacketData(_pg_pkt);
     int _pg_byteindex = 0;
@@ -312,11 +312,11 @@ void encodeDroneCAN_FirwareVersionPacket(void* _pg_pkt, uint8_t versionMajor, ui
     uint32ToBeBytes(checksum, _pg_data, &_pg_byteindex);
 
     // complete the process of creating the packet
-    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_FirwareVersionPacketID());
+    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_FirmwareVersionPacketID());
 }
 
 /*!
- * \brief Decode the DroneCAN_FirwareVersion packet
+ * \brief Decode the DroneCAN_FirmwareVersion packet
  *
  * Firmware version information
  * \param _pg_pkt points to the packet being decoded by this function
@@ -326,17 +326,17 @@ void encodeDroneCAN_FirwareVersionPacket(void* _pg_pkt, uint8_t versionMajor, ui
  * \param checksum receives 
  * \return 0 is returned if the packet ID or size is wrong, else 1
  */
-int decodeDroneCAN_FirwareVersionPacket(const void* _pg_pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum)
+int decodeDroneCAN_FirmwareVersionPacket(const void* _pg_pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum)
 {
     int _pg_byteindex = 0;
     const uint8_t* _pg_data = getDroneCANPacketDataConst(_pg_pkt);
     int _pg_numbytes = getDroneCANPacketSize(_pg_pkt);
 
     // Verify the packet identifier
-    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_FirwareVersionPacketID())
+    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_FirmwareVersionPacketID())
         return 0;
 
-    if(_pg_numbytes < getDroneCAN_FirwareVersionMinDataLength())
+    if(_pg_numbytes < getDroneCAN_FirmwareVersionMinDataLength())
         return 0;
 
     *versionMajor = uint8FromBytes(_pg_data, &_pg_byteindex);

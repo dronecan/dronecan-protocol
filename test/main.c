@@ -90,4 +90,18 @@ void testSystemPackets()
     ASSERT(address == 0xEF);
 
     ASSERT(pkt.length == 8);
+
+    // Test a firmware version structure encode
+    DroneCAN_FirmwareVersion_t fw;
+
+    fw.checksum = 0x12345678;
+    fw.versionMajor = 1;
+    fw.versionMinor = 2;
+    fw.versionSub = 3;
+
+    encodeDroneCAN_FirmwareVersionPacketStructure(&pkt, &fw);
+
+    ASSERT(pkt.id == PKT_DC_SYS_FW_VERSION);
+
+    ASSERT(pkt.length >= 7);
 }

@@ -101,28 +101,28 @@ typedef struct
     uint8_t  versionMinor;
     uint8_t  versionSub;  
     uint32_t checksum;    
-}DroneCAN_FirwareVersion_t;
+}DroneCAN_FirmwareVersion_t;
 
-//! Create the DroneCAN_FirwareVersion packet
-void encodeDroneCAN_FirwareVersionPacketStructure(void* pkt, const DroneCAN_FirwareVersion_t* user);
+//! Create the DroneCAN_FirmwareVersion packet
+void encodeDroneCAN_FirmwareVersionPacketStructure(void* pkt, const DroneCAN_FirmwareVersion_t* user);
 
-//! Decode the DroneCAN_FirwareVersion packet
-int decodeDroneCAN_FirwareVersionPacketStructure(const void* pkt, DroneCAN_FirwareVersion_t* user);
+//! Decode the DroneCAN_FirmwareVersion packet
+int decodeDroneCAN_FirmwareVersionPacketStructure(const void* pkt, DroneCAN_FirmwareVersion_t* user);
 
-//! Create the DroneCAN_FirwareVersion packet
-void encodeDroneCAN_FirwareVersionPacket(void* pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum);
+//! Create the DroneCAN_FirmwareVersion packet
+void encodeDroneCAN_FirmwareVersionPacket(void* pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum);
 
-//! Decode the DroneCAN_FirwareVersion packet
-int decodeDroneCAN_FirwareVersionPacket(const void* pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum);
+//! Decode the DroneCAN_FirmwareVersion packet
+int decodeDroneCAN_FirmwareVersionPacket(const void* pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum);
 
-//! return the packet ID for the DroneCAN_FirwareVersion packet
-#define getDroneCAN_FirwareVersionPacketID() (PKT_DC_SYS_FW_VERSION)
+//! return the packet ID for the DroneCAN_FirmwareVersion packet
+#define getDroneCAN_FirmwareVersionPacketID() (PKT_DC_SYS_FW_VERSION)
 
-//! return the minimum encoded length for the DroneCAN_FirwareVersion packet
-#define getDroneCAN_FirwareVersionMinDataLength() (7)
+//! return the minimum encoded length for the DroneCAN_FirmwareVersion packet
+#define getDroneCAN_FirmwareVersionMinDataLength() (7)
 
-//! return the maximum encoded length for the DroneCAN_FirwareVersion packet
-#define getDroneCAN_FirwareVersionMaxDataLength() (7)
+//! return the maximum encoded length for the DroneCAN_FirmwareVersion packet
+#define getDroneCAN_FirmwareVersionMaxDataLength() (7)
 
 /*!
  * Firmware date information

@@ -19,7 +19,7 @@
     <Data name="address" inMemoryType="unsigned8" comment="CAN node address"/>
 </Packet>
 
-<Packet name="FirwareVersion" id="PKT_DC_SYS_FW_VERSION"
+<Packet name="FirmwareVersion" id="PKT_DC_SYS_FW_VERSION"
         structureInterface="true" parameterInterface="true"
         file="DroneCAN_SystemPackets.h">
     <Data name="versionMajor" inMemoryType="unsigned8"/>

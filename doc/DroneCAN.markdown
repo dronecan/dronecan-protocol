@@ -205,7 +205,7 @@ Unique identifier for DroneCAN device
 [UniqueId packet bytes]
 
 
-## <a name="PKT_DC_SYS_FW_VERSION"></a>FirwareVersion packet
+## <a name="PKT_DC_SYS_FW_VERSION"></a>FirmwareVersion packet
 
 Firmware version information
 
@@ -219,7 +219,7 @@ Firmware version information
 | 1     | 2)versionMinor | U8          | 1      |             |
 | 2     | 3)versionSub   | U8          | 1      |             |
 | 3...6 | 4)checksum     | U32         | 1      |             |
-[FirwareVersion packet bytes]
+[FirmwareVersion packet bytes]
 
 
 ## <a name="PKT_DC_SYS_FW_DATE"></a>FirmwareDate packet
