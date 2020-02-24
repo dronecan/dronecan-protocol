@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_Packets">
+
+<Enum name="DroneCAN_System_Packets" file="DroneCAN_Packets" lookup="true" lookupTitle="true" prefix="PKT_DC_">
+    
+    <!-- System information packets -->
+    <Value name="SYS_UID" value="0xF000" comment="Unique Identifer for DroneCAN node"/>
+
+    <Value name="SYS_FW_VERSION" value="0xF100" comment="Firmware version information"/>
+    <Value name="SYS_FW_DATE" comment="Firmware date information"/>
+
+    <Value name="SYS_HW_INFO" value="0xF105" comment="Hardware information"/>
+
+
+</Enum>
+
+</Protocol>

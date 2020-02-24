@@ -55,10 +55,10 @@ extern "C" {
 
 typedef enum
 {
-    DRONECAN_PRIORITY_CRITICAL = 0b00,
-    DRONECAN_PRIORITY_ELEVATED = 0b01,
-    DRONECAN_PRIORITY_NORMAL = 0b10, 
-    DRONECAN_PRIORITY_LOW = 0b11     
+    DRONECAN_PRIORITY_CRITICAL = 0b00,//!< Critical priority message
+    DRONECAN_PRIORITY_ELEVATED = 0b01,//!< Elevated priority message
+    DRONECAN_PRIORITY_NORMAL = 0b10, //!< Normal priority message
+    DRONECAN_PRIORITY_LOW = 0b11     //!< Low priority message
 } DroneCAN_Priority_Levels;
 
 //! \return the label of a 'DroneCAN_Priority_Levels' enum entry, based on its value
@@ -74,6 +74,9 @@ typedef enum
 
 //! \return the label of a 'DroneCAN_Vendors' enum entry, based on its value
 const char* DroneCAN_Vendors_EnumLabel(int value);
+
+//! \return the title of a 'DroneCAN_Vendors' enum entry, based on its value
+const char* DroneCAN_Vendors_EnumTitle(int value);
 
 
 // The prototypes below provide an interface to the packets.

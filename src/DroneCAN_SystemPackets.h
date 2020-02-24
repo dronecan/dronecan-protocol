@@ -37,6 +37,7 @@ extern "C" {
  */
 
 #include "DroneCANProtocol.h"
+#include "DroneCAN_Packets.h"
 
 /*!
  * Unique identifier for DroneCAN device
@@ -55,8 +56,14 @@ void encodeDroneCAN_UniqueIdPacketStructure(void* pkt, const DroneCAN_UniqueId_t
 //! Decode the DroneCAN_UniqueId packet
 int decodeDroneCAN_UniqueIdPacketStructure(const void* pkt, DroneCAN_UniqueId_t* user);
 
+//! Create the DroneCAN_UniqueId packet
+void encodeDroneCAN_UniqueIdPacket(void* pkt, uint16_t vid, uint16_t pid, uint32_t seiral, uint8_t address);
+
+//! Decode the DroneCAN_UniqueId packet
+int decodeDroneCAN_UniqueIdPacket(const void* pkt, uint16_t* vid, uint16_t* pid, uint32_t* seiral, uint8_t* address);
+
 //! return the packet ID for the DroneCAN_UniqueId packet
-#define getDroneCAN_UniqueIdPacketID() (PKT_DC_SYSTEM_UID)
+#define getDroneCAN_UniqueIdPacketID() (PKT_DC_SYS_UID)
 
 //! return the minimum encoded length for the DroneCAN_UniqueId packet
 #define getDroneCAN_UniqueIdMinDataLength() (8)
@@ -64,6 +71,9 @@ int decodeDroneCAN_UniqueIdPacketStructure(const void* pkt, DroneCAN_UniqueId_t*
 //! return the maximum encoded length for the DroneCAN_UniqueId packet
 #define getDroneCAN_UniqueIdMaxDataLength() (8)
 
+/*!
+ * Firmware version information
+ */
 typedef struct
 {
     uint8_t  versionMajor;
@@ -78,8 +88,14 @@ void encodeDroneCAN_FirwareVersionPacketStructure(void* pkt, const DroneCAN_Firw
 //! Decode the DroneCAN_FirwareVersion packet
 int decodeDroneCAN_FirwareVersionPacketStructure(const void* pkt, DroneCAN_FirwareVersion_t* user);
 
+//! Create the DroneCAN_FirwareVersion packet
+void encodeDroneCAN_FirwareVersionPacket(void* pkt, uint8_t versionMajor, uint8_t versionMinor, uint8_t versionSub, uint32_t checksum);
+
+//! Decode the DroneCAN_FirwareVersion packet
+int decodeDroneCAN_FirwareVersionPacket(const void* pkt, uint8_t* versionMajor, uint8_t* versionMinor, uint8_t* versionSub, uint32_t* checksum);
+
 //! return the packet ID for the DroneCAN_FirwareVersion packet
-#define getDroneCAN_FirwareVersionPacketID() (PKT_DC_SYSTEM_FW_VERSION)
+#define getDroneCAN_FirwareVersionPacketID() (PKT_DC_SYS_FW_VERSION)
 
 //! return the minimum encoded length for the DroneCAN_FirwareVersion packet
 #define getDroneCAN_FirwareVersionMinDataLength() (7)
@@ -87,6 +103,9 @@ int decodeDroneCAN_FirwareVersionPacketStructure(const void* pkt, DroneCAN_Firwa
 //! return the maximum encoded length for the DroneCAN_FirwareVersion packet
 #define getDroneCAN_FirwareVersionMaxDataLength() (7)
 
+/*!
+ * Firmware date information
+ */
 typedef struct
 {
     uint16_t versionYear; 
@@ -100,8 +119,14 @@ void encodeDroneCAN_FirmwareDatePacketStructure(void* pkt, const DroneCAN_Firmwa
 //! Decode the DroneCAN_FirmwareDate packet
 int decodeDroneCAN_FirmwareDatePacketStructure(const void* pkt, DroneCAN_FirmwareDate_t* user);
 
+//! Create the DroneCAN_FirmwareDate packet
+void encodeDroneCAN_FirmwareDatePacket(void* pkt, uint16_t versionYear, uint8_t versionMonth, uint8_t versionDay);
+
+//! Decode the DroneCAN_FirmwareDate packet
+int decodeDroneCAN_FirmwareDatePacket(const void* pkt, uint16_t* versionYear, uint8_t* versionMonth, uint8_t* versionDay);
+
 //! return the packet ID for the DroneCAN_FirmwareDate packet
-#define getDroneCAN_FirmwareDatePacketID() (PKT_DC_SYSTEM_FW_DATE)
+#define getDroneCAN_FirmwareDatePacketID() (PKT_DC_SYS_FW_DATE)
 
 //! return the minimum encoded length for the DroneCAN_FirmwareDate packet
 #define getDroneCAN_FirmwareDateMinDataLength() (4)
@@ -110,13 +135,19 @@ int decodeDroneCAN_FirmwareDatePacketStructure(const void* pkt, DroneCAN_Firmwar
 #define getDroneCAN_FirmwareDateMaxDataLength() (4)
 
 //! Create the DroneCAN_HardwareInfo packet
+void encodeDroneCAN_HardwareInfoPacketStructure(void* pkt);
+
+//! Decode the DroneCAN_HardwareInfo packet
+int decodeDroneCAN_HardwareInfoPacketStructure(const void* pkt);
+
+//! Create the DroneCAN_HardwareInfo packet
 void encodeDroneCAN_HardwareInfoPacket(void* pkt);
 
 //! Decode the DroneCAN_HardwareInfo packet
 int decodeDroneCAN_HardwareInfoPacket(const void* pkt);
 
 //! return the packet ID for the DroneCAN_HardwareInfo packet
-#define getDroneCAN_HardwareInfoPacketID() (PKT_DC_SYSTEM_HW_INFO)
+#define getDroneCAN_HardwareInfoPacketID() (PKT_DC_SYS_HW_INFO)
 
 //! return the minimum encoded length for the DroneCAN_HardwareInfo packet
 #define getDroneCAN_HardwareInfoMinDataLength() 0

@@ -147,12 +147,12 @@
 
 ## DroneCAN_Priority_Levels enumeration
 
-| Name                      | Value | Description |
-| ------------------------- | :---: | ----------- |
-| Critical priority message | 0     |             |
-| Elevated priority message | 1     |             |
-| Normal priority message   | 2     |             |
-| Low priority message      | 3     |             |
+| Name                         | Value | Description               |
+| ---------------------------- | :---: | ------------------------- |
+| `DRONECAN_PRIORITY_CRITICAL` | 0     | Critical priority message |
+| `DRONECAN_PRIORITY_ELEVATED` | 1     | Elevated priority message |
+| `DRONECAN_PRIORITY_NORMAL`   | 2     | Normal priority message   |
+| `DRONECAN_PRIORITY_LOW`      | 3     | Low priority message      |
 [<a name="DroneCAN_Priority_Levels"></a>DroneCAN_Priority_Levels enumeration]
 
 
@@ -164,6 +164,76 @@
 | `DRONECAN_VENDOR_CURRAWONG` | 52942 | Currawong Engineering Pty Ltd |
 [<a name="DroneCAN_Vendors"></a>DroneCAN_Vendors enumeration]
 
+
+
+## DroneCAN_System_Packets enumeration
+
+| Name                                              | Value | Description                        |
+| ------------------------------------------------- | :---: | ---------------------------------- |
+| [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)               | 61440 | Unique Identifer for DroneCAN node |
+| [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION) | 61696 | Firmware version information       |
+| [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)       | 61697 | Firmware date information          |
+| [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)       | 61701 | Hardware information               |
+[<a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration]
+
+
+
+## <a name="PKT_DC_SYS_UID"></a>UniqueId packet
+
+Unique identifier for DroneCAN device
+
+- packet identifier: `PKT_DC_SYS_UID` : 61440
+- data length: 8
+
+
+| Bytes | Name      | [Enc](#Enc) | Repeat | Description           |
+| ----- | --------- | :---------: | :----: | --------------------- |
+| 0...1 | 1)vid     | U16         | 1      | Vendor ID.            |
+| 2...3 | 2)pid     | U16         | 1      | Product ID.           |
+| 4...6 | 3)seiral  | U24         | 1      | Device serial number. |
+| 7     | 4)address | U8          | 1      | CAN node address.     |
+[UniqueId packet bytes]
+
+
+## <a name="PKT_DC_SYS_FW_VERSION"></a>FirwareVersion packet
+
+Firmware version information
+
+- packet identifier: `PKT_DC_SYS_FW_VERSION` : 61696
+- data length: 7
+
+
+| Bytes | Name           | [Enc](#Enc) | Repeat | Description |
+| ----- | -------------- | :---------: | :----: | ----------- |
+| 0     | 1)versionMajor | U8          | 1      |             |
+| 1     | 2)versionMinor | U8          | 1      |             |
+| 2     | 3)versionSub   | U8          | 1      |             |
+| 3...6 | 4)checksum     | U32         | 1      |             |
+[FirwareVersion packet bytes]
+
+
+## <a name="PKT_DC_SYS_FW_DATE"></a>FirmwareDate packet
+
+Firmware date information
+
+- packet identifier: `PKT_DC_SYS_FW_DATE` : 61697
+- data length: 4
+
+
+| Bytes | Name           | [Enc](#Enc) | Repeat | Description |
+| ----- | -------------- | :---------: | :----: | ----------- |
+| 0...1 | 1)versionYear  | U16         | 1      |             |
+| 2     | 2)versionMonth | U8          | 1      |             |
+| 3     | 3)versionDay   | U8          | 1      |             |
+[FirmwareDate packet bytes]
+
+
+## <a name="PKT_DC_SYS_HW_INFO"></a>HardwareInfo packet
+
+Hardware information
+
+- packet identifier: `PKT_DC_SYS_HW_INFO` : 61701
+- data length: 0
 
 <div class="page-break"></div>
 

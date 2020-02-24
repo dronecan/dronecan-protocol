@@ -5,3 +5,7 @@ _docs/
 html/*
 
 *.db
+
+# Unit-testing framework
+test/debug/
+test/release/

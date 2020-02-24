@@ -90,4 +90,21 @@ const char* DroneCAN_Vendors_EnumLabel(int value)
     }
 }
 
+/*!
+ * \brief Lookup title for 'DroneCAN_Vendors' enum entry
+ * 
+ * \param value is the integer value of the enum entry
+ * \return string title of the given entry (label name if no title given)
+ */
+const char* DroneCAN_Vendors_EnumTitle(int value)
+{
+    switch (value)
+    {
+    default:
+        return "";
+    case DRONECAN_VENDOR_CURRAWONG:
+        return "Currawong Engineering Pty Ltd";
+    }
+}
+
 // end of DroneCANProtocol.c

@@ -163,24 +163,24 @@
 
 <tbody>
 <tr>
-	<td>Critical priority message</td>
+	<td><code>DRONECAN_PRIORITY_CRITICAL</code></td>
 	<td style="text-align:center;">0</td>
-	<td></td>
+	<td>Critical priority message</td>
 </tr>
 <tr>
-	<td>Elevated priority message</td>
+	<td><code>DRONECAN_PRIORITY_ELEVATED</code></td>
 	<td style="text-align:center;">1</td>
-	<td></td>
+	<td>Elevated priority message</td>
 </tr>
 <tr>
-	<td>Normal priority message</td>
+	<td><code>DRONECAN_PRIORITY_NORMAL</code></td>
 	<td style="text-align:center;">2</td>
-	<td></td>
+	<td>Normal priority message</td>
 </tr>
 <tr>
-	<td>Low priority message</td>
+	<td><code>DRONECAN_PRIORITY_LOW</code></td>
 	<td style="text-align:center;">3</td>
-	<td></td>
+	<td>Low priority message</td>
 </tr>
 </tbody>
 </table>
@@ -211,6 +211,233 @@
 </tr>
 </tbody>
 </table>
+
+<h2 id="dronecan_system_packetsenumeration">DroneCAN_System_Packets enumeration</h2>
+
+<table>
+<caption id="anamedronecan_system_packetsadronecan_system_packetsenumeration"><a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration</caption>
+<colgroup>
+<col/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Name</th>
+	<th style="text-align:center;">Value</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td><a href="#PKT_DC_SYS_UID"><code>PKT_DC_SYS_UID</code></a></td>
+	<td style="text-align:center;">61440</td>
+	<td>Unique Identifer for DroneCAN node</td>
+</tr>
+<tr>
+	<td><a href="#PKT_DC_SYS_FW_VERSION"><code>PKT_DC_SYS_FW_VERSION</code></a></td>
+	<td style="text-align:center;">61696</td>
+	<td>Firmware version information</td>
+</tr>
+<tr>
+	<td><a href="#PKT_DC_SYS_FW_DATE"><code>PKT_DC_SYS_FW_DATE</code></a></td>
+	<td style="text-align:center;">61697</td>
+	<td>Firmware date information</td>
+</tr>
+<tr>
+	<td><a href="#PKT_DC_SYS_HW_INFO"><code>PKT_DC_SYS_HW_INFO</code></a></td>
+	<td style="text-align:center;">61701</td>
+	<td>Hardware information</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_sys_uidauniqueidpacket"><a name="PKT_DC_SYS_UID"></a>UniqueId packet</h2>
+
+<p>Unique identifier for DroneCAN device</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_SYS_UID</code> : 61440</li>
+<li>data length: 8</li>
+</ul>
+
+<table>
+<caption id="uniqueidpacketbytes">UniqueId packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)vid</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td>Vendor ID.</td>
+</tr>
+<tr>
+	<td>2&#8230;3</td>
+	<td>2)pid</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td>Product ID.</td>
+</tr>
+<tr>
+	<td>4&#8230;6</td>
+	<td>3)seiral</td>
+	<td style="text-align:center;">U24</td>
+	<td style="text-align:center;">1</td>
+	<td>Device serial number.</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>4)address</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>CAN node address.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_sys_fw_versionafirwareversionpacket"><a name="PKT_DC_SYS_FW_VERSION"></a>FirwareVersion packet</h2>
+
+<p>Firmware version information</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_SYS_FW_VERSION</code> : 61696</li>
+<li>data length: 7</li>
+</ul>
+
+<table>
+<caption id="firwareversionpacketbytes">FirwareVersion packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0</td>
+	<td>1)versionMajor</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>2)versionMinor</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>3)versionSub</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>3&#8230;6</td>
+	<td>4)checksum</td>
+	<td style="text-align:center;">U32</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_sys_fw_dateafirmwaredatepacket"><a name="PKT_DC_SYS_FW_DATE"></a>FirmwareDate packet</h2>
+
+<p>Firmware date information</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_SYS_FW_DATE</code> : 61697</li>
+<li>data length: 4</li>
+</ul>
+
+<table>
+<caption id="firmwaredatepacketbytes">FirmwareDate packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)versionYear</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)versionMonth</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>3)versionDay</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_sys_hw_infoahardwareinfopacket"><a name="PKT_DC_SYS_HW_INFO"></a>HardwareInfo packet</h2>
+
+<p>Hardware information</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_SYS_HW_INFO</code> : 61701</li>
+<li>data length: 0</li>
+</ul>
 
 <div class="page-break"></div>
 
