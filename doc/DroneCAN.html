@@ -232,34 +232,48 @@
 
 <tbody>
 <tr>
-	<td><a href="#PKT_DC_SYS_UID"><code>PKT_DC_SYS_UID</code></a></td>
+	<td><a href="#PKT_DC_SYS_STATUS"><code>PKT_DC_SYS_STATUS</code></a></td>
 	<td style="text-align:center;">61440</td>
+	<td>Device status information</td>
+</tr>
+<tr>
+	<td><a href="#PKT_DC_SYS_UID"><code>PKT_DC_SYS_UID</code></a></td>
+	<td style="text-align:center;">61696</td>
 	<td>Unique Identifer for DroneCAN node</td>
 </tr>
 <tr>
 	<td><a href="#PKT_DC_SYS_FW_VERSION"><code>PKT_DC_SYS_FW_VERSION</code></a></td>
-	<td style="text-align:center;">61696</td>
+	<td style="text-align:center;">61712</td>
 	<td>Firmware version information</td>
 </tr>
 <tr>
 	<td><a href="#PKT_DC_SYS_FW_DATE"><code>PKT_DC_SYS_FW_DATE</code></a></td>
-	<td style="text-align:center;">61697</td>
+	<td style="text-align:center;">61713</td>
 	<td>Firmware date information</td>
 </tr>
 <tr>
 	<td><a href="#PKT_DC_SYS_HW_INFO"><code>PKT_DC_SYS_HW_INFO</code></a></td>
-	<td style="text-align:center;">61701</td>
+	<td style="text-align:center;">61717</td>
 	<td>Hardware information</td>
 </tr>
 </tbody>
 </table>
+
+<h2 id="anamepkt_dc_sys_statusadevicestatuspacket"><a name="PKT_DC_SYS_STATUS"></a>DeviceStatus packet</h2>
+
+<p>Device status information</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_SYS_STATUS</code> : 61440</li>
+<li>data length: 0</li>
+</ul>
 
 <h2 id="anamepkt_dc_sys_uidauniqueidpacket"><a name="PKT_DC_SYS_UID"></a>UniqueId packet</h2>
 
 <p>Unique identifier for DroneCAN device</p>
 
 <ul>
-<li>packet identifier: <code>PKT_DC_SYS_UID</code> : 61440</li>
+<li>packet identifier: <code>PKT_DC_SYS_UID</code> : 61696</li>
 <li>data length: 8</li>
 </ul>
 
@@ -320,7 +334,7 @@
 <p>Firmware version information</p>
 
 <ul>
-<li>packet identifier: <code>PKT_DC_SYS_FW_VERSION</code> : 61696</li>
+<li>packet identifier: <code>PKT_DC_SYS_FW_VERSION</code> : 61712</li>
 <li>data length: 7</li>
 </ul>
 
@@ -381,7 +395,7 @@
 <p>Firmware date information</p>
 
 <ul>
-<li>packet identifier: <code>PKT_DC_SYS_FW_DATE</code> : 61697</li>
+<li>packet identifier: <code>PKT_DC_SYS_FW_DATE</code> : 61713</li>
 <li>data length: 4</li>
 </ul>
 
@@ -435,7 +449,7 @@
 <p>Hardware information</p>
 
 <ul>
-<li>packet identifier: <code>PKT_DC_SYS_HW_INFO</code> : 61701</li>
+<li>packet identifier: <code>PKT_DC_SYS_HW_INFO</code> : 61717</li>
 <li>data length: 0</li>
 </ul>
 

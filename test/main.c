@@ -28,6 +28,7 @@ SOFTWARE.
 
 #include "dronecan_packet_glue.h"
 
+#include "DroneCANProtocol.h"
 #include "DroneCAN_Packets.h"
 #include "DroneCAN_SystemPackets.h"
 
@@ -36,11 +37,17 @@ void testSystemPackets(void);
 
 int main()
 {
+    printf("------------------------------\n");
+    printf("DroneCAN Protocol Unit Testing\n");
+    printf("Protocol Version: %s / API %d\n", getDroneCANVersion(), getDroneCANApi());
+    printf("------------------------------\n\n");
+
     printf("Running DroneCAN protocol tests:\n");
 
     testSystemPackets();
 
-    printf("All protocol tests passed!\n");
+    printf("\n------------------------------\n");
+    printf("All protocol tests passed!\n\n");
 
     // All tests passed
     return 0;
@@ -78,4 +85,6 @@ void testSystemPackets()
     assert(pid == 0x5678);
     assert(sn == 0xAABBCC);
     assert(address == 0xEF);
+
+    assert(pkt.length == 8);
 }

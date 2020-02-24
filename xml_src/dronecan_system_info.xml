@@ -2,7 +2,12 @@
 
 <Protocol name="DroneCAN_SystemInfo">
 
+<Packet name="DeviceStatus" id="PKT_DC_SYS_STATUS"
+        comment="Device status information"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
 
+</Packet>
 
 <Packet name="UniqueId" id="PKT_DC_SYS_UID"
         comment="Unique identifier for DroneCAN device"

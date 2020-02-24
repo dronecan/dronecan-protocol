@@ -31,6 +31,64 @@ SOFTWARE.
 #include "scaledencode.h"
 
 /*!
+ * \brief Create the DroneCAN_DeviceStatus packet
+ *
+ * Device status information
+ * \param _pg_pkt points to the packet which will be created by this function
+ */
+void encodeDroneCAN_DeviceStatusPacketStructure(void* _pg_pkt)
+{
+    int _pg_byteindex = 0;
+
+    // complete the process of creating the packet
+    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_DeviceStatusPacketID());
+}
+
+/*!
+ * \brief Decode the DroneCAN_DeviceStatus packet
+ *
+ * Device status information
+ * \param _pg_pkt points to the packet being decoded by this function
+ * \return 0 is returned if the packet ID is wrong, else 1
+ */
+int decodeDroneCAN_DeviceStatusPacketStructure(const void* _pg_pkt)
+{
+    // Verify the packet identifier
+    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_DeviceStatusPacketID())
+        return 0;
+    else
+        return 1;
+}
+
+/*!
+ * \brief Create the DroneCAN_DeviceStatus packet
+ *
+ * Device status information
+ * \param _pg_pkt points to the packet which will be created by this function
+ */
+void encodeDroneCAN_DeviceStatusPacket(void* _pg_pkt)
+{
+    // Zero length packet, no data encoded
+    finishDroneCANPacket(_pg_pkt, 0, getDroneCAN_DeviceStatusPacketID());
+}
+
+/*!
+ * \brief Decode the DroneCAN_DeviceStatus packet
+ *
+ * Device status information
+ * \param _pg_pkt points to the packet being decoded by this function
+ * \return 0 is returned if the packet ID or size is wrong, else 1
+ */
+int decodeDroneCAN_DeviceStatusPacket(const void* _pg_pkt)
+{
+    // Verify the packet identifier
+    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_DeviceStatusPacketID())
+        return 0;
+    else
+        return 1;
+}
+
+/*!
  * \brief Create the DroneCAN_UniqueId packet
  *
  * Unique identifier for DroneCAN device

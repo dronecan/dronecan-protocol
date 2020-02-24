@@ -38,6 +38,8 @@ const char* DroneCAN_System_Packets_EnumLabel(int value)
     {
     default:
         return "";
+    case PKT_DC_SYS_STATUS:
+        return "PKT_DC_SYS_STATUS";
     case PKT_DC_SYS_UID:
         return "PKT_DC_SYS_UID";
     case PKT_DC_SYS_FW_VERSION:
@@ -61,6 +63,8 @@ const char* DroneCAN_System_Packets_EnumTitle(int value)
     {
     default:
         return "";
+    case PKT_DC_SYS_STATUS:
+        return "Device status information";
     case PKT_DC_SYS_UID:
         return "Unique Identifer for DroneCAN node";
     case PKT_DC_SYS_FW_VERSION:

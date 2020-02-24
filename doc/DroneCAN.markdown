@@ -170,19 +170,28 @@
 
 | Name                                              | Value | Description                        |
 | ------------------------------------------------- | :---: | ---------------------------------- |
-| [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)               | 61440 | Unique Identifer for DroneCAN node |
-| [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION) | 61696 | Firmware version information       |
-| [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)       | 61697 | Firmware date information          |
-| [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)       | 61701 | Hardware information               |
+| [`PKT_DC_SYS_STATUS`](#PKT_DC_SYS_STATUS)         | 61440 | Device status information          |
+| [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)               | 61696 | Unique Identifer for DroneCAN node |
+| [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION) | 61712 | Firmware version information       |
+| [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)       | 61713 | Firmware date information          |
+| [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)       | 61717 | Hardware information               |
 [<a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration]
 
+
+
+## <a name="PKT_DC_SYS_STATUS"></a>DeviceStatus packet
+
+Device status information
+
+- packet identifier: `PKT_DC_SYS_STATUS` : 61440
+- data length: 0
 
 
 ## <a name="PKT_DC_SYS_UID"></a>UniqueId packet
 
 Unique identifier for DroneCAN device
 
-- packet identifier: `PKT_DC_SYS_UID` : 61440
+- packet identifier: `PKT_DC_SYS_UID` : 61696
 - data length: 8
 
 
@@ -199,7 +208,7 @@ Unique identifier for DroneCAN device
 
 Firmware version information
 
-- packet identifier: `PKT_DC_SYS_FW_VERSION` : 61696
+- packet identifier: `PKT_DC_SYS_FW_VERSION` : 61712
 - data length: 7
 
 
@@ -216,7 +225,7 @@ Firmware version information
 
 Firmware date information
 
-- packet identifier: `PKT_DC_SYS_FW_DATE` : 61697
+- packet identifier: `PKT_DC_SYS_FW_DATE` : 61713
 - data length: 4
 
 
@@ -232,7 +241,7 @@ Firmware date information
 
 Hardware information
 
-- packet identifier: `PKT_DC_SYS_HW_INFO` : 61701
+- packet identifier: `PKT_DC_SYS_HW_INFO` : 61717
 - data length: 0
 
 <div class="page-break"></div>

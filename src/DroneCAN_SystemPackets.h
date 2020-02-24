@@ -39,6 +39,27 @@ extern "C" {
 #include "DroneCANProtocol.h"
 #include "DroneCAN_Packets.h"
 
+//! Create the DroneCAN_DeviceStatus packet
+void encodeDroneCAN_DeviceStatusPacketStructure(void* pkt);
+
+//! Decode the DroneCAN_DeviceStatus packet
+int decodeDroneCAN_DeviceStatusPacketStructure(const void* pkt);
+
+//! Create the DroneCAN_DeviceStatus packet
+void encodeDroneCAN_DeviceStatusPacket(void* pkt);
+
+//! Decode the DroneCAN_DeviceStatus packet
+int decodeDroneCAN_DeviceStatusPacket(const void* pkt);
+
+//! return the packet ID for the DroneCAN_DeviceStatus packet
+#define getDroneCAN_DeviceStatusPacketID() (PKT_DC_SYS_STATUS)
+
+//! return the minimum encoded length for the DroneCAN_DeviceStatus packet
+#define getDroneCAN_DeviceStatusMinDataLength() 0
+
+//! return the maximum encoded length for the DroneCAN_DeviceStatus packet
+#define getDroneCAN_DeviceStatusMaxDataLength() 0
+
 /*!
  * Unique identifier for DroneCAN device
  */
