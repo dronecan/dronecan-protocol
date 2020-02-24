@@ -33,6 +33,10 @@ SOFTWARE.
 #include "DroneCAN_Packets.h"
 #include "DroneCAN_SystemPackets.h"
 
+#define ASSERT(condition) tests++; assert(condition)
+
+static int tests = 0;
+
 int main()
 {
     printf("Done!\n");
@@ -47,7 +51,7 @@ int main()
     testSystemPackets();
 
     printf("\n------------------------------\n");
-    printf("All protocol tests passed!\n\n");
+    printf("Ran %d tests - all passed\n", tests);
 
     // All tests passed
     return 0;
@@ -67,11 +71,11 @@ void testSystemPackets()
                 0xEF);
 
     // Check for correct packet ID
-    assert(pkt.id == PKT_DC_SYS_UID);
+    ASSERT(pkt.id == PKT_DC_SYS_UID);
 
     // Check for correct data encoding
-    assert(pkt.data[0] == 0x12);
-    assert(pkt.data[1] == 0x34);
+    ASSERT(pkt.data[0] == 0x12);
+    ASSERT(pkt.data[1] == 0x34);
 
     // Decode the packet back into the original format
     uint32_t sn;
@@ -80,10 +84,10 @@ void testSystemPackets()
 
     decodeDroneCAN_UniqueIdPacket(&pkt, &vid, &pid, &sn, &address);
 
-    assert(vid == 0x1234);
-    assert(pid == 0x5678);
-    assert(sn == 0xAABBCC);
-    assert(address == 0xEF);
+    ASSERT(vid == 0x1234);
+    ASSERT(pid == 0x5678);
+    ASSERT(sn == 0xAABBCC);
+    ASSERT(address == 0xEF);
 
-    assert(pkt.length == 8);
+    ASSERT(pkt.length == 8);
 }
