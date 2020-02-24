@@ -26,17 +26,17 @@ SOFTWARE.
 #include <stdbool.h>
 #include <assert.h>
 
+#include "main.h"
 #include "dronecan_packet_glue.h"
 
 #include "DroneCANProtocol.h"
 #include "DroneCAN_Packets.h"
 #include "DroneCAN_SystemPackets.h"
 
-void testSystemPackets(void);
-
-
 int main()
 {
+    printf("Done!\n");
+
     printf("------------------------------\n");
     printf("DroneCAN Protocol Unit Testing\n");
     printf("Protocol Version: %s / API %d\n", getDroneCANVersion(), getDroneCANApi());
@@ -52,7 +52,6 @@ int main()
     // All tests passed
     return 0;
 }
-
 
 void testSystemPackets()
 {
