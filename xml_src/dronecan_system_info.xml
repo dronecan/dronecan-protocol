@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_SystemInfo">
+
+<Enum name="DroneCAN_System_Packets" lookup="true" lookupTitle="true" prefix="PKT_DC_SYSTEM_">
+    <Value name="UID" value="0xF000" comment="Unique Identifer for DroneCAN node"/>
+</Enum>
+
+<Packet name="UniqueId" id="PKT_DC_SYSTEM_UID"
+        comment="Unique identifier for DroneCAN device"
+        file="DroneCAN_SystemPackets.h">
+    <Data name="vid" inMemoryType="unsigned16" comment="Vendor ID"/>
+    <Data name="pid" inMemoryType="unsigned16" comment="Product ID"/>
+    <Data name="seiral" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
+    <Data name="address" inMemoryType="unsigned8" comment="CAN node address"/>
+</Packet>
+
+<Packet name="FirwareVersion" id="PKT_DC_SYSTEM_FW_VERSION"
+        file="DroneCAN_SystemPackets.h">
+    <Data name="versionMajor" inMemoryType="unsigned8"/>
+    <Data name="versionMinor" inMemoryType="unsigned8"/>
+    <Data name="versionSub" inMemoryType="unsigned8"/>
+    <Data name="checksum" inMemoryType="unsigned32"/>
+</Packet>
+
+<Packet name="FirmwareDate" id="PKT_DC_SYSTEM_FW_DATE"
+        file="DroneCAN_SystemPackets.h">
+    <Data name="versionYear" inMemoryType="unsigned16"/>
+    <Data name="versionMonth" inMemoryType="unsigned8"/>
+    <Data name="versionDay" inMemoryType="unsigned8"/>
+</Packet>
+
+<Packet name="HardwareInfo" id="PKT_DC_SYSTEM_HW_INFO"
+        file="DroneCAN_SystemPackets.h">
+</Packet>
+
+</Protocol>
