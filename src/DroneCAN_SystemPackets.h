@@ -155,6 +155,35 @@ int decodeDroneCAN_FirmwareDatePacket(const void* pkt, uint16_t* versionYear, ui
 //! return the maximum encoded length for the DroneCAN_FirmwareDate packet
 #define getDroneCAN_FirmwareDateMaxDataLength() (4)
 
+/*!
+ * User-configurable settings information
+ */
+typedef struct
+{
+    uint32_t settingsChecksum; //!< Checksum of all user-configurable device settings
+}DroneCAN_FirmwareSettings_t;
+
+//! Create the DroneCAN_FirmwareSettings packet
+void encodeDroneCAN_FirmwareSettingsPacketStructure(void* pkt, const DroneCAN_FirmwareSettings_t* user);
+
+//! Decode the DroneCAN_FirmwareSettings packet
+int decodeDroneCAN_FirmwareSettingsPacketStructure(const void* pkt, DroneCAN_FirmwareSettings_t* user);
+
+//! Create the DroneCAN_FirmwareSettings packet
+void encodeDroneCAN_FirmwareSettingsPacket(void* pkt, uint32_t settingsChecksum);
+
+//! Decode the DroneCAN_FirmwareSettings packet
+int decodeDroneCAN_FirmwareSettingsPacket(const void* pkt, uint32_t* settingsChecksum);
+
+//! return the packet ID for the DroneCAN_FirmwareSettings packet
+#define getDroneCAN_FirmwareSettingsPacketID() (PKT_DC_SYS_FW_SETTINGS)
+
+//! return the minimum encoded length for the DroneCAN_FirmwareSettings packet
+#define getDroneCAN_FirmwareSettingsMinDataLength() (4)
+
+//! return the maximum encoded length for the DroneCAN_FirmwareSettings packet
+#define getDroneCAN_FirmwareSettingsMaxDataLength() (4)
+
 //! Create the DroneCAN_HardwareInfo packet
 void encodeDroneCAN_HardwareInfoPacketStructure(void* pkt);
 

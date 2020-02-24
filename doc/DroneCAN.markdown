@@ -168,13 +168,14 @@
 
 ## DroneCAN_System_Packets enumeration
 
-| Name                                              | Value | Description                        |
-| ------------------------------------------------- | :---: | ---------------------------------- |
-| [`PKT_DC_SYS_STATUS`](#PKT_DC_SYS_STATUS)         | 61440 | Device status information          |
-| [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)               | 61696 | Unique Identifer for DroneCAN node |
-| [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION) | 61712 | Firmware version information       |
-| [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)       | 61713 | Firmware date information          |
-| [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)       | 61717 | Hardware information               |
+| Name                                                | Value | Description                            |
+| --------------------------------------------------- | :---: | -------------------------------------- |
+| [`PKT_DC_SYS_STATUS`](#PKT_DC_SYS_STATUS)           | 61440 | Device status information              |
+| [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)                 | 61696 | Unique Identifer for DroneCAN node     |
+| [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION)   | 61712 | Firmware version information           |
+| [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)         | 61713 | Firmware date information              |
+| [`PKT_DC_SYS_FW_SETTINGS`](#PKT_DC_SYS_FW_SETTINGS) | 61714 | User-configurable settings information |
+| [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)         | 61717 | Hardware information                   |
 [<a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration]
 
 
@@ -235,6 +236,20 @@ Firmware date information
 | 2     | 2)versionMonth | U8          | 1      |             |
 | 3     | 3)versionDay   | U8          | 1      |             |
 [FirmwareDate packet bytes]
+
+
+## <a name="PKT_DC_SYS_FW_SETTINGS"></a>FirmwareSettings packet
+
+User-configurable settings information
+
+- packet identifier: `PKT_DC_SYS_FW_SETTINGS` : 61714
+- data length: 4
+
+
+| Bytes | Name               | [Enc](#Enc) | Repeat | Description                                        |
+| ----- | ------------------ | :---------: | :----: | -------------------------------------------------- |
+| 0...3 | 1)settingsChecksum | U32         | 1      | Checksum of all user-configurable device settings. |
+[FirmwareSettings packet bytes]
 
 
 ## <a name="PKT_DC_SYS_HW_INFO"></a>HardwareInfo packet

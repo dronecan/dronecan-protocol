@@ -252,6 +252,11 @@
 	<td>Firmware date information</td>
 </tr>
 <tr>
+	<td><a href="#PKT_DC_SYS_FW_SETTINGS"><code>PKT_DC_SYS_FW_SETTINGS</code></a></td>
+	<td style="text-align:center;">61714</td>
+	<td>User-configurable settings information</td>
+</tr>
+<tr>
 	<td><a href="#PKT_DC_SYS_HW_INFO"><code>PKT_DC_SYS_HW_INFO</code></a></td>
 	<td style="text-align:center;">61717</td>
 	<td>Hardware information</td>
@@ -440,6 +445,46 @@
 	<td style="text-align:center;">U8</td>
 	<td style="text-align:center;">1</td>
 	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_sys_fw_settingsafirmwaresettingspacket"><a name="PKT_DC_SYS_FW_SETTINGS"></a>FirmwareSettings packet</h2>
+
+<p>User-configurable settings information</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_SYS_FW_SETTINGS</code> : 61714</li>
+<li>data length: 4</li>
+</ul>
+
+<table>
+<caption id="firmwaresettingspacketbytes">FirmwareSettings packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;3</td>
+	<td>1)settingsChecksum</td>
+	<td style="text-align:center;">U32</td>
+	<td style="text-align:center;">1</td>
+	<td>Checksum of all user-configurable device settings.</td>
 </tr>
 </tbody>
 </table>

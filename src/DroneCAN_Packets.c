@@ -46,6 +46,8 @@ const char* DroneCAN_System_Packets_EnumLabel(int value)
         return "PKT_DC_SYS_FW_VERSION";
     case PKT_DC_SYS_FW_DATE:
         return "PKT_DC_SYS_FW_DATE";
+    case PKT_DC_SYS_FW_SETTINGS:
+        return "PKT_DC_SYS_FW_SETTINGS";
     case PKT_DC_SYS_HW_INFO:
         return "PKT_DC_SYS_HW_INFO";
     }
@@ -71,6 +73,8 @@ const char* DroneCAN_System_Packets_EnumTitle(int value)
         return "Firmware version information";
     case PKT_DC_SYS_FW_DATE:
         return "Firmware date information";
+    case PKT_DC_SYS_FW_SETTINGS:
+        return "User-configurable settings information";
     case PKT_DC_SYS_HW_INFO:
         return "Hardware information";
     }

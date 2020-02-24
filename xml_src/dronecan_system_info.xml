@@ -36,6 +36,14 @@
     <Data name="versionDay" inMemoryType="unsigned8"/>
 </Packet>
 
+<Packet name="FirmwareSettings" id="PKT_DC_SYS_FW_SETTINGS"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+
+    <Data name="settingsChecksum" inMemoryType="unsigned32" comment="Checksum of all user-configurable device settings"/>
+
+</Packet>
+
 <Packet name="HardwareInfo" id="PKT_DC_SYS_HW_INFO"
         structureInterface="true" parameterInterface="true"
         file="DroneCAN_SystemPackets.h">
