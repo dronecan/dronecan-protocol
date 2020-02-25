@@ -29,6 +29,8 @@ SOFTWARE.
 
 int main(void);
 
-void testSystemPackets(void);
+/* System message test */
+void testUID(void);
+void testIDStrings(void);
 
 #endif // _MAIN_H_

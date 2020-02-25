@@ -25,6 +25,7 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <string.h>
 
 #include "main.h"
 #include "dronecan_packet_glue.h"
@@ -37,6 +38,8 @@ SOFTWARE.
 
 static int tests = 0;
 
+static DroneCAN_Packet_t pkt;
+
 int main()
 {
     printf("Done!\n");
@@ -48,7 +51,9 @@ int main()
 
     printf("Running DroneCAN protocol tests:\n");
 
-    testSystemPackets();
+    testUID();
+    testFirmwareVersion();
+    testIDStrings();
 
     printf("\n------------------------------\n");
     printf("Ran %d tests - all passed\n", tests);
@@ -57,11 +62,12 @@ int main()
     return 0;
 }
 
-void testSystemPackets()
+/**
+ * Test the UniqueID packets
+ */
+void testUID()
 {
     printf(" - Testing System Packets\n");
-
-    DroneCAN_Packet_t pkt;
 
     encodeDroneCAN_UniqueIdPacket(
                 &pkt,
@@ -83,13 +89,18 @@ void testSystemPackets()
     uint8_t address;
 
     decodeDroneCAN_UniqueIdPacket(&pkt, &vid, &pid, &sn, &address);
-
     ASSERT(vid == 0x1234);
     ASSERT(pid == 0x5678);
     ASSERT(sn == 0xAABBCC);
     ASSERT(address == 0xEF);
 
     ASSERT(pkt.length == 8);
+
+}
+
+
+void testFirmwareVersion()
+{
 
     // Test a firmware version structure encode
     DroneCAN_FirmwareVersion_t fw;
@@ -104,4 +115,39 @@ void testSystemPackets()
     ASSERT(pkt.id == PKT_DC_SYS_FW_VERSION);
 
     ASSERT(pkt.length >= 7);
+}
+
+
+/**
+ * Test the manufacturer and user strings
+ */
+void testIDStrings(void)
+{
+    encodeDroneCAN_ManufacturerStringPacket(&pkt, "ACME Devices");
+
+    ASSERT(pkt.id == PKT_DC_SYS_MANF_STRING);
+    ASSERT(pkt.length == 13);
+
+    const char* user_string = "My user string";
+
+    encodeDroneCAN_UserStringPacket(&pkt, user_string);
+
+    ASSERT(pkt.id == PKT_DC_SYS_USER_STRING);
+    ASSERT(pkt.length == 15);
+
+    char s[64];
+
+    // Ensure that the packet decodes the string correctly
+    if (decodeDroneCAN_UserStringPacket(&pkt, s))
+    {
+        ASSERT(strcmp(s, user_string) == 0);
+    }
+    else
+    {
+        assert(false);
+    }
+    
+    // Assert that decoding as a different packet will fail
+    ASSERT(decodeDroneCAN_ManufacturerStringPacket(&pkt, s) == 0);
+
 }
