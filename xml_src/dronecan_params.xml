@@ -6,7 +6,7 @@
     <Data name="format" inMemoryType="unsigned8"/>
 </Packet>
 
-<Packet name="ParameterInfo" id="PKT_DC_PARAM_INFO" comment="">
+<Packet name="ParameterInfo" id="PKT_DC_PARAM_INFO" comment="" parameterInterface="true" structureInterface="false">
     <Data name="index" inMemoryType="unsigned16"/>
     <Data name="format" inMemoryType="unsigned8"/>
     <Data name="name" inMemoryType="string" array="96"/>
@@ -14,7 +14,7 @@
 
 <Packet name="ParameterNull" id="PKT_DC_PARAM_INFO" comment="Encode a 'null' or 'void' parameter" structureInterface="false">
     <Data name="index" inMemoryType="unsigned16"/>
-    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_VOID" checkConstant="true"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_NULL" checkConstant="true"/>
 </Packet>
 
 <Packet name="ParameterValueBytes" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">

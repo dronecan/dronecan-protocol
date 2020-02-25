@@ -69,7 +69,7 @@ const char* DroneCAN_Priority_Levels_EnumTitle(int value);
 
 typedef enum
 {
-    DRONECAN_PARAMETER_VOID = 0x00,//!< Void (null) parameter
+    DRONECAN_PARAMETER_NULL = 0x00,//!< Null (empty) parameter
     DRONECAN_PARAMETER_BYTES,    //!< Array of raw bytes (4 bytes)
     DRONECAN_PARAMETER_SINT8,    //!< Signed integer, 8-bit
     DRONECAN_PARAMETER_UINT8,    //!< Unsigned integer, 8-bit

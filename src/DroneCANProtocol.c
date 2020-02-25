@@ -85,8 +85,8 @@ const char* DroneCAN_Parameter_Types_EnumLabel(int value)
     {
     default:
         return "";
-    case DRONECAN_PARAMETER_VOID:
-        return "DRONECAN_PARAMETER_VOID";
+    case DRONECAN_PARAMETER_NULL:
+        return "DRONECAN_PARAMETER_NULL";
     case DRONECAN_PARAMETER_BYTES:
         return "DRONECAN_PARAMETER_BYTES";
     case DRONECAN_PARAMETER_SINT8:
@@ -118,8 +118,8 @@ const char* DroneCAN_Parameter_Types_EnumTitle(int value)
     {
     default:
         return "";
-    case DRONECAN_PARAMETER_VOID:
-        return "Void (null) parameter";
+    case DRONECAN_PARAMETER_NULL:
+        return "Null (empty) parameter";
     case DRONECAN_PARAMETER_BYTES:
         return "Array of raw bytes (4 bytes)";
     case DRONECAN_PARAMETER_SINT8:

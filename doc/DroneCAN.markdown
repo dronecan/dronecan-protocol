@@ -161,7 +161,7 @@
 
 | Name                        | Value | Description                   |
 | --------------------------- | :---: | ----------------------------- |
-| `DRONECAN_PARAMETER_VOID`   | 0     | Void (null) parameter         |
+| `DRONECAN_PARAMETER_NULL`   | 0     | Null (empty) parameter        |
 | `DRONECAN_PARAMETER_BYTES`  | 1     | Array of raw bytes (4 bytes)  |
 | `DRONECAN_PARAMETER_SINT8`  | 2     | Signed integer, 8-bit         |
 | `DRONECAN_PARAMETER_UINT8`  | 3     | Unsigned integer, 8-bit       |
@@ -244,7 +244,7 @@ Encode a 'null' or 'void' parameter
 | Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                       |
 | ----- | -------- | :---------: | :----: | ------------------------------------------------------------------------------------------------- |
 | 0...1 | 1)index  | U16         | 1      |                                                                                                   |
-| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_VOID. |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_NULL. |
 [ParameterNull packet bytes]
 
 

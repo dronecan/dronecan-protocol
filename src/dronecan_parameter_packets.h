@@ -65,10 +65,10 @@ typedef struct
 }DroneCAN_ParameterInfo_t;
 
 //! Create the DroneCAN_ParameterInfo packet
-void encodeDroneCAN_ParameterInfoPacketStructure(void* pkt, const DroneCAN_ParameterInfo_t* user);
+void encodeDroneCAN_ParameterInfoPacket(void* pkt, uint16_t index, uint8_t format, const char name[96]);
 
 //! Decode the DroneCAN_ParameterInfo packet
-int decodeDroneCAN_ParameterInfoPacketStructure(const void* pkt, DroneCAN_ParameterInfo_t* user);
+int decodeDroneCAN_ParameterInfoPacket(const void* pkt, uint16_t* index, uint8_t* format, char name[96]);
 
 //! return the packet ID for the DroneCAN_ParameterInfo packet
 #define getDroneCAN_ParameterInfoPacketID() (PKT_DC_PARAM_INFO)

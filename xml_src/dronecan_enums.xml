@@ -10,7 +10,7 @@
 </Enum>
 
 <Enum name="DroneCAN_Parameter_Types" lookup="true" lookupTitle="true" prefix="DRONECAN_PARAMETER_">
-    <Value name="VOID" value="0x00" comment="Void (null) parameter"/>
+    <Value name="NULL" value="0x00" comment="Null (empty) parameter"/>
     <Value name="BYTES" comment="Array of raw bytes (4 bytes)"/>
     <Value name="SINT8" comment="Signed integer, 8-bit"/>
     <Value name="UINT8" comment="Unsigned integer, 8-bit"/>

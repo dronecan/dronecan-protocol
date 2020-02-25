@@ -79,18 +79,20 @@ int decodeDroneCAN_ParameterRequestPacket(const void* _pg_pkt, uint8_t* format)
  *
  * Parameter description
  * \param _pg_pkt points to the packet which will be created by this function
- * \param _pg_user points to the user data that will be encoded in _pg_pkt
+ * \param index is 
+ * \param format is 
+ * \param name is 
  */
-void encodeDroneCAN_ParameterInfoPacketStructure(void* _pg_pkt, const DroneCAN_ParameterInfo_t* _pg_user)
+void encodeDroneCAN_ParameterInfoPacket(void* _pg_pkt, uint16_t index, uint8_t format, const char name[96])
 {
     uint8_t* _pg_data = getDroneCANPacketData(_pg_pkt);
     int _pg_byteindex = 0;
 
-    uint16ToBeBytes(_pg_user->index, _pg_data, &_pg_byteindex);
+    uint16ToBeBytes(index, _pg_data, &_pg_byteindex);
 
-    uint8ToBytes(_pg_user->format, _pg_data, &_pg_byteindex);
+    uint8ToBytes(format, _pg_data, &_pg_byteindex);
 
-    stringToBytes(_pg_user->name, _pg_data, &_pg_byteindex, 96, 0);
+    stringToBytes(name, _pg_data, &_pg_byteindex, 96, 0);
 
     // complete the process of creating the packet
     finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_ParameterInfoPacketID());
@@ -101,32 +103,29 @@ void encodeDroneCAN_ParameterInfoPacketStructure(void* _pg_pkt, const DroneCAN_P
  *
  * Parameter description
  * \param _pg_pkt points to the packet being decoded by this function
- * \param _pg_user receives the data decoded from the packet
+ * \param index receives 
+ * \param format receives 
+ * \param name receives 
  * \return 0 is returned if the packet ID or size is wrong, else 1
  */
-int decodeDroneCAN_ParameterInfoPacketStructure(const void* _pg_pkt, DroneCAN_ParameterInfo_t* _pg_user)
+int decodeDroneCAN_ParameterInfoPacket(const void* _pg_pkt, uint16_t* index, uint8_t* format, char name[96])
 {
-    int _pg_numbytes;
     int _pg_byteindex = 0;
-    const uint8_t* _pg_data;
+    const uint8_t* _pg_data = getDroneCANPacketDataConst(_pg_pkt);
+    int _pg_numbytes = getDroneCANPacketSize(_pg_pkt);
 
     // Verify the packet identifier
     if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_ParameterInfoPacketID())
         return 0;
 
-    // Verify the packet size
-    _pg_numbytes = getDroneCANPacketSize(_pg_pkt);
     if(_pg_numbytes < getDroneCAN_ParameterInfoMinDataLength())
         return 0;
 
-    // The raw data from the packet
-    _pg_data = getDroneCANPacketDataConst(_pg_pkt);
+    *index = uint16FromBeBytes(_pg_data, &_pg_byteindex);
 
-    _pg_user->index = uint16FromBeBytes(_pg_data, &_pg_byteindex);
+    *format = uint8FromBytes(_pg_data, &_pg_byteindex);
 
-    _pg_user->format = uint8FromBytes(_pg_data, &_pg_byteindex);
-
-    stringFromBytes(_pg_user->name, _pg_data, &_pg_byteindex, 96, 0);
+    stringFromBytes(name, _pg_data, &_pg_byteindex, 96, 0);
 
     return 1;
 }
@@ -145,7 +144,7 @@ void encodeDroneCAN_ParameterNullPacket(void* _pg_pkt, uint16_t index)
 
     uint16ToBeBytes(index, _pg_data, &_pg_byteindex);
 
-    uint8ToBytes((uint8_t)(DRONECAN_PARAMETER_VOID), _pg_data, &_pg_byteindex);
+    uint8ToBytes((uint8_t)(DRONECAN_PARAMETER_NULL), _pg_data, &_pg_byteindex);
 
     // complete the process of creating the packet
     finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_ParameterNullPacketID());
@@ -174,8 +173,8 @@ int decodeDroneCAN_ParameterNullPacket(const void* _pg_pkt, uint16_t* index)
 
     *index = uint16FromBeBytes(_pg_data, &_pg_byteindex);
 
-    // Decoded value must be DRONECAN_PARAMETER_VOID
-    if (uint8FromBytes(_pg_data, &_pg_byteindex) != (uint8_t) DRONECAN_PARAMETER_VOID)
+    // Decoded value must be DRONECAN_PARAMETER_NULL
+    if (uint8FromBytes(_pg_data, &_pg_byteindex) != (uint8_t) DRONECAN_PARAMETER_NULL)
         return 0;
 
     return 1;
