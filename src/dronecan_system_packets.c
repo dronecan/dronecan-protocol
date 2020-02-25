@@ -107,7 +107,7 @@ void encodeDroneCAN_UniqueIdPacketStructure(void* _pg_pkt, const DroneCAN_Unique
     uint16ToBeBytes(_pg_user->pid, _pg_data, &_pg_byteindex);
 
     // Device serial number
-    uint24ToBeBytes((uint32_t)(_pg_user->seiral), _pg_data, &_pg_byteindex);
+    uint24ToBeBytes((uint32_t)(_pg_user->serial), _pg_data, &_pg_byteindex);
 
     // CAN node address
     uint8ToBytes(_pg_user->address, _pg_data, &_pg_byteindex);
@@ -149,7 +149,7 @@ int decodeDroneCAN_UniqueIdPacketStructure(const void* _pg_pkt, DroneCAN_UniqueI
     _pg_user->pid = uint16FromBeBytes(_pg_data, &_pg_byteindex);
 
     // Device serial number
-    _pg_user->seiral = (uint32_t)uint24FromBeBytes(_pg_data, &_pg_byteindex);
+    _pg_user->serial = (uint32_t)uint24FromBeBytes(_pg_data, &_pg_byteindex);
 
     // CAN node address
     _pg_user->address = uint8FromBytes(_pg_data, &_pg_byteindex);
@@ -164,10 +164,10 @@ int decodeDroneCAN_UniqueIdPacketStructure(const void* _pg_pkt, DroneCAN_UniqueI
  * \param _pg_pkt points to the packet which will be created by this function
  * \param vid is Vendor ID
  * \param pid is Product ID
- * \param seiral is Device serial number
+ * \param serial is Device serial number
  * \param address is CAN node address
  */
-void encodeDroneCAN_UniqueIdPacket(void* _pg_pkt, uint16_t vid, uint16_t pid, uint32_t seiral, uint8_t address)
+void encodeDroneCAN_UniqueIdPacket(void* _pg_pkt, uint16_t vid, uint16_t pid, uint32_t serial, uint8_t address)
 {
     uint8_t* _pg_data = getDroneCANPacketData(_pg_pkt);
     int _pg_byteindex = 0;
@@ -179,7 +179,7 @@ void encodeDroneCAN_UniqueIdPacket(void* _pg_pkt, uint16_t vid, uint16_t pid, ui
     uint16ToBeBytes(pid, _pg_data, &_pg_byteindex);
 
     // Device serial number
-    uint24ToBeBytes((uint32_t)(seiral), _pg_data, &_pg_byteindex);
+    uint24ToBeBytes((uint32_t)(serial), _pg_data, &_pg_byteindex);
 
     // CAN node address
     uint8ToBytes(address, _pg_data, &_pg_byteindex);
@@ -195,11 +195,11 @@ void encodeDroneCAN_UniqueIdPacket(void* _pg_pkt, uint16_t vid, uint16_t pid, ui
  * \param _pg_pkt points to the packet being decoded by this function
  * \param vid receives Vendor ID
  * \param pid receives Product ID
- * \param seiral receives Device serial number
+ * \param serial receives Device serial number
  * \param address receives CAN node address
  * \return 0 is returned if the packet ID or size is wrong, else 1
  */
-int decodeDroneCAN_UniqueIdPacket(const void* _pg_pkt, uint16_t* vid, uint16_t* pid, uint32_t* seiral, uint8_t* address)
+int decodeDroneCAN_UniqueIdPacket(const void* _pg_pkt, uint16_t* vid, uint16_t* pid, uint32_t* serial, uint8_t* address)
 {
     int _pg_byteindex = 0;
     const uint8_t* _pg_data = getDroneCANPacketDataConst(_pg_pkt);
@@ -219,7 +219,7 @@ int decodeDroneCAN_UniqueIdPacket(const void* _pg_pkt, uint16_t* vid, uint16_t* 
     *pid = uint16FromBeBytes(_pg_data, &_pg_byteindex);
 
     // Device serial number
-    *seiral = (uint32_t)uint24FromBeBytes(_pg_data, &_pg_byteindex);
+    *serial = (uint32_t)uint24FromBeBytes(_pg_data, &_pg_byteindex);
 
     // CAN node address
     *address = uint8FromBytes(_pg_data, &_pg_byteindex);

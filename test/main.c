@@ -34,6 +34,8 @@ SOFTWARE.
 #include "dronecan_packets.h"
 #include "dronecan_system_packets.h"
 
+#include "dronecan_id.h"
+
 #define ASSERT(condition) tests++; assert(condition)
 
 static int tests = 0;
@@ -51,6 +53,11 @@ int main()
 
     printf("Running DroneCAN protocol tests:\n");
 
+    /* Static code tests */
+    testId();
+
+    /* Generated protocol code test */
+
     testUID();
     testFirmwareVersion();
     testIDStrings();
@@ -61,6 +68,38 @@ int main()
     // All tests passed
     return 0;
 }
+
+
+void testId()
+{
+    printf(" - Testing CAN ID routines\n");
+
+    DroneCAN_ID_t id;
+
+    // Encode an ID struct to a 32-bit ID
+    id.priority = DRONECAN_PRIORITY_ELEVATED;
+    id.vendor = 0;
+    id.multiframe = 0;
+    id.direction = 1;
+    id.message = 0x1234;
+    id.address = 0x64;
+
+    uint32_t tmp = DroneCAN_encodeID(&id);
+
+    ASSERT(tmp == 0x9123464);
+
+    // Decode the result back into a struct
+    DroneCAN_decodeID(tmp, &id);
+
+    ASSERT(id.priority == DRONECAN_PRIORITY_ELEVATED);
+    ASSERT(id.vendor == 0);
+    ASSERT(id.multiframe == 0);
+    ASSERT(id.direction == 1);
+    ASSERT(id.message == 0x1234);
+    ASSERT(id.address == 0x64);
+}
+
+
 
 /**
  * Test the UniqueID packets
@@ -101,6 +140,7 @@ void testUID()
 
 void testFirmwareVersion()
 {
+    printf(" - Testing firmware version\n");
 
     // Test a firmware version structure encode
     DroneCAN_FirmwareVersion_t fw;
@@ -123,6 +163,8 @@ void testFirmwareVersion()
  */
 void testIDStrings(void)
 {
+    printf(" - Testing ID strings\n");
+
     encodeDroneCAN_ManufacturerStringPacket(&pkt, "ACME Devices");
 
     ASSERT(pkt.id == PKT_DC_SYS_MANF_STRING);

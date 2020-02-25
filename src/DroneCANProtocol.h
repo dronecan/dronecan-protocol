@@ -42,7 +42,7 @@ extern "C" {
  * in a way that affects compatibility with earlier versions of the protocol.
  * The protocol enumeration for this version is: 1
  *
- * The protocol version is 1.0
+ * The protocol version is 1.0.0
  */
 
 #include <stdint.h>
@@ -51,7 +51,7 @@ extern "C" {
 #define getDroneCANApi() 1
 
 //! \return the protocol version string
-#define getDroneCANVersion() "1.0"
+#define getDroneCANVersion() "1.0.0"
 
 typedef enum
 {

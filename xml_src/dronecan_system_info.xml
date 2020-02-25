@@ -13,7 +13,7 @@
         structureInterface="true" parameterInterface="true">
     <Data name="vid" inMemoryType="unsigned16" comment="Vendor ID"/>
     <Data name="pid" inMemoryType="unsigned16" comment="Product ID"/>
-    <Data name="seiral" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
+    <Data name="serial" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
     <Data name="address" inMemoryType="unsigned8" comment="CAN node address"/>
 </Packet>
 

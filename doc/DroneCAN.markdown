@@ -141,7 +141,7 @@
 
 # DroneCAN Protocol
 
- Protocol version is 1.0.
+ Protocol version is 1.0.0.
 
  Protocol API is 1.
 
@@ -202,7 +202,7 @@ Unique identifier for DroneCAN device
 | ----- | --------- | :---------: | :----: | --------------------- |
 | 0...1 | 1)vid     | U16         | 1      | Vendor ID.            |
 | 2...3 | 2)pid     | U16         | 1      | Product ID.           |
-| 4...6 | 3)seiral  | U24         | 1      | Device serial number. |
+| 4...6 | 3)serial  | U24         | 1      | Device serial number. |
 | 7     | 4)address | U8          | 1      | CAN node address.     |
 [UniqueId packet bytes]
 
