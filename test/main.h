@@ -31,6 +31,7 @@ int main(void);
 
 /* System message test */
 void testUID(void);
+void testFirmwareVersion(void);
 void testIDStrings(void);
 
 #endif // _MAIN_H_
