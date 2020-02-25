@@ -29,6 +29,9 @@ SOFTWARE.
 
 int main(void);
 
+/* Static functions */
+void testId(void);
+
 /* System message test */
 void testUID(void);
 void testFirmwareVersion(void);
