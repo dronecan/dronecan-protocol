@@ -33,8 +33,10 @@ SOFTWARE.
 #include "DroneCANProtocol.h"
 #include "dronecan_packets.h"
 #include "dronecan_system_packets.h"
+#include "dronecan_parameter_packets.h"
 
 #include "dronecan_id.h"
+#include "dronecan_param.h"
 
 #define ASSERT(condition) tests++; assert(condition)
 
@@ -57,6 +59,8 @@ int main()
     testId();
 
     /* Generated protocol code test */
+
+    testParams();
 
     testUID();
     testFirmwareVersion();
@@ -99,6 +103,62 @@ void testId()
     ASSERT(id.address == 0x64);
 }
 
+
+void testParams()
+{
+    printf(" - Testing parameters\n");
+
+    DroneCAN_Parameter_t param;
+
+    // Encode a 16-bit unsigned value parameter
+    encodeDroneCAN_ParameterValueU16Packet(&pkt, 0, 0x1234);
+
+    ASSERT(pkt.id == PKT_DC_PARAM_VALUE);
+    ASSERT(pkt.length == 5);
+
+    uint16_t idx = 0;
+
+    // Attempt to decode it into the union
+    if (decodeDroneCAN_ParameterValueU16Packet(&pkt, &idx, &param.value_uint16))
+    {
+        ASSERT(param.value_uint16 == 0x1234);
+    }
+    else
+    {
+        ASSERT(false);
+    }
+
+    // Attempt to decode as a different parameter type
+    ASSERT(decodeDroneCAN_ParameterValueS16Packet(&pkt, &idx, &param.value_sint16) == 0);
+
+    // Encode a 'void' packet
+    encodeDroneCAN_ParameterNullPacket(&pkt, 1);
+
+    ASSERT(pkt.id == PKT_DC_PARAM_INFO);
+    ASSERT(pkt.length == 3);
+    ASSERT(pkt.data[2] == DRONECAN_PARAMETER_NULL);
+
+    // Ensure that it decodes
+    ASSERT(decodeDroneCAN_ParameterNullPacket(&pkt, &idx) == 1);
+
+    // Encode a parameter information packet
+    // Let's call it "number of motor poles" like it is an ESC or something crazy
+
+    const char* param_name = "esc.settings.motor.numPoles";
+
+    encodeDroneCAN_ParameterInfoPacket(&pkt, 0, DRONECAN_PARAMETER_UINT8, param_name);
+
+    ASSERT(pkt.length == 31);
+    ASSERT(pkt.id == PKT_DC_PARAM_INFO);
+    ASSERT(pkt.data[2] == DRONECAN_PARAMETER_UINT8);
+
+    // Now decode it into the parameter
+    ASSERT(decodeDroneCAN_ParameterInfoPacket(&pkt, &idx, &param.format, param.name) == 1);
+
+    ASSERT(strcmp(param.name, param_name) == 0);
+
+    ASSERT(param.format == DRONECAN_PARAMETER_UINT8);
+}
 
 
 /**

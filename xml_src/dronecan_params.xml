@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_Parameters" file="dronecan_parameter_packets">
+
+<Packet name="ParameterRequest" id="PKT_DC_PARAM_REQUEST">
+    <Data name="format" inMemoryType="unsigned8"/>
+</Packet>
+
+<Packet name="ParameterInfo" id="PKT_DC_PARAM_INFO" comment="" parameterInterface="true" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="unsigned8"/>
+    <Data name="name" inMemoryType="string" array="96"/>
+</Packet>
+
+<Packet name="ParameterNull" id="PKT_DC_PARAM_INFO" comment="Encode a 'null' or 'void' parameter" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_NULL" checkConstant="true"/>
+</Packet>
+
+<Packet name="ParameterValueBytes" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_BYTES" checkConstant="true"/>
+    <Data name="data" inMemoryType="unsigned8" array="4"/>
+</Packet>
+
+<Packet name="ParameterValueS8" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_SINT8" checkConstant="true"/>
+    <Data name="data" inMemoryType="signed8"/>
+</Packet>
+
+<Packet name="ParameterValueU8" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_UINT8" checkConstant="true"/>
+    <Data name="data" inMemoryType="unsigned8"/>
+</Packet>
+
+<Packet name="ParameterValueS16" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_SINT16" checkConstant="true"/>
+    <Data name="data" inMemoryType="signed16"/>
+</Packet>
+
+<Packet name="ParameterValueU16" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_UINT16" checkConstant="true"/>
+    <Data name="data" inMemoryType="unsigned16"/>
+</Packet>
+
+<Packet name="ParameterValueS32" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_SINT32" checkConstant="true"/>
+    <Data name="data" inMemoryType="signed32"/>
+</Packet>
+
+<Packet name="ParameterValueU32" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_UINT32" checkConstant="true"/>
+    <Data name="data" inMemoryType="unsigned32"/>
+</Packet>
+
+<Packet name="ParameterValueFloat" id="PKT_DC_PARAM_VALUE" comment="" structureInterface="false">
+    <Data name="index" inMemoryType="unsigned16"/>
+    <Data name="format" inMemoryType="null" encodedType="unsigned8" constant="DRONECAN_PARAMETER_FLOAT" checkConstant="true"/>
+    <Data name="data" inMemoryType="float32"/>
+</Packet>
+
+</Protocol>

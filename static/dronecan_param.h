@@ -22,22 +22,40 @@ SOFTWARE.
 
 **/
 
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef _DRONECAN_PARAM_H_
+#define _DRONECAN_PARAM_H_
 
 #include <stdint.h>
 
-int main(void);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-/* Static functions */
-void testId(void);
+typedef struct
+{
+    //! Data format of the parameter value
+    uint8_t format;
 
-/* Parameter tests */
-void testParams(void);
+    //! Parameter name (up to 96 characters)
+    char name[96];
 
-/* System message test */
-void testUID(void);
-void testFirmwareVersion(void);
-void testIDStrings(void);
+    //! Parameter value (union of possible types)
+    union {
+        uint8_t     value_bytes[4];     //! Raw bytes
+        int8_t      value_sint8;        //! Signed integer, 8 bits
+        uint8_t     value_uint8;        //! Unsigned integer, 8 bits
+        int16_t     value_sint16;       //! Signed integer, 16 bits
+        uint16_t    value_uint16;       //! Unsigned integer, 16 bits
+        int32_t     value_sint32;       //! Signed integer, 32 bits
+        uint32_t    value_uint32;       //! Unsigned integer, 32 bits
+        float       value_float;        //! Floating point, 32 bits
+    };
 
-#endif // _MAIN_H_
+} DroneCAN_Parameter_t;
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // _DRONECAN_PARAM_H_

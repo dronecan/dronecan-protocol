@@ -34,6 +34,9 @@ extern "C" {
 
 typedef enum
 {
+    PKT_DC_PARAM_REQUEST = 0xEF00,   //!< Request device parameter
+    PKT_DC_PARAM_INFO,               //!< Parameter description
+    PKT_DC_PARAM_VALUE,              //!< Parameter value
     PKT_DC_SYS_STATUS = 0xF000,      //!< Device status information
     PKT_DC_SYS_UID = 0xF100,         //!< Unique Identifer for DroneCAN node
     PKT_DC_SYS_MANF_STRING = 0xF105, //!< Manufacturer device identifier string
