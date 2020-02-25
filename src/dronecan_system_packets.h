@@ -67,7 +67,7 @@ typedef struct
 {
     uint16_t vid;     //!< Vendor ID
     uint16_t pid;     //!< Product ID
-    uint32_t seiral;  //!< Device serial number
+    uint32_t serial;  //!< Device serial number
     uint8_t  address; //!< CAN node address
 }DroneCAN_UniqueId_t;
 
@@ -78,10 +78,10 @@ void encodeDroneCAN_UniqueIdPacketStructure(void* pkt, const DroneCAN_UniqueId_t
 int decodeDroneCAN_UniqueIdPacketStructure(const void* pkt, DroneCAN_UniqueId_t* user);
 
 //! Create the DroneCAN_UniqueId packet
-void encodeDroneCAN_UniqueIdPacket(void* pkt, uint16_t vid, uint16_t pid, uint32_t seiral, uint8_t address);
+void encodeDroneCAN_UniqueIdPacket(void* pkt, uint16_t vid, uint16_t pid, uint32_t serial, uint8_t address);
 
 //! Decode the DroneCAN_UniqueId packet
-int decodeDroneCAN_UniqueIdPacket(const void* pkt, uint16_t* vid, uint16_t* pid, uint32_t* seiral, uint8_t* address);
+int decodeDroneCAN_UniqueIdPacket(const void* pkt, uint16_t* vid, uint16_t* pid, uint32_t* serial, uint8_t* address);
 
 //! return the packet ID for the DroneCAN_UniqueId packet
 #define getDroneCAN_UniqueIdPacketID() (PKT_DC_SYS_UID)
