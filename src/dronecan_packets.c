@@ -38,6 +38,12 @@ const char* DroneCAN_System_Packets_EnumLabel(int value)
     {
     default:
         return "";
+    case PKT_DC_PARAM_REQUEST:
+        return "PKT_DC_PARAM_REQUEST";
+    case PKT_DC_PARAM_INFO:
+        return "PKT_DC_PARAM_INFO";
+    case PKT_DC_PARAM_VALUE:
+        return "PKT_DC_PARAM_VALUE";
     case PKT_DC_SYS_STATUS:
         return "PKT_DC_SYS_STATUS";
     case PKT_DC_SYS_UID:
@@ -69,6 +75,12 @@ const char* DroneCAN_System_Packets_EnumTitle(int value)
     {
     default:
         return "";
+    case PKT_DC_PARAM_REQUEST:
+        return "Request device parameter";
+    case PKT_DC_PARAM_INFO:
+        return "Parameter description";
+    case PKT_DC_PARAM_VALUE:
+        return "Parameter value";
     case PKT_DC_SYS_STATUS:
         return "Device status information";
     case PKT_DC_SYS_UID:

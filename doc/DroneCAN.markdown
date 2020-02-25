@@ -157,6 +157,23 @@
 
 
 
+## DroneCAN_Parameter_Types enumeration
+
+| Name                        | Value | Description                   |
+| --------------------------- | :---: | ----------------------------- |
+| `DRONECAN_PARAMETER_VOID`   | 0     | Void (null) parameter         |
+| `DRONECAN_PARAMETER_BYTES`  | 1     | Array of raw bytes (4 bytes)  |
+| `DRONECAN_PARAMETER_SINT8`  | 2     | Signed integer, 8-bit         |
+| `DRONECAN_PARAMETER_UINT8`  | 3     | Unsigned integer, 8-bit       |
+| `DRONECAN_PARAMETER_SINT16` | 4     | Signed integer, 16-bit        |
+| `DRONECAN_PARAMETER_UINT16` | 5     | Unsigned integer, 16-bit      |
+| `DRONECAN_PARAMETER_SINT32` | 6     | Signed integer, 32-bit        |
+| `DRONECAN_PARAMETER_UINT32` | 7     | Unsigned integer, 32-bit      |
+| `DRONECAN_PARAMETER_FLOAT`  | 8     | Floating point number, 32-bit |
+[<a name="DroneCAN_Parameter_Types"></a>DroneCAN_Parameter_Types enumeration]
+
+
+
 ## DroneCAN_Vendors enumeration
 
 | Name                        | Value | Description                   |
@@ -170,6 +187,9 @@
 
 | Name                                                | Value | Description                            |
 | --------------------------------------------------- | :---: | -------------------------------------- |
+| [`PKT_DC_PARAM_REQUEST`](#PKT_DC_PARAM_REQUEST)     | 61184 | Request device parameter               |
+| [`PKT_DC_PARAM_INFO`](#PKT_DC_PARAM_INFO)           | 61185 | Parameter description                  |
+| [`PKT_DC_PARAM_VALUE`](#PKT_DC_PARAM_VALUE)         | 61186 | Parameter value                        |
 | [`PKT_DC_SYS_STATUS`](#PKT_DC_SYS_STATUS)           | 61440 | Device status information              |
 | [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)                 | 61696 | Unique Identifer for DroneCAN node     |
 | [`PKT_DC_SYS_MANF_STRING`](#PKT_DC_SYS_MANF_STRING) | 61701 | Manufacturer device identifier string  |
@@ -180,6 +200,180 @@
 | [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)         | 61717 | Hardware information                   |
 [<a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration]
 
+
+
+## <a name="PKT_DC_PARAM_REQUEST"></a>ParameterRequest packet
+
+Request device parameter
+
+- packet identifier: `PKT_DC_PARAM_REQUEST` : 61184
+- data length: 1
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description |
+| ----- | -------- | :---------: | :----: | ----------- |
+| 0     | 1)format | U8          | 1      |             |
+[ParameterRequest packet bytes]
+
+
+## <a name="PKT_DC_PARAM_INFO"></a>ParameterInfo packet
+
+Parameter description
+
+- packet identifier: `PKT_DC_PARAM_INFO` : 61185
+- minimum data length: 4
+- maximum data length: 99
+
+
+| Bytes  | Name     | [Enc](#Enc)                           | Repeat | Description |
+| ------ | -------- | :-----------------------------------: | :----: | ----------- |
+| 0...1  | 1)index  | U16                                   | 1      |             |
+| 2      | 2)format | U8                                    | 1      |             |
+| 3...98 | 3)name   | Zero-terminated string up to 96 bytes         ||             |
+[ParameterInfo packet bytes]
+
+
+## <a name="PKT_DC_PARAM_INFO"></a>ParameterNull packet
+
+Encode a 'null' or 'void' parameter
+
+- packet identifier: `PKT_DC_PARAM_INFO` : 61185
+- data length: 3
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                       |
+| ----- | -------- | :---------: | :----: | ------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                   |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_VOID. |
+[ParameterNull packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueBytes packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 7
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                        |
+| ----- | -------- | :---------: | :----: | -------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                    |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_BYTES. |
+| 3...6 | 3)data   | U8          | 4      |                                                                                                    |
+[ParameterValueBytes packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueS8 packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 4
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                        |
+| ----- | -------- | :---------: | :----: | -------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                    |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_SINT8. |
+| 3     | 3)data   | I8          | 1      |                                                                                                    |
+[ParameterValueS8 packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueU8 packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 4
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                        |
+| ----- | -------- | :---------: | :----: | -------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                    |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_UINT8. |
+| 3     | 3)data   | U8          | 1      |                                                                                                    |
+[ParameterValueU8 packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueS16 packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 5
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                         |
+| ----- | -------- | :---------: | :----: | --------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                     |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_SINT16. |
+| 3...4 | 3)data   | I16         | 1      |                                                                                                     |
+[ParameterValueS16 packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueU16 packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 5
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                         |
+| ----- | -------- | :---------: | :----: | --------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                     |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_UINT16. |
+| 3...4 | 3)data   | U16         | 1      |                                                                                                     |
+[ParameterValueU16 packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueS32 packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 7
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                         |
+| ----- | -------- | :---------: | :----: | --------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                     |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_SINT32. |
+| 3...6 | 3)data   | I32         | 1      |                                                                                                     |
+[ParameterValueS32 packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueU32 packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 7
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                         |
+| ----- | -------- | :---------: | :----: | --------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                     |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_UINT32. |
+| 3...6 | 3)data   | U32         | 1      |                                                                                                     |
+[ParameterValueU32 packet bytes]
+
+
+## <a name="PKT_DC_PARAM_VALUE"></a>ParameterValueFloat packet
+
+Parameter value
+
+- packet identifier: `PKT_DC_PARAM_VALUE` : 61186
+- data length: 7
+
+
+| Bytes | Name     | [Enc](#Enc) | Repeat | Description                                                                                        |
+| ----- | -------- | :---------: | :----: | -------------------------------------------------------------------------------------------------- |
+| 0...1 | 1)index  | U16         | 1      |                                                                                                    |
+| 2     | 2)format | U8          | 1      | Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_FLOAT. |
+| 3...6 | 3)data   | F32         | 1      |                                                                                                    |
+[ParameterValueFloat packet bytes]
 
 
 ## <a name="PKT_DC_SYS_STATUS"></a>DeviceStatus packet

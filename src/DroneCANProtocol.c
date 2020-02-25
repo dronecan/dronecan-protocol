@@ -74,6 +74,73 @@ const char* DroneCAN_Priority_Levels_EnumTitle(int value)
 
 
 /*!
+ * \brief Lookup label for 'DroneCAN_Parameter_Types' enum entry
+ * 
+ * \param value is the integer value of the enum entry
+ * \return string label of the given entry
+ */
+const char* DroneCAN_Parameter_Types_EnumLabel(int value)
+{
+    switch (value)
+    {
+    default:
+        return "";
+    case DRONECAN_PARAMETER_VOID:
+        return "DRONECAN_PARAMETER_VOID";
+    case DRONECAN_PARAMETER_BYTES:
+        return "DRONECAN_PARAMETER_BYTES";
+    case DRONECAN_PARAMETER_SINT8:
+        return "DRONECAN_PARAMETER_SINT8";
+    case DRONECAN_PARAMETER_UINT8:
+        return "DRONECAN_PARAMETER_UINT8";
+    case DRONECAN_PARAMETER_SINT16:
+        return "DRONECAN_PARAMETER_SINT16";
+    case DRONECAN_PARAMETER_UINT16:
+        return "DRONECAN_PARAMETER_UINT16";
+    case DRONECAN_PARAMETER_SINT32:
+        return "DRONECAN_PARAMETER_SINT32";
+    case DRONECAN_PARAMETER_UINT32:
+        return "DRONECAN_PARAMETER_UINT32";
+    case DRONECAN_PARAMETER_FLOAT:
+        return "DRONECAN_PARAMETER_FLOAT";
+    }
+}
+
+/*!
+ * \brief Lookup title for 'DroneCAN_Parameter_Types' enum entry
+ * 
+ * \param value is the integer value of the enum entry
+ * \return string title of the given entry (label name if no title given)
+ */
+const char* DroneCAN_Parameter_Types_EnumTitle(int value)
+{
+    switch (value)
+    {
+    default:
+        return "";
+    case DRONECAN_PARAMETER_VOID:
+        return "Void (null) parameter";
+    case DRONECAN_PARAMETER_BYTES:
+        return "Array of raw bytes (4 bytes)";
+    case DRONECAN_PARAMETER_SINT8:
+        return "Signed integer, 8-bit";
+    case DRONECAN_PARAMETER_UINT8:
+        return "Unsigned integer, 8-bit";
+    case DRONECAN_PARAMETER_SINT16:
+        return "Signed integer, 16-bit";
+    case DRONECAN_PARAMETER_UINT16:
+        return "Unsigned integer, 16-bit";
+    case DRONECAN_PARAMETER_SINT32:
+        return "Signed integer, 32-bit";
+    case DRONECAN_PARAMETER_UINT32:
+        return "Unsigned integer, 32-bit";
+    case DRONECAN_PARAMETER_FLOAT:
+        return "Floating point number, 32-bit";
+    }
+}
+
+
+/*!
  * \brief Lookup label for 'DroneCAN_Vendors' enum entry
  * 
  * \param value is the integer value of the enum entry

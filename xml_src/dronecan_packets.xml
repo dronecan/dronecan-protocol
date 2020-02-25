@@ -4,6 +4,12 @@
 
 <Enum name="DroneCAN_System_Packets" file="dronecan_packets" lookup="true" lookupTitle="true" prefix="PKT_DC_">
     
+
+    <!-- Device parameters -->
+    <Value name="PARAM_REQUEST" value="0xEF00" comment="Request device parameter"/>
+    <Value name="PARAM_INFO" comment="Parameter description"/>
+    <Value name="PARAM_VALUE" comment="Parameter value"/>
+
     <!-- System information packets -->
     <Value name="SYS_STATUS" value="0xF000" comment="Device status information"/>
 
