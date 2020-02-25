@@ -9,4 +9,16 @@
     <Value name="LOW"      value="0b11" comment="Low priority message"/>
 </Enum>
 
+<Enum name="DroneCAN_Parameter_Types" lookup="true" lookupTitle="true" prefix="DRONECAN_PARAMETER_">
+    <Value name="NULL" value="0x00" comment="Null (empty) parameter"/>
+    <Value name="BYTES" comment="Array of raw bytes (4 bytes)"/>
+    <Value name="SINT8" comment="Signed integer, 8-bit"/>
+    <Value name="UINT8" comment="Unsigned integer, 8-bit"/>
+    <Value name="SINT16" comment="Signed integer, 16-bit"/>
+    <Value name="UINT16" comment="Unsigned integer, 16-bit"/>
+    <Value name="SINT32" comment="Signed integer, 32-bit"/>
+    <Value name="UINT32" comment="Unsigned integer, 32-bit"/> 
+    <Value name="FLOAT" comment="Floating point number, 32-bit"/>
+</Enum>
+
 </Protocol>

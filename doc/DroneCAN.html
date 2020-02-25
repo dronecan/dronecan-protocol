@@ -185,6 +185,73 @@
 </tbody>
 </table>
 
+<h2 id="dronecan_parameter_typesenumeration">DroneCAN_Parameter_Types enumeration</h2>
+
+<table>
+<caption id="anamedronecan_parameter_typesadronecan_parameter_typesenumeration"><a name="DroneCAN_Parameter_Types"></a>DroneCAN_Parameter_Types enumeration</caption>
+<colgroup>
+<col/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Name</th>
+	<th style="text-align:center;">Value</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td><code>DRONECAN_PARAMETER_NULL</code></td>
+	<td style="text-align:center;">0</td>
+	<td>Null (empty) parameter</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_BYTES</code></td>
+	<td style="text-align:center;">1</td>
+	<td>Array of raw bytes (4 bytes)</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_SINT8</code></td>
+	<td style="text-align:center;">2</td>
+	<td>Signed integer, 8-bit</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_UINT8</code></td>
+	<td style="text-align:center;">3</td>
+	<td>Unsigned integer, 8-bit</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_SINT16</code></td>
+	<td style="text-align:center;">4</td>
+	<td>Signed integer, 16-bit</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_UINT16</code></td>
+	<td style="text-align:center;">5</td>
+	<td>Unsigned integer, 16-bit</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_SINT32</code></td>
+	<td style="text-align:center;">6</td>
+	<td>Signed integer, 32-bit</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_UINT32</code></td>
+	<td style="text-align:center;">7</td>
+	<td>Unsigned integer, 32-bit</td>
+</tr>
+<tr>
+	<td><code>DRONECAN_PARAMETER_FLOAT</code></td>
+	<td style="text-align:center;">8</td>
+	<td>Floating point number, 32-bit</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="dronecan_vendorsenumeration">DroneCAN_Vendors enumeration</h2>
 
 <table>
@@ -232,6 +299,21 @@
 
 <tbody>
 <tr>
+	<td><a href="#PKT_DC_PARAM_REQUEST"><code>PKT_DC_PARAM_REQUEST</code></a></td>
+	<td style="text-align:center;">61184</td>
+	<td>Request device parameter</td>
+</tr>
+<tr>
+	<td><a href="#PKT_DC_PARAM_INFO"><code>PKT_DC_PARAM_INFO</code></a></td>
+	<td style="text-align:center;">61185</td>
+	<td>Parameter description</td>
+</tr>
+<tr>
+	<td><a href="#PKT_DC_PARAM_VALUE"><code>PKT_DC_PARAM_VALUE</code></a></td>
+	<td style="text-align:center;">61186</td>
+	<td>Parameter value</td>
+</tr>
+<tr>
 	<td><a href="#PKT_DC_SYS_STATUS"><code>PKT_DC_SYS_STATUS</code></a></td>
 	<td style="text-align:center;">61440</td>
 	<td>Device status information</td>
@@ -270,6 +352,579 @@
 	<td><a href="#PKT_DC_SYS_HW_INFO"><code>PKT_DC_SYS_HW_INFO</code></a></td>
 	<td style="text-align:center;">61717</td>
 	<td>Hardware information</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_requestaparameterrequestpacket"><a name="PKT_DC_PARAM_REQUEST"></a>ParameterRequest packet</h2>
+
+<p>Request device parameter</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_REQUEST</code> : 61184</li>
+<li>data length: 1</li>
+</ul>
+
+<table>
+<caption id="parameterrequestpacketbytes">ParameterRequest packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0</td>
+	<td>1)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_infoaparameterinfopacket"><a name="PKT_DC_PARAM_INFO"></a>ParameterInfo packet</h2>
+
+<p>Parameter description</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_INFO</code> : 61185</li>
+<li>minimum data length: 4</li>
+<li>maximum data length: 99</li>
+</ul>
+
+<table>
+<caption id="parameterinfopacketbytes">ParameterInfo packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>3&#8230;98</td>
+	<td>3)name</td>
+	<td style="text-align:center;" colspan="2">Zero-terminated string up to 96 bytes</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_infoaparameternullpacket"><a name="PKT_DC_PARAM_INFO"></a>ParameterNull packet</h2>
+
+<p>Encode a &#8216;null&#8217; or &#8216;void&#8217; parameter</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_INFO</code> : 61185</li>
+<li>data length: 3</li>
+</ul>
+
+<table>
+<caption id="parameternullpacketbytes">ParameterNull packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_NULL.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervaluebytespacket"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueBytes packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 7</li>
+</ul>
+
+<table>
+<caption id="parametervaluebytespacketbytes">ParameterValueBytes packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_BYTES.</td>
+</tr>
+<tr>
+	<td>3&#8230;6</td>
+	<td>3)data</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">4</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervalues8packet"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueS8 packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 4</li>
+</ul>
+
+<table>
+<caption id="parametervalues8packetbytes">ParameterValueS8 packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_SINT8.</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>3)data</td>
+	<td style="text-align:center;">I8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervalueu8packet"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueU8 packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 4</li>
+</ul>
+
+<table>
+<caption id="parametervalueu8packetbytes">ParameterValueU8 packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_UINT8.</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>3)data</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervalues16packet"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueS16 packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 5</li>
+</ul>
+
+<table>
+<caption id="parametervalues16packetbytes">ParameterValueS16 packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_SINT16.</td>
+</tr>
+<tr>
+	<td>3&#8230;4</td>
+	<td>3)data</td>
+	<td style="text-align:center;">I16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervalueu16packet"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueU16 packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 5</li>
+</ul>
+
+<table>
+<caption id="parametervalueu16packetbytes">ParameterValueU16 packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_UINT16.</td>
+</tr>
+<tr>
+	<td>3&#8230;4</td>
+	<td>3)data</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervalues32packet"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueS32 packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 7</li>
+</ul>
+
+<table>
+<caption id="parametervalues32packetbytes">ParameterValueS32 packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_SINT32.</td>
+</tr>
+<tr>
+	<td>3&#8230;6</td>
+	<td>3)data</td>
+	<td style="text-align:center;">I32</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervalueu32packet"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueU32 packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 7</li>
+</ul>
+
+<table>
+<caption id="parametervalueu32packetbytes">ParameterValueU32 packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_UINT32.</td>
+</tr>
+<tr>
+	<td>3&#8230;6</td>
+	<td>3)data</td>
+	<td style="text-align:center;">U32</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="anamepkt_dc_param_valueaparametervaluefloatpacket"><a name="PKT_DC_PARAM_VALUE"></a>ParameterValueFloat packet</h2>
+
+<p>Parameter value</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_PARAM_VALUE</code> : 61186</li>
+<li>data length: 7</li>
+</ul>
+
+<table>
+<caption id="parametervaluefloatpacketbytes">ParameterValueFloat packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)index</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>2)format</td>
+	<td style="text-align:center;">U8</td>
+	<td style="text-align:center;">1</td>
+	<td>Reserved bytes in the packet.<br>Data are given constant value on encode DRONECAN_PARAMETER_FLOAT.</td>
+</tr>
+<tr>
+	<td>3&#8230;6</td>
+	<td>3)data</td>
+	<td style="text-align:center;">F32</td>
+	<td style="text-align:center;">1</td>
+	<td></td>
 </tr>
 </tbody>
 </table>

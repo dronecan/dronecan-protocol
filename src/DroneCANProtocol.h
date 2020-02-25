@@ -69,6 +69,25 @@ const char* DroneCAN_Priority_Levels_EnumTitle(int value);
 
 typedef enum
 {
+    DRONECAN_PARAMETER_NULL = 0x00,//!< Null (empty) parameter
+    DRONECAN_PARAMETER_BYTES,    //!< Array of raw bytes (4 bytes)
+    DRONECAN_PARAMETER_SINT8,    //!< Signed integer, 8-bit
+    DRONECAN_PARAMETER_UINT8,    //!< Unsigned integer, 8-bit
+    DRONECAN_PARAMETER_SINT16,   //!< Signed integer, 16-bit
+    DRONECAN_PARAMETER_UINT16,   //!< Unsigned integer, 16-bit
+    DRONECAN_PARAMETER_SINT32,   //!< Signed integer, 32-bit
+    DRONECAN_PARAMETER_UINT32,   //!< Unsigned integer, 32-bit
+    DRONECAN_PARAMETER_FLOAT     //!< Floating point number, 32-bit
+} DroneCAN_Parameter_Types;
+
+//! \return the label of a 'DroneCAN_Parameter_Types' enum entry, based on its value
+const char* DroneCAN_Parameter_Types_EnumLabel(int value);
+
+//! \return the title of a 'DroneCAN_Parameter_Types' enum entry, based on its value
+const char* DroneCAN_Parameter_Types_EnumTitle(int value);
+
+typedef enum
+{
     DRONECAN_VENDOR_CURRAWONG = 0xCECE //!< Currawong Engineering Pty Ltd
 } DroneCAN_Vendors;
 
