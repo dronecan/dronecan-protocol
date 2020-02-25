@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_Enums">
+
+<Enum name="DroneCAN_Priority_Levels" lookupTitle="true" lookup="true" prefix="DRONECAN_PRIORITY_">
+    <Value name="CRITICAL" value="0b00" comment="Critical priority message"/>
+    <Value name="ELEVATED" value="0b01" comment="Elevated priority message"/>
+    <Value name="NORMAL"   value="0b10" comment="Normal priority message"/>
+    <Value name="LOW"      value="0b11" comment="Low priority message"/>
+</Enum>
+
+</Protocol>

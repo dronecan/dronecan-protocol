@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN"
+          prefix="DroneCAN_"
+          api="1" version="1.0"
+          supportSpecialFloat="false"
+          supportInt64="false"
+          supportFloat64="false"
+          endian="big"
+        >
+
+    <Require file="dronecan_enums.xml"/>
+    <Require file="dronecan_vendors.xml"/>
+    <Require file="dronecan_packets.xml"/>
+
+    <Require file="dronecan_system_info.xml"/>
+
+</Protocol>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_Vendors">
+
+<Enum name="DroneCAN_Vendors" lookup="true" lookupTitle="true" prefix="DRONECAN_VENDOR_">
+    <Value name="CURRAWONG" value="0xCECE" comment="Currawong Engineering Pty Ltd"/>
+</Enum>
+
+</Protocol>

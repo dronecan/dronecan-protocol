@@ -1,0 +1,1 @@
+protogen.exe xml_src/dronecan.xml src --docs doc --license xml_src/license

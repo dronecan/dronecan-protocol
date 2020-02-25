@@ -1,0 +1,11 @@
+# Ignore generated docs and build folders
+_build/
+_docs/
+
+html/*
+
+*.db
+
+# Unit-testing framework
+test/debug/
+test/release/

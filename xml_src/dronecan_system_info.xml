@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<Protocol name="DroneCAN_SystemInfo">
+
+<Packet name="DeviceStatus" id="PKT_DC_SYS_STATUS"
+        comment="Device status information"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+
+</Packet>
+
+<Packet name="UniqueId" id="PKT_DC_SYS_UID"
+        comment="Unique identifier for DroneCAN device"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+    <Data name="vid" inMemoryType="unsigned16" comment="Vendor ID"/>
+    <Data name="pid" inMemoryType="unsigned16" comment="Product ID"/>
+    <Data name="seiral" inMemoryType="unsigned32" encodedType="unsigned24" comment="Device serial number"/>
+    <Data name="address" inMemoryType="unsigned8" comment="CAN node address"/>
+</Packet>
+
+<Packet name="ManufacturerString" id="PKT_DC_SYS_MANF_STRING"
+        comment="Manufacturer identifier string"
+        parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+
+    <Data name="manufacturerString" inMemoryType="string" array="64" comment="Manufactuer string"/>
+</Packet>
+
+<Packet name="UserString" id="PKT_DC_SYS_USER_STRING"
+        comment="Manufacturer identifier string"
+        parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+
+    <Data name="userString" inMemoryType="string" array="64" comment="User configurable string"/>
+</Packet>
+
+<Packet name="FirmwareVersion" id="PKT_DC_SYS_FW_VERSION"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+    <Data name="versionMajor" inMemoryType="unsigned8"/>
+    <Data name="versionMinor" inMemoryType="unsigned8"/>
+    <Data name="versionSub" inMemoryType="unsigned8"/>
+    <Data name="checksum" inMemoryType="unsigned32"/>
+</Packet>
+
+<Packet name="FirmwareDate" id="PKT_DC_SYS_FW_DATE"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+    <Data name="versionYear" inMemoryType="unsigned16"/>
+    <Data name="versionMonth" inMemoryType="unsigned8"/>
+    <Data name="versionDay" inMemoryType="unsigned8"/>
+</Packet>
+
+<Packet name="FirmwareSettings" id="PKT_DC_SYS_FW_SETTINGS"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+
+    <Data name="settingsChecksum" inMemoryType="unsigned32" comment="Checksum of all user-configurable device settings"/>
+
+</Packet>
+
+<Packet name="HardwareInfo" id="PKT_DC_SYS_HW_INFO"
+        structureInterface="true" parameterInterface="true"
+        file="DroneCAN_SystemPackets.h">
+</Packet>
+
+</Protocol>

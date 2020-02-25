@@ -1,9 +1,5 @@
 before_install:
   - sudo apt-get update
-  - sudo apt-get install qt5-default qttools5-dev-tools
-# Build the unit testing tool
-# Run the unit testing
 
 script:
-  - cd test && make
-  - ./test/protocol-test
+  - sudo sh test.sh
