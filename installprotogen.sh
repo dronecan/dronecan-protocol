@@ -3,7 +3,7 @@
 # Qt build tools
 sudo apt-get install qt5-default
 
-git clone https://github.com/billvaglienti/ProtoGen
+git submodule init && git submodule update
 
 cd ProtoGen
 qmake ProtoGen.pro

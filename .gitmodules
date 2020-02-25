@@ -1,0 +1,3 @@
+[submodule "ProtoGen"]
+	path = ProtoGen
+	url = https://github.com/billvaglienti/ProtoGen
