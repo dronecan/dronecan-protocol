@@ -8,6 +8,7 @@ Building the protocol files requires installation of the [ProtoGen](https://gith
 
 To install these simply run the commands:
 
+- `git submodule init && git submodule update`
 - `./installmarkdown.sh`
 - `./installprotogen.sh`
 
