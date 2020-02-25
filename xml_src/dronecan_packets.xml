@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
-<Protocol name="DroneCAN_Packets">
+<Protocol name="DroneCAN_Packets" file="dronecan_packets">
 
-<Enum name="DroneCAN_System_Packets" file="DroneCAN_Packets" lookup="true" lookupTitle="true" prefix="PKT_DC_">
+<Enum name="DroneCAN_System_Packets" file="dronecan_packets" lookup="true" lookupTitle="true" prefix="PKT_DC_">
     
     <!-- System information packets -->
     <Value name="SYS_STATUS" value="0xF000" comment="Device status information"/>

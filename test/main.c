@@ -31,8 +31,8 @@ SOFTWARE.
 #include "dronecan_packet_glue.h"
 
 #include "DroneCANProtocol.h"
-#include "DroneCAN_Packets.h"
-#include "DroneCAN_SystemPackets.h"
+#include "dronecan_packets.h"
+#include "dronecan_system_packets.h"
 
 #define ASSERT(condition) tests++; assert(condition)
 
