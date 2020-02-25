@@ -2,4 +2,4 @@ before_install:
   - sudo apt-get update
 
 script:
-  - ./test.sh
+  - sudo ./test.sh
