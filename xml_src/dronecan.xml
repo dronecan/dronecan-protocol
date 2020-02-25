@@ -13,6 +13,6 @@
     <Require file="dronecan_vendors.xml"/>
     <Require file="dronecan_packets.xml"/>
 
-    <Require file="dronecan_system_info.xml"/>
+    <Require file="dronecan_system.xml"/>
 
 </Protocol>
