@@ -22,25 +22,40 @@ SOFTWARE.
 
 **/
 
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#include <string.h>
 
-#include <stdint.h>
+#include "dronecan_packet_descriptor.h"
 
-int main(void);
 
-/* Static functions */
-void testId(void);
+/**
+ * Lookup the label for a given packet. Search through the available packet enumerations.
+ * 
+ * When a new packet enumeration is added, ensure that it is referenced here.
+ */
+const char* DroneCAN_PacketLabel(int pktId)
+{
+    if (strlen(DroneCAN_System_Packets_EnumLabel(pktId)) > 0)
+    {
+        return DroneCAN_System_Packets_EnumLabel(pktId);
+    }
 
-/* Parameter tests */
-void testParams(void);
+    // No packet label found
+    return "";
+}
 
-/* System message test */
-void testUID(void);
-void testFirmwareVersion(void);
-void testIDStrings(void);
 
-void testPacketLabel(void);
-void testPacketDescription(void);
+/**
+ * Lookup the description for a given packet. Search through the available packet enumerations.
+ * 
+ * When a new packet enumeration is added, ensure that it is referenced here.
+ */
+const char* DroneCAN_PacketDescription(int pktId)
+{
+    if (strlen(DroneCAN_System_Packets_EnumTitle(pktId)) > 0)
+    {
+        return DroneCAN_System_Packets_EnumTitle(pktId);
+    }
 
-#endif // _MAIN_H_
+    // No packet descriptor found
+    return "";
+}
