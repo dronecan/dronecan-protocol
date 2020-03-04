@@ -37,6 +37,8 @@ SOFTWARE.
 
 #include "dronecan_id.h"
 #include "dronecan_param.h"
+#include "dronecan_packet_descriptor.h"
+
 
 #define ASSERT(condition) tests++; assert(condition)
 
@@ -65,6 +67,10 @@ int main()
     testUID();
     testFirmwareVersion();
     testIDStrings();
+
+    /* Packet descriptor lookup */
+    testPacketLabel();
+    testPacketDescription();
 
     printf("\n------------------------------\n");
     printf("Ran %d tests - all passed\n", tests);
@@ -252,4 +258,34 @@ void testIDStrings(void)
     // Assert that decoding as a different packet will fail
     ASSERT(decodeDroneCAN_ManufacturerStringPacket(&pkt, s) == 0);
 
+}
+
+
+void testPacketLabel(void)
+{
+    char s[512];
+
+    strcpy(s, DroneCAN_PacketLabel(PKT_DC_SYS_UID));
+
+    ASSERT(strlen(s) > 0);
+
+    // A packet which is out of range should return empty string
+    strcpy(s, DroneCAN_PacketLabel(0x12345));
+
+    ASSERT(strlen(s) == 0);
+}
+
+
+void testPacketDescription(void)
+{
+    char s[512];
+
+    strcpy(s, DroneCAN_PacketDescription(PKT_DC_SYS_UID));
+
+    ASSERT(strlen(s) > 0);
+
+    // A packet which is out of range should return emptry string
+    strcpy(s, DroneCAN_PacketDescription(0x12345));
+
+    ASSERT(strlen(s) == 0);
 }
