@@ -22,25 +22,21 @@ SOFTWARE.
 
 **/
 
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef _DRONECAN_PKT_DESCRIPTOR_H_
+#define _DRONECAN_PKT_DESCRIPTOR_H_
 
-#include <stdint.h>
+#include "dronecan_packets.h"
 
-int main(void);
+#ifdef __cplusplus
+extern "C" {
+#endif // cpp
 
-/* Static functions */
-void testId(void);
+const char* DroneCAN_PacketLabel(int pktId);
 
-/* Parameter tests */
-void testParams(void);
+const char* DroneCAN_PacketDescription(int pktId);
 
-/* System message test */
-void testUID(void);
-void testFirmwareVersion(void);
-void testIDStrings(void);
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
-void testPacketLabel(void);
-void testPacketDescription(void);
-
-#endif // _MAIN_H_
+#endif // _DRONECAN_PKT_DESCRIPTOR_H_
