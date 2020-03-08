@@ -20,9 +20,13 @@ To build the protocol files, run:
 
 ## Unit Testing
 
+Unit testing requires the [munit](https://nemequ.github.io/munit/) framework:
+
+`git clone https://github.com/nemequ/munit ./test/munit`
+
 To compile and run the unit-testing software, run:
 
-- `./test.sh`
+- `./run_tests.sh`
 
 ## Directory Structure
 
