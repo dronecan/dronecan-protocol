@@ -1,6 +1,8 @@
 before_install:
   - sudo apt-get update
   - git submodule init && git submodule update
+  - cd test
+  - git clone https://github.com/nemequ/munit
 
 script:
   - sudo sh test.sh

@@ -9,19 +9,15 @@ CFLAGS  = -g -Wall
 # the build target executable:
 TARGET = protocol-test
 
-SRC = ../src
-STATIC = ../static
+SRC_DIR = ../src
+STATIC_DIR = ../static
+MUNIT_DIR = munit
 
-SRC_FILES = *.c
-PROTOCOL_FILES = $(SRC)/*.c $(STATIC)/*.c
+SRC_FILES = *.c $(SRC_DIR)/*.c $(STATIC_DIR)/*.c $(MUNIT_DIR)/munit.c
+INC_FILES =  $(SRC_DIR)/*.h $(STATIC_DIR)/*.h $(MUNIT_DIR)/munit.h
 
-INC_DIR = ../src
-DEPS = main.h $(INC_DIR)/*.h $(STATIC)/*.h
-
-HEADER_FILES = $(SRC)/*.h
-
-$(TARGET): $(SRC_FILES) $(PROTOCOL_FILES) $(DEPS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_FILES) $(PROTOCOL_FILES) $(DEPS) -I../src/ -I../static/
+$(TARGET): $(SRC_FILES) $(SRC_FILES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_FILES) $(INC_FILES) -Imunit/ -I../src/ -I../static/
 
 clean:
 	$(RM) $(TARGET)
