@@ -6,7 +6,7 @@
     <Data name="format" inMemoryType="unsigned8"/>
 </Packet>
 
-<Packet name="ParameterInfo" id="PKT_DC_PARAM_INFO" comment="" parameterInterface="true" structureInterface="false">
+<Packet name="ParameterInfo" id="PKT_DC_PARAM_INFO" comment="" parameterInterface="true" structureInterface="true">
     <Data name="index" inMemoryType="unsigned16"/>
     <Data name="format" inMemoryType="unsigned8"/>
     <Data name="name" inMemoryType="string" array="96"/>
