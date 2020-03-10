@@ -183,21 +183,30 @@
 
 
 
+## DroneCAN_Param_Packets enumeration
+
+| Name                                            | Value | Description              |
+| ----------------------------------------------- | :---: | ------------------------ |
+| [`PKT_DC_PARAM_REQUEST`](#PKT_DC_PARAM_REQUEST) | 61184 | Request device parameter |
+| [`PKT_DC_PARAM_INFO`](#PKT_DC_PARAM_INFO)       | 61185 | Parameter description    |
+| [`PKT_DC_PARAM_VALUE`](#PKT_DC_PARAM_VALUE)     | 61186 | Parameter value          |
+[<a name="DroneCAN_Param_Packets"></a>DroneCAN_Param_Packets enumeration]
+
+
+
 ## DroneCAN_System_Packets enumeration
 
-| Name                                                | Value | Description                            |
-| --------------------------------------------------- | :---: | -------------------------------------- |
-| [`PKT_DC_PARAM_REQUEST`](#PKT_DC_PARAM_REQUEST)     | 61184 | Request device parameter               |
-| [`PKT_DC_PARAM_INFO`](#PKT_DC_PARAM_INFO)           | 61185 | Parameter description                  |
-| [`PKT_DC_PARAM_VALUE`](#PKT_DC_PARAM_VALUE)         | 61186 | Parameter value                        |
-| [`PKT_DC_SYS_STATUS`](#PKT_DC_SYS_STATUS)           | 61440 | Device status information              |
-| [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)                 | 61696 | Unique Identifer for DroneCAN node     |
-| [`PKT_DC_SYS_MANF_STRING`](#PKT_DC_SYS_MANF_STRING) | 61701 | Manufacturer device identifier string  |
-| [`PKT_DC_SYS_USER_STRING`](#PKT_DC_SYS_USER_STRING) | 61702 | User device identifier string          |
-| [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION)   | 61712 | Firmware version information           |
-| [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)         | 61713 | Firmware date information              |
-| [`PKT_DC_SYS_FW_SETTINGS`](#PKT_DC_SYS_FW_SETTINGS) | 61714 | User-configurable settings information |
-| [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)         | 61717 | Hardware information                   |
+| Name                                                    | Value | Description                            |
+| ------------------------------------------------------- | :---: | -------------------------------------- |
+| [`PKT_DC_SYS_STATUS`](#PKT_DC_SYS_STATUS)               | 61440 | Device status information              |
+| [`PKT_DC_SYS_UID`](#PKT_DC_SYS_UID)                     | 61696 | Unique Identifer for DroneCAN node     |
+| [`PKT_DC_SYS_MANF_STRING`](#PKT_DC_SYS_MANF_STRING)     | 61701 | Manufacturer device identifier string  |
+| [`PKT_DC_SYS_USER_STRING`](#PKT_DC_SYS_USER_STRING)     | 61702 | User device identifier string          |
+| [`PKT_DC_SYS_FW_VERSION`](#PKT_DC_SYS_FW_VERSION)       | 61712 | Firmware version information           |
+| [`PKT_DC_SYS_FW_DATE`](#PKT_DC_SYS_FW_DATE)             | 61713 | Firmware date information              |
+| [`PKT_DC_SYS_FW_SETTINGS`](#PKT_DC_SYS_FW_SETTINGS)     | 61714 | User-configurable settings information |
+| [`PKT_DC_SYS_HW_INFO`](#PKT_DC_SYS_HW_INFO)             | 61717 | Hardware information                   |
+| [`PKT_DC_SYS_PROTOCOL_INFO`](#PKT_DC_SYS_PROTOCOL_INFO) | 61722 | DroneCAN protocol information          |
 [<a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration]
 
 
@@ -484,6 +493,22 @@ Hardware information
 
 - packet identifier: `PKT_DC_SYS_HW_INFO` : 61717
 - data length: 0
+
+
+## <a name="PKT_DC_SYS_PROTOCOL_INFO"></a>ProtocolInfo packet
+
+DroneCAN protocol information
+
+- packet identifier: `PKT_DC_SYS_PROTOCOL_INFO` : 61722
+- minimum data length: 3
+- maximum data length: 8
+
+
+| Bytes | Name        | [Enc](#Enc)                          | Repeat | Description                                                       |
+| ----- | ----------- | :----------------------------------: | :----: | ----------------------------------------------------------------- |
+| 0...1 | 1)dcApi     | U16                                  | 1      | <br>Data are given constant value on encode getDroneCANApi().     |
+| 2...7 | 2)dcVersion | Zero-terminated string up to 6 bytes         || <br>Data are given constant value on encode getDroneCANVersion(). |
+[ProtocolInfo packet bytes]
 
 <div class="page-break"></div>
 

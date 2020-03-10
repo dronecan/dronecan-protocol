@@ -27,12 +27,12 @@ SOFTWARE.
 #include "dronecan_packets.h"
 
 /*!
- * \brief Lookup label for 'DroneCAN_System_Packets' enum entry
+ * \brief Lookup label for 'DroneCAN_Param_Packets' enum entry
  * 
  * \param value is the integer value of the enum entry
  * \return string label of the given entry
  */
-const char* DroneCAN_System_Packets_EnumLabel(int value)
+const char* DroneCAN_Param_Packets_EnumLabel(int value)
 {
     switch (value)
     {
@@ -44,6 +44,43 @@ const char* DroneCAN_System_Packets_EnumLabel(int value)
         return "PKT_DC_PARAM_INFO";
     case PKT_DC_PARAM_VALUE:
         return "PKT_DC_PARAM_VALUE";
+    }
+}
+
+/*!
+ * \brief Lookup title for 'DroneCAN_Param_Packets' enum entry
+ * 
+ * \param value is the integer value of the enum entry
+ * \return string title of the given entry (label name if no title given)
+ */
+const char* DroneCAN_Param_Packets_EnumTitle(int value)
+{
+    switch (value)
+    {
+    default:
+        return "";
+    case PKT_DC_PARAM_REQUEST:
+        return "Request device parameter";
+    case PKT_DC_PARAM_INFO:
+        return "Parameter description";
+    case PKT_DC_PARAM_VALUE:
+        return "Parameter value";
+    }
+}
+
+
+/*!
+ * \brief Lookup label for 'DroneCAN_System_Packets' enum entry
+ * 
+ * \param value is the integer value of the enum entry
+ * \return string label of the given entry
+ */
+const char* DroneCAN_System_Packets_EnumLabel(int value)
+{
+    switch (value)
+    {
+    default:
+        return "";
     case PKT_DC_SYS_STATUS:
         return "PKT_DC_SYS_STATUS";
     case PKT_DC_SYS_UID:
@@ -60,6 +97,8 @@ const char* DroneCAN_System_Packets_EnumLabel(int value)
         return "PKT_DC_SYS_FW_SETTINGS";
     case PKT_DC_SYS_HW_INFO:
         return "PKT_DC_SYS_HW_INFO";
+    case PKT_DC_SYS_PROTOCOL_INFO:
+        return "PKT_DC_SYS_PROTOCOL_INFO";
     }
 }
 
@@ -75,12 +114,6 @@ const char* DroneCAN_System_Packets_EnumTitle(int value)
     {
     default:
         return "";
-    case PKT_DC_PARAM_REQUEST:
-        return "Request device parameter";
-    case PKT_DC_PARAM_INFO:
-        return "Parameter description";
-    case PKT_DC_PARAM_VALUE:
-        return "Parameter value";
     case PKT_DC_SYS_STATUS:
         return "Device status information";
     case PKT_DC_SYS_UID:
@@ -97,6 +130,8 @@ const char* DroneCAN_System_Packets_EnumTitle(int value)
         return "User-configurable settings information";
     case PKT_DC_SYS_HW_INFO:
         return "Hardware information";
+    case PKT_DC_SYS_PROTOCOL_INFO:
+        return "DroneCAN protocol information";
     }
 }
 

@@ -34,9 +34,19 @@ extern "C" {
 
 typedef enum
 {
-    PKT_DC_PARAM_REQUEST = 0xEF00,   //!< Request device parameter
-    PKT_DC_PARAM_INFO,               //!< Parameter description
-    PKT_DC_PARAM_VALUE,              //!< Parameter value
+    PKT_DC_PARAM_REQUEST = 0xEF00,//!< Request device parameter
+    PKT_DC_PARAM_INFO,           //!< Parameter description
+    PKT_DC_PARAM_VALUE           //!< Parameter value
+} DroneCAN_Param_Packets;
+
+//! \return the label of a 'DroneCAN_Param_Packets' enum entry, based on its value
+const char* DroneCAN_Param_Packets_EnumLabel(int value);
+
+//! \return the title of a 'DroneCAN_Param_Packets' enum entry, based on its value
+const char* DroneCAN_Param_Packets_EnumTitle(int value);
+
+typedef enum
+{
     PKT_DC_SYS_STATUS = 0xF000,      //!< Device status information
     PKT_DC_SYS_UID = 0xF100,         //!< Unique Identifer for DroneCAN node
     PKT_DC_SYS_MANF_STRING = 0xF105, //!< Manufacturer device identifier string
@@ -44,7 +54,8 @@ typedef enum
     PKT_DC_SYS_FW_VERSION = 0xF110,  //!< Firmware version information
     PKT_DC_SYS_FW_DATE,              //!< Firmware date information
     PKT_DC_SYS_FW_SETTINGS,          //!< User-configurable settings information
-    PKT_DC_SYS_HW_INFO = 0xF115      //!< Hardware information
+    PKT_DC_SYS_HW_INFO = 0xF115,     //!< Hardware information
+    PKT_DC_SYS_PROTOCOL_INFO = 0xF11A //!< DroneCAN protocol information
 } DroneCAN_System_Packets;
 
 //! \return the label of a 'DroneCAN_System_Packets' enum entry, based on its value

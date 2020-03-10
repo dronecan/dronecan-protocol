@@ -279,10 +279,10 @@
 </tbody>
 </table>
 
-<h2 id="dronecan_system_packetsenumeration">DroneCAN_System_Packets enumeration</h2>
+<h2 id="dronecan_param_packetsenumeration">DroneCAN_Param_Packets enumeration</h2>
 
 <table>
-<caption id="anamedronecan_system_packetsadronecan_system_packetsenumeration"><a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration</caption>
+<caption id="anamedronecan_param_packetsadronecan_param_packetsenumeration"><a name="DroneCAN_Param_Packets"></a>DroneCAN_Param_Packets enumeration</caption>
 <colgroup>
 <col/>
 <col style="text-align:center;"/>
@@ -313,6 +313,28 @@
 	<td style="text-align:center;">61186</td>
 	<td>Parameter value</td>
 </tr>
+</tbody>
+</table>
+
+<h2 id="dronecan_system_packetsenumeration">DroneCAN_System_Packets enumeration</h2>
+
+<table>
+<caption id="anamedronecan_system_packetsadronecan_system_packetsenumeration"><a name="DroneCAN_System_Packets"></a>DroneCAN_System_Packets enumeration</caption>
+<colgroup>
+<col/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Name</th>
+	<th style="text-align:center;">Value</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
 <tr>
 	<td><a href="#PKT_DC_SYS_STATUS"><code>PKT_DC_SYS_STATUS</code></a></td>
 	<td style="text-align:center;">61440</td>
@@ -352,6 +374,11 @@
 	<td><a href="#PKT_DC_SYS_HW_INFO"><code>PKT_DC_SYS_HW_INFO</code></a></td>
 	<td style="text-align:center;">61717</td>
 	<td>Hardware information</td>
+</tr>
+<tr>
+	<td><a href="#PKT_DC_SYS_PROTOCOL_INFO"><code>PKT_DC_SYS_PROTOCOL_INFO</code></a></td>
+	<td style="text-align:center;">61722</td>
+	<td>DroneCAN protocol information</td>
 </tr>
 </tbody>
 </table>
@@ -1242,6 +1269,53 @@
 <li>packet identifier: <code>PKT_DC_SYS_HW_INFO</code> : 61717</li>
 <li>data length: 0</li>
 </ul>
+
+<h2 id="anamepkt_dc_sys_protocol_infoaprotocolinfopacket"><a name="PKT_DC_SYS_PROTOCOL_INFO"></a>ProtocolInfo packet</h2>
+
+<p>DroneCAN protocol information</p>
+
+<ul>
+<li>packet identifier: <code>PKT_DC_SYS_PROTOCOL_INFO</code> : 61722</li>
+<li>minimum data length: 3</li>
+<li>maximum data length: 8</li>
+</ul>
+
+<table>
+<caption id="protocolinfopacketbytes">ProtocolInfo packet bytes</caption>
+<colgroup>
+<col/>
+<col/>
+<col style="text-align:center;"/>
+<col style="text-align:center;"/>
+<col/>
+</colgroup>
+
+<thead>
+<tr>
+	<th>Bytes</th>
+	<th>Name</th>
+	<th style="text-align:center;"><a href="#Enc">Enc</a></th>
+	<th style="text-align:center;">Repeat</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>0&#8230;1</td>
+	<td>1)dcApi</td>
+	<td style="text-align:center;">U16</td>
+	<td style="text-align:center;">1</td>
+	<td><br>Data are given constant value on encode getDroneCANApi().</td>
+</tr>
+<tr>
+	<td>2&#8230;7</td>
+	<td>2)dcVersion</td>
+	<td style="text-align:center;" colspan="2">Zero-terminated string up to 6 bytes</td>
+	<td><br>Data are given constant value on encode getDroneCANVersion().</td>
+</tr>
+</tbody>
+</table>
 
 <div class="page-break"></div>
 

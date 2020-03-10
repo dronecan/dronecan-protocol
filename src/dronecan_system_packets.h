@@ -235,6 +235,30 @@ int decodeDroneCAN_HardwareInfoPacket(const void* pkt);
 //! return the maximum encoded length for the DroneCAN_HardwareInfo packet
 #define getDroneCAN_HardwareInfoMaxDataLength() 0
 
+/*!
+ * DroneCAN protocol information
+ */
+typedef struct
+{
+    uint16_t dcApi;        //!< Field is encoded constant.
+    char     dcVersion[6]; //!< Field is encoded constant.
+}DroneCAN_ProtocolInfo_t;
+
+//! Create the DroneCAN_ProtocolInfo packet
+void encodeDroneCAN_ProtocolInfoPacket(void* pkt);
+
+//! Decode the DroneCAN_ProtocolInfo packet
+int decodeDroneCAN_ProtocolInfoPacket(const void* pkt, uint16_t* dcApi, char dcVersion[6]);
+
+//! return the packet ID for the DroneCAN_ProtocolInfo packet
+#define getDroneCAN_ProtocolInfoPacketID() (PKT_DC_SYS_PROTOCOL_INFO)
+
+//! return the minimum encoded length for the DroneCAN_ProtocolInfo packet
+#define getDroneCAN_ProtocolInfoMinDataLength() (3)
+
+//! return the maximum encoded length for the DroneCAN_ProtocolInfo packet
+#define getDroneCAN_ProtocolInfoMaxDataLength() (8)
+
 #ifdef __cplusplus
 }
 #endif
