@@ -709,4 +709,52 @@ int decodeDroneCAN_HardwareInfoPacket(const void* _pg_pkt)
     else
         return 1;
 }
+
+/*!
+ * \brief Create the DroneCAN_ProtocolInfo packet
+ *
+ * DroneCAN protocol information
+ * \param _pg_pkt points to the packet which will be created by this function
+ */
+void encodeDroneCAN_ProtocolInfoPacket(void* _pg_pkt)
+{
+    uint8_t* _pg_data = getDroneCANPacketData(_pg_pkt);
+    int _pg_byteindex = 0;
+
+    uint16ToBeBytes((uint16_t)(getDroneCANApi()), _pg_data, &_pg_byteindex);
+
+    stringToBytes(getDroneCANVersion(), _pg_data, &_pg_byteindex, 6, 0);
+
+    // complete the process of creating the packet
+    finishDroneCANPacket(_pg_pkt, _pg_byteindex, getDroneCAN_ProtocolInfoPacketID());
+}
+
+/*!
+ * \brief Decode the DroneCAN_ProtocolInfo packet
+ *
+ * DroneCAN protocol information
+ * \param _pg_pkt points to the packet being decoded by this function
+ * \param dcApi receives 
+ * \param dcVersion receives 
+ * \return 0 is returned if the packet ID or size is wrong, else 1
+ */
+int decodeDroneCAN_ProtocolInfoPacket(const void* _pg_pkt, uint16_t* dcApi, char dcVersion[6])
+{
+    int _pg_byteindex = 0;
+    const uint8_t* _pg_data = getDroneCANPacketDataConst(_pg_pkt);
+    int _pg_numbytes = getDroneCANPacketSize(_pg_pkt);
+
+    // Verify the packet identifier
+    if(getDroneCANPacketID(_pg_pkt) != getDroneCAN_ProtocolInfoPacketID())
+        return 0;
+
+    if(_pg_numbytes < getDroneCAN_ProtocolInfoMinDataLength())
+        return 0;
+
+    *dcApi = uint16FromBeBytes(_pg_data, &_pg_byteindex);
+
+    stringFromBytes(dcVersion, _pg_data, &_pg_byteindex, 6, 0);
+
+    return 1;
+}
 // end of dronecan_system_packets.c

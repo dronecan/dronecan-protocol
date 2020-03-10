@@ -2,27 +2,30 @@
 
 <Protocol name="DroneCAN_Packets" file="dronecan_packets">
 
-<Enum name="DroneCAN_System_Packets" file="dronecan_packets" lookup="true" lookupTitle="true" prefix="PKT_DC_">
-    
-
+<Enum name="DroneCAN_Param_Packets" file="dronecan_packets" lookup="true" lookupTitle="true" prefix="PKT_DC_PARAM_">
     <!-- Device parameters -->
-    <Value name="PARAM_REQUEST" value="0xEF00" comment="Request device parameter"/>
-    <Value name="PARAM_INFO" comment="Parameter description"/>
-    <Value name="PARAM_VALUE" comment="Parameter value"/>
+    <Value name="REQUEST" value="0xEF00" comment="Request device parameter"/>
+    <Value name="INFO" comment="Parameter description"/>
+    <Value name="VALUE" comment="Parameter value"/>
+</Enum>
 
+<Enum name="DroneCAN_System_Packets" file="dronecan_packets" lookup="true" lookupTitle="true" prefix="PKT_DC_SYS_">
+    
     <!-- System information packets -->
-    <Value name="SYS_STATUS" value="0xF000" comment="Device status information"/>
+    <Value name="STATUS" value="0xF000" comment="Device status information"/>
 
-    <Value name="SYS_UID" value="0xF100" comment="Unique Identifer for DroneCAN node"/>
+    <Value name="UID" value="0xF100" comment="Unique Identifer for DroneCAN node"/>
 
-    <Value name="SYS_MANF_STRING" value="0xF105" comment="Manufacturer device identifier string"/>
-    <Value name="SYS_USER_STRING" comment="User device identifier string"/>
+    <Value name="MANF_STRING" value="0xF105" comment="Manufacturer device identifier string"/>
+    <Value name="USER_STRING" comment="User device identifier string"/>
 
-    <Value name="SYS_FW_VERSION" value="0xF110" comment="Firmware version information"/>
-    <Value name="SYS_FW_DATE" comment="Firmware date information"/>
-    <Value name="SYS_FW_SETTINGS" comment="User-configurable settings information"/>
+    <Value name="FW_VERSION" value="0xF110" comment="Firmware version information"/>
+    <Value name="FW_DATE" comment="Firmware date information"/>
+    <Value name="FW_SETTINGS" comment="User-configurable settings information"/>
 
-    <Value name="SYS_HW_INFO" value="0xF115" comment="Hardware information"/>
+    <Value name="HW_INFO" value="0xF115" comment="Hardware information"/>
+
+    <Value name="PROTOCOL_INFO" value="0xF11A" comment="DroneCAN protocol information"/>
 
 
 </Enum>

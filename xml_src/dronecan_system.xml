@@ -53,8 +53,17 @@
 
 </Packet>
 
-<Packet name="HardwareInfo" id="PKT_DC_SYS_HW_INFO"
+<Packet name="HardwareInfo" id="PKT_DC_SYS_HW_INFO" 
         structureInterface="true" parameterInterface="true">
 </Packet>
+
+<Packet name="ProtocolInfo" id="PKT_DC_SYS_PROTOCOL_INFO"
+        parameterInterface="true">
+
+    <Data name="dcApi" inMemoryType="unsigned16" constant="getDroneCANApi()"/>
+    <Data name="dcVersion" inMemoryType="string" constant="getDroneCANVersion()" array="6"/>
+
+</Packet>
+
 
 </Protocol>

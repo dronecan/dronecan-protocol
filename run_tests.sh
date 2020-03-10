@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd test && make
+cd test && make clean && make
 ./protocol-test

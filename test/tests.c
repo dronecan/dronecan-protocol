@@ -236,6 +236,10 @@ static MunitResult test_pkt_description(const MunitParameter params[], void* dat
 
     munit_assert(strlen(s) > 0);
 
+    strcpy(s, DroneCAN_PacketDescription(PKT_DC_PARAM_INFO));
+
+    munit_assert(strlen(s) > 0);
+
     // A packet which is out of range should return emptry string
     strcpy(s, DroneCAN_PacketDescription(0x12345));
 

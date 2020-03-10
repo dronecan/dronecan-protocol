@@ -26,6 +26,7 @@ SOFTWARE.
 
 #include "dronecan_packet_descriptor.h"
 
+// TODO - A lot of needless code-duplication here. Work out how make it a preprocessor macro?
 
 /**
  * Lookup the label for a given packet. Search through the available packet enumerations.
@@ -37,6 +38,11 @@ const char* DroneCAN_PacketLabel(int pktId)
     if (strlen(DroneCAN_System_Packets_EnumLabel(pktId)) > 0)
     {
         return DroneCAN_System_Packets_EnumLabel(pktId);
+    }
+
+    if (strlen(DroneCAN_Param_Packets_EnumLabel(pktId)) > 0)
+    {
+        return DroneCAN_Param_Packets_EnumLabel(pktId);
     }
 
     // No packet label found
@@ -54,6 +60,11 @@ const char* DroneCAN_PacketDescription(int pktId)
     if (strlen(DroneCAN_System_Packets_EnumTitle(pktId)) > 0)
     {
         return DroneCAN_System_Packets_EnumTitle(pktId);
+    }
+
+    if (strlen(DroneCAN_Param_Packets_EnumTitle(pktId)) > 0)
+    {
+        return DroneCAN_Param_Packets_EnumTitle(pktId);
     }
 
     // No packet descriptor found
